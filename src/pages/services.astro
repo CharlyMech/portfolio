@@ -1,0 +1,13 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeaderReactive from '@/components/shared/PageHeaderReactive';
+import ServicesSection from '@/components/sections/ServicesSection';
+---
+
+<BaseLayout
+  title="Services — Carlos Dev"
+  description="Freelance services: architecture consulting, full stack development, mobile engineering, and performance auditing."
+>
+  <PageHeaderReactive section="services" client:load />
+  <ServicesSection client:load />
+</BaseLayout>

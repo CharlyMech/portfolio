@@ -1,0 +1,17 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import HeroSection from "@/components/sections/HeroSection";
+import InfrastructureSection from "@/components/sections/InfrastructureSection";
+import CTASection from "@/components/sections/CTASection";
+---
+
+<BaseLayout>
+	<!-- Hero: two-col grid -->
+	<HeroSection client:load />
+
+	<!-- Core infrastructure + experience log -->
+	<InfrastructureSection client:visible />
+
+	<!-- CTA / contact teaser -->
+	<CTASection client:visible />
+</BaseLayout>

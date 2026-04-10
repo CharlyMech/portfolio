@@ -1,0 +1,13 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeaderReactive from '@/components/shared/PageHeaderReactive';
+import ContactSection from '@/components/sections/ContactSection';
+---
+
+<BaseLayout
+  title="Contact — Carlos Dev"
+  description="Get in touch for collaborations, architectural audits, or just to say hello."
+>
+  <PageHeaderReactive section="contact" client:load />
+  <ContactSection client:load />
+</BaseLayout>

@@ -1,0 +1,13 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeaderReactive from '@/components/shared/PageHeaderReactive';
+import TechStackSection from '@/components/sections/TechStackSection';
+---
+
+<BaseLayout
+  title="Tech Stack — Carlos Dev"
+  description="Full technology stack: languages, frameworks, databases, DevOps tooling, and design tools."
+>
+  <PageHeaderReactive section="tech" client:load />
+  <TechStackSection client:visible />
+</BaseLayout>

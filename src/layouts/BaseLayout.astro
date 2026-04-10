@@ -1,0 +1,110 @@
+---
+/**
+ * BaseLayout — Main shell for all pages
+ * Handles: sidebar (desktop), topnav, bottom nav (mobile), page meta
+ */
+import TopNav from '@/components/navigation/TopNav';
+import Sidebar from '@/components/navigation/Sidebar';
+import BottomNav from '@/components/navigation/BottomNav';
+import '@/styles/global.css';
+import { SITE_META } from '@/data/portfolio';
+import { ViewTransitions, ClientRouter } from 'astro:transitions';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = SITE_META.title,
+  description = SITE_META.description,
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark" id="html-root">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0d0d0d" />
+
+    <!-- OG / Social -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={SITE_META.url} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Sync html[lang] from persisted locale before first paint -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = JSON.parse(localStorage.getItem('portfolio-locale') || '{}');
+          var locale = stored.state && stored.state.locale;
+          if (locale) document.getElementById('html-root').setAttribute('lang', locale);
+        } catch (_) {}
+      })();
+    </script>
+    <!-- Sync data-theme from persisted preference before first paint (prevents flash) -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = JSON.parse(localStorage.getItem('portfolio-theme') || '{}');
+          var theme = stored.state && stored.state.theme;
+          if (theme) document.getElementById('html-root').setAttribute('data-theme', theme);
+        } catch (_) {}
+      })();
+    </script>
+    <ViewTransitions />
+
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+
+  <body class="grain bg-bg-base text-text-primary">
+    <!-- Sidebar (desktop only — fixed left rail) -->
+    <Sidebar currentPath={currentPath} client:load transition:persist />
+
+    <!-- Main layout shell -->
+    <div
+      class="flex flex-col min-h-screen
+             md:pl-[48px]"
+    >
+      <!-- Top navigation bar -->
+      <TopNav currentPath={currentPath} client:load transition:persist />
+
+      <!-- Scrollable main content -->
+      <!--
+        pt = nav height (56px)
+        pb = bottom nav height on mobile (68px)
+        The bottom-nav must NOT overlap content — padding handles this.
+      -->
+      <main
+        id="main-content"
+        class="flex-1 overflow-y-auto
+               pt-[56px]
+               pb-[68px] md:pb-0"
+      >
+        <!-- Inner container with max-width and grid border styling -->
+        <div class="min-h-full border-x border-border mx-auto max-w-[1280px]">
+          <slot />
+        </div>
+      </main>
+    </div>
+
+    <!-- Mobile bottom navigation (fixed, rendered outside main) -->
+    <BottomNav currentPath={currentPath} client:load transition:persist />
+    <ClientRouter />
+  </body>
+</html>
