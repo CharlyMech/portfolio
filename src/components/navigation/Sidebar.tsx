@@ -5,19 +5,14 @@
 
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { Github, Linkedin, Twitter } from 'iconoir-react';
+import { getYear } from '@/stores/dateStore';
+import { PROFILE } from '@/data/portfolio';
 
 interface SidebarProps {
   currentPath: string;
 }
 
-const SIDE_ICONS = [
-  { id: 'code', icon: '<>', label: 'Code', href: '/projects' },
-  { id: 'photo', icon: '⬡', label: 'Gallery', href: '/projects' },
-];
-
-const SIDE_TEXT = 'CARLOS.DEV // 2024';
 
 export default function Sidebar({ currentPath }: SidebarProps) {
   return (
@@ -33,26 +28,31 @@ export default function Sidebar({ currentPath }: SidebarProps) {
           className="writing-vertical label-mono text-text-muted select-none"
           style={{ fontSize: '0.55rem', letterSpacing: '0.2em' }}
         >
-          {SIDE_TEXT}
+          &#169; Carlos Sánchez Recio (CharlyMech) - {getYear()}
         </span>
       </div>
 
-      {/* Bottom — action icons */}
-      <div className="flex flex-col items-center gap-5 pb-6">
-        {SIDE_ICONS.map((item) => (
-          <a
-            key={item.id}
-            href={item.href}
-            title={item.label}
-            className="group w-8 h-8 flex items-center justify-center
-                       text-text-muted hover:text-accent
-                       transition-colors duration-200"
-          >
-            <span className="font-mono text-sm group-hover:scale-110 transition-transform">
-              {item.icon}
-            </span>
-          </a>
-        ))}
+      {/* Bottom — social icons */}
+      <div className="flex flex-col items-center gap-4 pb-6">
+        {PROFILE.social.map((item) => {
+          const Icon = item.icon === 'github'
+            ? Github
+            : item.icon === 'linkedin'
+              ? Linkedin
+              : Twitter;
+          return (
+            <a
+              key={item.platform}
+              href={item.url}
+              title={item.handle}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-text-muted hover:text-accent transition-colors duration-200"
+            >
+              <Icon width={16} height={16} strokeWidth={1.5} />
+            </a>
+          );
+        })}
       </div>
     </aside>
   );

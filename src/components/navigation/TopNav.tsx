@@ -10,8 +10,8 @@ import { useEffect } from "react";
 import { HomeSimple, CodeBrackets, Suitcase, Journal } from "iconoir-react";
 import { usePill } from "./AnimatedPill";
 import { NAV_ITEMS } from "@/data/portfolio";
-import { useTranslations } from "@/i18n/useTranslations";
-import { initLocale } from "@/i18n/localeStore";
+import { useTranslations } from '@/hooks/use-translations';
+import { initLocale } from "@/stores/localeStore";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeToggle from "./ThemeToggle";
 
@@ -45,7 +45,7 @@ export default function TopNav({ currentPath }: TopNavProps) {
         (item.href !== "/" && currentPath.startsWith(item.href))
     ) ?? NAV_ITEMS[0];
 
-  const { containerRef, setItemRef, pill } = usePill(activeItem.id, { className: "h-9" });
+  const { containerRef, setItemRef, pill } = usePill(activeItem.id, { variant: 'line-bottom' });
 
   return (
     <header
@@ -63,10 +63,10 @@ export default function TopNav({ currentPath }: TopNavProps) {
       </a>
 
       {/* Desktop Nav + controls */}
-      <div className="hidden md:flex items-center gap-4">
+      <div className="flex items-center gap-4">
         <nav
           ref={containerRef as React.RefObject<HTMLElement>}
-          className="flex items-center gap-1 relative overflow-hidden"
+          className="hidden md:flex items-center gap-1 relative"
           aria-label="Main navigation"
         >
           {pill}

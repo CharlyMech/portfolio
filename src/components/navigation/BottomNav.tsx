@@ -9,7 +9,7 @@
 import { HomeSimple, CodeBrackets, Suitcase, Calendar, Journal, Mail } from 'iconoir-react';
 import { usePill } from './AnimatedPill';
 import { NAV_ITEMS } from '@/data/portfolio';
-import { useTranslations } from '@/i18n/useTranslations';
+import { useTranslations } from '@/hooks/use-translations';
 
 interface BottomNavProps {
   currentPath: string;
@@ -40,7 +40,7 @@ export default function BottomNav({ currentPath }: BottomNavProps) {
       (item.href !== '/' && currentPath.startsWith(item.href)),
   ) ?? NAV_ITEMS[0];
 
-  const { containerRef, setItemRef, pill } = usePill(activeItem.id, { inset: 8, className: 'h-10' });
+  const { containerRef, setItemRef, pill } = usePill(activeItem.id, { variant: 'line-top' });
 
   return (
     <nav

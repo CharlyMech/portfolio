@@ -18,9 +18,11 @@ export interface UsePillOptions {
   /**
    * "center" — pill has a fixed height and is vertically centered (pass height via className).
    * "fill"   — pill stretches top-to-bottom inside the container (no height needed).
+   * "line-bottom" — thin line pinned to the bottom edge of the container.
+   * "line-top"    — thin line pinned to the top edge of the container.
    * Default: "center".
    */
-  variant?: 'center' | 'fill';
+  variant?: 'center' | 'fill' | 'line-bottom' | 'line-top';
   /** Extra Tailwind classes on the pill (e.g. "h-9", "h-10"). */
   className?: string;
 }
@@ -53,15 +55,25 @@ export function usePill<K extends string>(
     measure();
   }, [activeKey, inset]);
 
+  const isLine = variant === 'line-bottom' || variant === 'line-top';
+
   const positionClasses = variant === 'fill'
     ? 'top-0 bottom-0'
-    : `top-1/2 -translate-y-1/2 ${className}`;
+    : variant === 'line-bottom'
+      ? 'bottom-0 h-[2px]'
+      : variant === 'line-top'
+        ? 'top-0 h-[2px]'
+        : `top-1/2 -translate-y-1/2 ${className}`;
 
   // Only render once we have a measured position — avoids the 0,0 flash entirely.
   const pill = style ? (
     <motion.div
       aria-hidden
-      className={`absolute rounded-sm bg-accent/10 border border-accent/20 pointer-events-none ${positionClasses}`}
+      className={`absolute pointer-events-none ${positionClasses} ${
+        isLine
+          ? 'bg-accent rounded-full'
+          : 'rounded-sm bg-accent/10 border border-accent/20'
+      } ${className}`}
       animate={{ left: style.left, width: style.width }}
       transition={SPRING}
     />
