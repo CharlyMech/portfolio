@@ -5,7 +5,7 @@
 
 'use client';
 
-import { useTranslations } from '@/i18n/useTranslations';
+import { useTranslations } from '@/hooks/use-translations';
 import type { Translations } from '@/i18n/en';
 
 interface Props {

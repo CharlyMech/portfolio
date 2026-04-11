@@ -6,7 +6,7 @@
 
 import { motion } from 'framer-motion';
 import { SERVICES, PROFILE } from '@/data/portfolio';
-import { useTranslations } from '@/i18n/useTranslations';
+import { useTranslations } from '@/hooks/use-translations';
 
 export default function ServicesSection() {
   const isAvailable = PROFILE.status.availability === 'available';

@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROJECTS } from '@/data/portfolio';
 import type { Project, ProjectStatus } from '@/types';
-import { useTranslations } from '@/i18n/useTranslations';
+import { useTranslations } from '@/hooks/use-translations';
 
 const STATUS_COLORS: Record<ProjectStatus, string> = {
   live: 'text-status-available border-status-available/30 bg-status-available/10',

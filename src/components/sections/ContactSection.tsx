@@ -6,9 +6,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useContactStore } from '@/features/contact/contactStore';
+import { useContactStore } from '@/stores/contactStore';
 import { PROFILE } from '@/data/portfolio';
-import { useTranslations } from '@/i18n/useTranslations';
+import { useTranslations } from '@/hooks/use-translations';
 
 export default function ContactSection() {
   const { form, status, error, setField, submit, reset } = useContactStore();

@@ -7,7 +7,7 @@
 
 import { motion } from 'framer-motion';
 import { BLOG_POSTS } from '@/data/portfolio';
-import { useTranslations } from '@/i18n/useTranslations';
+import { useTranslations } from '@/hooks/use-translations';
 
 export default function BlogSection() {
   const t = useTranslations();

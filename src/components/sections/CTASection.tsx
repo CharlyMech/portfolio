@@ -6,7 +6,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useTranslations } from '@/i18n/useTranslations';
+import { useTranslations } from '@/hooks/use-translations';
 
 export default function CTASection() {
   const t = useTranslations();

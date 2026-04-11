@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { SKILL_CATEGORIES } from '@/data/portfolio';
 import type { SkillLevel } from '@/types';
-import { useTranslations } from '@/i18n/useTranslations';
+import { useTranslations } from '@/hooks/use-translations';
 
 const LEVEL_COLORS: Record<SkillLevel, string> = {
   expert: 'bg-accent',

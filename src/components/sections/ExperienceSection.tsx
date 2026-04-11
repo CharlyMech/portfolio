@@ -6,7 +6,7 @@
 
 import { motion } from 'framer-motion';
 import { EXPERIENCE, EDUCATION, SKILL_CATEGORIES } from '@/data/portfolio';
-import { useTranslations } from '@/i18n/useTranslations';
+import { useTranslations } from '@/hooks/use-translations';
 
 export default function ExperienceSection() {
   const t = useTranslations();
