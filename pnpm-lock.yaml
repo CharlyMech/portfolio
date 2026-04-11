@@ -14,9 +14,12 @@ importers:
       '@astrojs/tailwind':
         specifier: ^6.0.2
         version: 6.0.2(astro@5.18.1(jiti@1.21.7)(rollup@4.60.1)(typescript@6.0.2)(yaml@2.8.3))(tailwindcss@3.4.19(yaml@2.8.3))
-      '@fontsource-variable/geist':
+      '@fontsource-variable/orbitron':
         specifier: ^5.2.8
         version: 5.2.8
+      '@fontsource-variable/space-grotesk':
+        specifier: ^5.2.10
+        version: 5.2.10
       astro:
         specifier: ^5.0.0
         version: 5.18.1(jiti@1.21.7)(rollup@4.60.1)(typescript@6.0.2)(yaml@2.8.3)
@@ -602,8 +605,11 @@ packages:
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
 
-  '@fontsource-variable/geist@5.2.8':
-    resolution: {integrity: sha512-cJ6m9e+8MQ5dCYJsLylfZrgBh6KkG4bOLckB35Tr9J/EqdkEM6QllH5PxqP1dhTvFup+HtMRPuz9xOjxXJggxw==}
+  '@fontsource-variable/orbitron@5.2.8':
+    resolution: {integrity: sha512-Jazvuj2cgBq663z1j/+JdwH2ztqQ8RaGhJgdHYphFbtfowiFaR74R8UgZl7x1skbXmUMWWH1jXfG7mrYFIYK0A==}
+
+  '@fontsource-variable/space-grotesk@5.2.10':
+    resolution: {integrity: sha512-yJQO/o35/hAP3CFnpdFTwQku2yzJOae2HIpBmqkOVoxhhXJaQP3g+b6Jrz7u+eI7A5ZdCIf88uMWpBJdFiGr5w==}
 
   '@hono/node-server@1.19.13':
     resolution: {integrity: sha512-TsQLe4i2gvoTtrHje625ngThGBySOgSK3Xo2XRYOdqGN1teR8+I7vchQC46uLJi8OF62YTYA3AhSpumtkhsaKQ==}
@@ -4638,7 +4644,9 @@ snapshots:
 
   '@floating-ui/utils@0.2.11': {}
 
-  '@fontsource-variable/geist@5.2.8': {}
+  '@fontsource-variable/orbitron@5.2.8': {}
+
+  '@fontsource-variable/space-grotesk@5.2.10': {}
 
   '@hono/node-server@1.19.13(hono@4.12.12)':
     dependencies:
