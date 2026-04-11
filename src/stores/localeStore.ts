@@ -6,8 +6,8 @@
  */
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Locale } from './index';
-import { locales, defaultLocale } from './index';
+import type { Locale } from '@/i18n';
+import { locales, defaultLocale } from '@/i18n';
 
 function detectBrowserLocale(): Locale {
   if (typeof navigator === 'undefined') return defaultLocale;

@@ -1,16 +1,10 @@
 /* ============================================================
-   FEATURE: Contact — Form state and submission
+   Contact — Zustand store
    ============================================================ */
 
 import { create } from 'zustand';
-import { apiService } from '@/core/api/apiService';
-
-interface ContactFormData {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
+import { submitContactForm } from '@/services/contact.service';
+import type { ContactFormData } from '@/services/contact.service';
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -41,15 +35,9 @@ export const useContactStore = create<ContactStore>((set, get) => ({
   submit: async () => {
     const { form } = get();
     set({ status: 'submitting', error: null });
-
-    // Replace with your actual form endpoint (Formspree, custom API, etc.)
-    const result = await apiService.post<{ success: boolean }>(
-      'https://formspree.io/f/your-form-id',
-      form,
-    );
-
-    if (result.error) {
-      set({ status: 'error', error: result.error });
+    const { success, error } = await submitContactForm(form);
+    if (!success) {
+      set({ status: 'error', error });
     } else {
       set({ status: 'success', form: defaultForm });
     }
