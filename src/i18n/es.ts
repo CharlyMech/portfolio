@@ -19,9 +19,18 @@ export const es: Translations = {
 
   // Hero section
   hero: {
+    title: 'COMPILA.\nENTREGA.\nREPITE.',
+    subtitle: 'INGENIERO MOBILE // FULL STACK',
+    bio: 'Construyo cosas que funcionan en producción — apps móviles, sistemas distribuidos e interfaces que hacen envidiosos a otros ingenieros. Con café y mucha Fuerza.',
     currentStatus: 'Estado actual',
-    availableForHire: 'Disponible para contratación',
+    availableForHire: 'Disponible',
+    availableForFreelance: 'Freelance abierto',
+    notAvailableForHire: 'No disponible',
+    notAvailableForFreelance: 'Freelance cerrado',
     busy: 'Ocupado',
+    localTime: 'Hora local',
+    weather: 'Tiempo',
+    location: 'Valladolid, ES',
   },
 
   // Infrastructure section (home)
@@ -29,6 +38,14 @@ export const es: Translations = {
     heading: 'INFRAESTRUCTURA CENTRAL',
     systemReport: 'Informe del Sistema',
     logHistory: 'REGISTRO: HISTORIAL',
+    viewAll: 'Historial completo →',
+  },
+
+  // Skill tiers
+  skillTier: {
+    primary: 'Uso diario',
+    secondary: 'Conocimiento sólido',
+    familiar: 'Familiarizado',
   },
 
   // CTA section (home)

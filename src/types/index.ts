@@ -4,11 +4,9 @@
 
 // ---- Availability & Status ----
 
-export type AvailabilityStatus = 'available' | 'busy' | 'on_project';
-
 export interface ProfileStatus {
-  availability: AvailabilityStatus;
-  label: string;
+  available: boolean;
+  availableForFreelance: boolean;
   updatedAt: string;
 }
 
@@ -36,9 +34,13 @@ export interface Education {
 
 export type SkillLevel = 'expert' | 'proficient' | 'learning';
 
+/** Three-tier skill grouping within a category */
+export type SkillTier = 'primary' | 'secondary' | 'familiar';
+
 export interface Skill {
   name: string;
   level: SkillLevel;
+  tier: SkillTier;
   icon?: string;
 }
 
@@ -134,37 +136,3 @@ export interface BlogPost {
   featured?: boolean;
 }
 
-// ---- GitHub API (external) ----
-
-export interface GitHubRepo {
-  id: number;
-  name: string;
-  description: string | null;
-  html_url: string;
-  stargazers_count: number;
-  language: string | null;
-  topics: string[];
-  updated_at: string;
-}
-
-export interface GitHubRepoDTO {
-  id: number;
-  name: string;
-  description: string | null;
-  html_url: string;
-  stargazers_count: number;
-  language: string | null;
-  topics: string[];
-  updated_at: string;
-}
-
-export interface GitHubRepoDomain {
-  id: number;
-  name: string;
-  description: string;
-  url: string;
-  stars: number;
-  language: string;
-  topics: string[];
-  updatedAt: Date;
-}
