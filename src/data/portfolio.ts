@@ -1,13 +1,10 @@
-import type {
-	Profile,
-	ExperienceEntry,
-	Education,
-	SkillCategory,
-	Project,
-	Service,
-	NavItem,
-	BlogPost,
-} from "@/types";
+import type { Profile } from '@/data/models/profile.model';
+import type { ExperienceEntry, Education } from '@/data/models/experience.model';
+import type { SkillCategory } from '@/data/models/skill.model';
+import type { Project } from '@/data/models/project.model';
+import type { Service } from '@/data/models/service.model';
+import type { NavItem } from '@/data/models/navigation.model';
+import type { BlogPost } from '@/data/models/blog.model';
 
 /* ============================================================
    PROFILE
@@ -22,7 +19,8 @@ export const PROFILE: Profile = {
 	location: {
 		city: "Valladolid",
 		country: "ES",
-		coords: "52.5200° N, 13.4050° E",
+		coords: "41.6523° N, 4.7245° W",
+		coordinates: [-4.7245, 41.6523],
 	},
 	status: {
 		available: true,
@@ -419,10 +417,10 @@ export const SERVICES: Service[] = [
    ============================================================ */
 
 export const SITE_META = {
-	title: "Carlos — Mobile & Full Stack Engineer",
+	title: "Carlos Sánchez Recio — Mobile & Full Stack Engineer",
 	description:
 		"System architect specializing in high-performance distributed systems and pixel-perfect editorial interfaces.",
-	url: "https://carlos.dev",
-	ogImage: "/og-image.png",
+	url: "https://charlymech.com",
+	ogImage: "/og-image.svg",
 	year: new Date().getFullYear(),
 };
