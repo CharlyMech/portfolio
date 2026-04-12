@@ -5,12 +5,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Design tokens — all UI colors reference these
+        // Tokens propios
         bg: {
           base: 'var(--color-bg-base)',
           elevated: 'var(--color-bg-elevated)',
           overlay: 'var(--color-bg-overlay)',
           muted: 'var(--color-bg-muted)',
+          surface: 'var(--color-surface)',
         },
         border: {
           DEFAULT: 'var(--color-border)',
@@ -31,14 +32,57 @@ export default {
           available: 'var(--color-status-available)',
           busy: 'var(--color-status-busy)',
         },
+
+        // Shadcn / Tailwind semantic tokens
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        card: {
+          DEFAULT: 'var(--card)',
+          foreground: 'var(--card-foreground)',
+        },
+        popover: {
+          DEFAULT: 'var(--popover)',
+          foreground: 'var(--popover-foreground)',
+        },
+        primary: {
+          DEFAULT: 'var(--primary)',
+          foreground: 'var(--primary-foreground)',
+        },
+        secondary: {
+          DEFAULT: 'var(--secondary)',
+          foreground: 'var(--secondary-foreground)',
+        },
+        muted: {
+          DEFAULT: 'var(--muted)',
+          foreground: 'var(--muted-foreground)',
+        },
+        destructive: {
+          DEFAULT: 'var(--destructive)',
+          foreground: 'var(--destructive-foreground)',
+        },
+        input: 'var(--input)',
+        ring: 'var(--ring)',
+
+        sidebar: {
+          DEFAULT: 'var(--sidebar)',
+          foreground: 'var(--sidebar-foreground)',
+          primary: 'var(--sidebar-primary)',
+          'primary-foreground': 'var(--sidebar-primary-foreground)',
+          accent: 'var(--sidebar-accent)',
+          'accent-foreground': 'var(--sidebar-accent-foreground)',
+          border: 'var(--sidebar-border)',
+          ring: 'var(--sidebar-ring)',
+        },
       },
+
       fontFamily: {
         display: ['var(--font-display)', 'sans-serif'],
         body: ['var(--font-body)', 'sans-serif'],
         mono: ['var(--font-mono)', 'monospace'],
       },
+
       fontSize: {
-        '2xs': ['0.625rem', { lineHeight: '1rem' }],
+        '2xs': ['0.625rem', { lineHeight: '0.875rem' }],
         xs: ['0.75rem', { lineHeight: '1rem' }],
         sm: ['0.875rem', { lineHeight: '1.25rem' }],
         base: ['1rem', { lineHeight: '1.5rem' }],
@@ -53,28 +97,39 @@ export default {
         '8xl': ['6rem', { lineHeight: '1' }],
         '9xl': ['8rem', { lineHeight: '1' }],
       },
+
       spacing: {
         sidebar: 'var(--sidebar-width)',
         'nav-height': 'var(--nav-height)',
         'bottom-nav': 'var(--bottom-nav-height)',
       },
+
       borderRadius: {
-        none: '0',
+        none: '0px',
         sm: 'var(--radius-sm)',
-        DEFAULT: 'var(--radius)',
+        DEFAULT: 'var(--radius-md)',
+        md: 'var(--radius-md)',
         lg: 'var(--radius-lg)',
+        xl: 'var(--radius-xl)',
         full: '9999px',
       },
+
+      boxShadow: {
+        accent: 'var(--glow-accent)',
+        subtle: 'var(--glow-subtle)',
+      },
+
       transitionTimingFunction: {
         spring: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
         smooth: 'cubic-bezier(0.4, 0, 0.2, 1)',
       },
+
       animation: {
         'fade-in': 'fadeIn 0.4s ease forwards',
         'slide-up': 'slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
-        'blink': 'blink 1.2s step-end infinite',
-        'pill-move': 'pillMove 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+        blink: 'blink 1.2s step-end infinite',
       },
+
       keyframes: {
         fadeIn: {
           from: { opacity: '0' },
@@ -89,8 +144,9 @@ export default {
           '50%': { opacity: '0' },
         },
       },
+
       gridTemplateColumns: {
-        'layout': '1fr 2fr',
+        layout: '1fr 2fr',
         'layout-reverse': '2fr 1fr',
       },
     },
