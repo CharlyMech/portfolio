@@ -16,7 +16,7 @@ export default function ExperienceSection() {
         {/* Left — Experience timeline */}
         <div>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-8 border-b border-border pb-4">
-            <h2 className="font-display font-black text-2xl tracking-tight">
+            <h2 className="text-heading">
               {t.experienceSection.experience}
             </h2>
             <span className="label-mono">{EXPERIENCE.length} {t.experienceSection.entries}</span>
@@ -46,7 +46,7 @@ export default function ExperienceSection() {
                 <div className="pl-4">
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2">
                     <div>
-                      <h3 className="font-display font-black text-xl tracking-tight">
+                      <h3 className="text-heading-sm">
                         {entry.role}
                       </h3>
                       <p className="label-mono text-text-muted mt-0.5">
@@ -54,13 +54,13 @@ export default function ExperienceSection() {
                       </p>
                     </div>
                     <div className="flex-shrink-0 text-left sm:text-right">
-                      <span className="font-mono text-xs text-text-muted tracking-wider">
+                      <span className="text-code normal-case tracking-wider text-text-muted">
                         {entry.period}
                       </span>
                       {entry.isCurrent && (
                         <div className="flex items-center gap-1.5 justify-end mt-1">
                           <span className="status-dot available" />
-                          <span className="font-mono text-2xs text-status-available">
+                          <span className="text-code-xs text-status-available">
                             {t.experienceSection.current}
                           </span>
                         </div>
@@ -68,7 +68,7 @@ export default function ExperienceSection() {
                     </div>
                   </div>
 
-                  <p className="font-body text-sm text-text-secondary leading-relaxed mb-4">
+                  <p className="text-body text-text-secondary mb-4">
                     {entry.description}
                   </p>
 
@@ -92,7 +92,7 @@ export default function ExperienceSection() {
           {/* Education */}
           <div>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 border-b border-border pb-4">
-              <h2 className="font-display font-black text-2xl tracking-tight">
+              <h2 className="text-heading">
                 {t.experienceSection.education}
               </h2>
             </div>
@@ -107,15 +107,15 @@ export default function ExperienceSection() {
                   viewport={{ once: true }}
                   className="border-l-2 border-border pl-4"
                 >
-                  <h3 className="font-display font-semibold text-base">
+                  <h3 className="text-heading-xs">
                     {edu.degree}
                   </h3>
                   <p className="label-mono text-text-muted">{edu.institution}</p>
-                  <p className="font-mono text-xs text-text-muted mt-1">
+                  <p className="text-code normal-case tracking-wider text-text-muted mt-1">
                     {edu.period}
                   </p>
                   {edu.description && (
-                    <p className="font-body text-xs text-text-secondary mt-2 leading-relaxed">
+                    <p className="text-body-xs text-text-secondary mt-2">
                       {edu.description}
                     </p>
                   )}
@@ -127,10 +127,10 @@ export default function ExperienceSection() {
           {/* Compact skill overview */}
           <div>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 border-b border-border pb-4">
-              <h2 className="font-display font-black text-2xl tracking-tight">
+              <h2 className="text-heading">
                 {t.experienceSection.techStack}
               </h2>
-              <a href="/tech" className="font-mono text-xs text-accent hover:underline">
+              <a href="/tech" className="text-code normal-case text-accent hover:underline">
                 {t.experienceSection.fullList}
               </a>
             </div>

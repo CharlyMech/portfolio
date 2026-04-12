@@ -47,7 +47,7 @@ export default function ProjectsGrid() {
           <button
             key={f.id}
             onClick={() => setActiveFilter(f.id)}
-            className={`font-mono text-xs tracking-widest uppercase px-3 py-1.5
+            className={`text-code-xs px-3 py-1.5
                         border transition-all duration-150
                         ${
                           activeFilter === f.id
@@ -107,12 +107,12 @@ function ProjectCard({ project, index, statusLabels, t }: {
       <div className="flex items-start justify-between gap-3">
         <div>
           <span className="label-mono text-text-muted">{project.year}</span>
-          <h3 className="font-display font-black text-lg mt-1 tracking-tight">
+          <h3 className="text-heading-xs mt-1">
             {project.title}
           </h3>
         </div>
         <span
-          className={`flex-shrink-0 font-mono text-2xs tracking-widest uppercase
+          className={`flex-shrink-0 text-code-xs
                       px-2 py-1 border rounded-none
                       ${STATUS_COLORS[project.status]}`}
         >
@@ -121,7 +121,7 @@ function ProjectCard({ project, index, statusLabels, t }: {
       </div>
 
       {/* Description */}
-      <p className="font-body text-sm text-text-secondary leading-relaxed flex-1">
+      <p className="text-body text-text-secondary flex-1">
         {project.description}
       </p>
 
@@ -141,7 +141,7 @@ function ProjectCard({ project, index, statusLabels, t }: {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs text-text-muted hover:text-accent
+            className="text-code normal-case tracking-wider text-text-muted hover:text-accent
                        transition-colors flex items-center gap-1"
           >
             <span>⌥</span> {t.projects.viewCode}
@@ -152,7 +152,7 @@ function ProjectCard({ project, index, statusLabels, t }: {
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs text-text-muted hover:text-accent
+            className="text-code normal-case tracking-wider text-text-muted hover:text-accent
                        transition-colors flex items-center gap-1 ml-auto"
           >
             {t.projects.viewProject} <span>→</span>

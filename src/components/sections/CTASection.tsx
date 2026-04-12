@@ -21,8 +21,7 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="font-display font-black text-[clamp(2rem,5vw,3.5rem)]
-                     leading-none tracking-tight mb-3"
+          className="text-heading-cta mb-3"
         >
           {headingLines[0]}<br />{headingLines[1]}
         </motion.h2>

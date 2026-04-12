@@ -29,10 +29,10 @@ export default function ContactSection() {
           transition={{ duration: 0.5 }}
         >
           <div className="border-b border-border pb-4 mb-8">
-            <h2 className="font-display font-black text-3xl tracking-tight mb-1">
+            <h2 className="text-heading mb-1">
               {t.contact.sendTransmission}
             </h2>
-            <p className="font-body text-sm text-text-secondary">
+            <p className="text-body text-text-secondary">
               {t.contact.formSubtitle}
             </p>
           </div>
@@ -43,11 +43,11 @@ export default function ContactSection() {
               animate={{ opacity: 1, scale: 1 }}
               className="border border-status-available/30 bg-status-available/5 p-8 text-center"
             >
-              <div className="font-mono text-4xl text-status-available mb-3">✓</div>
-              <h3 className="font-display font-black text-xl mb-2">
+              <div className="font-mono text-heading-sm text-status-available mb-3">✓</div>
+              <h3 className="text-heading-sm mb-2">
                 {t.contact.transmissionReceived}
               </h3>
-              <p className="font-body text-sm text-text-secondary mb-6">
+              <p className="text-body text-text-secondary mb-6">
                 {t.contact.replyPromise}
               </p>
               <button onClick={reset} className="btn-outline text-xs">
@@ -103,7 +103,7 @@ export default function ContactSection() {
                   placeholder={t.contact.messagePlaceholder}
                   required
                   className="w-full bg-bg-elevated border border-border
-                             font-body text-sm text-text-primary placeholder:text-text-muted
+                             text-body text-text-primary placeholder:text-text-muted
                              px-4 py-3 resize-none
                              focus:outline-none focus:border-accent
                              transition-colors duration-200"
@@ -111,7 +111,7 @@ export default function ContactSection() {
               </div>
 
               {error && (
-                <p className="font-mono text-xs text-red-400">{error}</p>
+                <p className="text-code text-status-busy">{error}</p>
               )}
 
               <div className="flex items-center gap-4 pt-2">
@@ -144,7 +144,7 @@ export default function ContactSection() {
           {/* Direct contact */}
           <div>
             <div className="border-b border-border pb-4 mb-5">
-              <h3 className="font-display font-black text-xl tracking-tight">
+              <h3 className="text-heading-sm">
                 {t.contact.directContact}
               </h3>
             </div>
@@ -160,7 +160,7 @@ export default function ContactSection() {
                 >
                   <div>
                     <p className="label-mono text-text-muted mb-0.5">{c.label}</p>
-                    <p className="font-display font-semibold text-sm text-text-primary
+                    <p className="text-heading-2xs text-text-primary
                                   group-hover:text-accent transition-colors">
                       {c.value}
                     </p>
@@ -176,7 +176,7 @@ export default function ContactSection() {
           {/* Social links */}
           <div>
             <div className="border-b border-border pb-4 mb-5">
-              <h3 className="font-display font-black text-xl tracking-tight">
+              <h3 className="text-heading-sm">
                 {t.contact.findMeOnline}
               </h3>
             </div>
@@ -190,10 +190,10 @@ export default function ContactSection() {
                   className="flex flex-wrap items-center gap-3 p-3 border border-border
                              hover:border-accent group transition-colors"
                 >
-                  <span className="font-mono text-xs text-text-muted w-16 uppercase tracking-wider">
+                  <span className="text-code text-text-muted w-16">
                     {s.platform}
                   </span>
-                  <span className="font-body text-sm text-text-secondary group-hover:text-text-primary transition-colors">
+                  <span className="text-body text-text-secondary group-hover:text-text-primary transition-colors">
                     {s.handle}
                   </span>
                   <span className="sm:ml-auto font-mono text-text-muted group-hover:text-accent transition-colors text-xs">
@@ -207,11 +207,11 @@ export default function ContactSection() {
           {/* Location */}
           <div className="border border-border p-5">
             <p className="label-mono mb-2">{t.contact.baseOfOperations}</p>
-            <h4 className="font-display font-black text-2xl">
+            <h4 className="text-heading">
               {PROFILE.location.city}, {PROFILE.location.country}
             </h4>
             <p className="coord-text mt-1">{PROFILE.location.coords}</p>
-            <p className="font-body text-xs text-text-secondary mt-3">
+            <p className="text-body-xs text-text-secondary mt-3">
               {t.contact.timezone}
             </p>
           </div>
@@ -246,7 +246,7 @@ function FormField({ label, id, type, value, onChange, placeholder, required }: 
         placeholder={placeholder}
         required={required}
         className="w-full bg-bg-elevated border border-border
-                   font-body text-sm text-text-primary placeholder:text-text-muted
+                   text-body text-text-primary placeholder:text-text-muted
                    px-4 py-3
                    focus:outline-none focus:border-accent
                    transition-colors duration-200"

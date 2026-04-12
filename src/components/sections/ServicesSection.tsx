@@ -27,7 +27,7 @@ export default function ServicesSection() {
                     }`}
       >
         <span className={`status-dot ${isAvailable ? 'available' : 'busy'}`} />
-        <span className="font-mono text-xs tracking-widest uppercase text-text-secondary">
+        <span className="text-code-xs text-text-secondary">
           {isAvailable
             ? 'Currently available for new projects — limited slots'
             : 'Currently fully booked — open to exploratory calls'}
@@ -49,17 +49,17 @@ export default function ServicesSection() {
             className="bg-bg-elevated p-8 group hover:bg-bg-overlay transition-colors"
           >
             {/* Icon */}
-            <div className="font-mono text-3xl text-accent mb-6 group-hover:scale-110 transition-transform origin-left">
+            <div className="font-mono text-heading-sm text-accent mb-6 group-hover:scale-110 transition-transform origin-left">
               {service.icon}
             </div>
 
             {/* Title */}
-            <h3 className="font-display font-black text-xl tracking-tight mb-3">
+            <h3 className="text-heading-sm mb-3">
               {service.title}
             </h3>
 
             {/* Description */}
-            <p className="font-body text-sm text-text-secondary leading-relaxed mb-6">
+            <p className="text-body text-text-secondary mb-6">
               {service.description}
             </p>
 
@@ -88,10 +88,10 @@ export default function ServicesSection() {
                    items-start md:items-center justify-between gap-6"
       >
         <div>
-          <h3 className="font-display font-black text-2xl mb-1">
+          <h3 className="text-heading mb-1">
             {t.services.allServicesInclude}
           </h3>
-          <ul className="font-body text-sm text-text-secondary space-y-1 mt-2">
+          <ul className="text-body text-text-secondary space-y-1 mt-2">
             {t.services.includes.map((item) => (
               <li key={item}>— {item}</li>
             ))}

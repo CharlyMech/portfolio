@@ -54,14 +54,14 @@ function SkillColumn({
         if (!names.length) return null;
         return (
           <div key={tier}>
-            <p className="font-mono text-[9px] tracking-widest uppercase text-text-muted mb-1.5">
+            <p className="text-code-2xs text-text-muted mb-1.5">
               {t.skillTier[tier]}
             </p>
             <div className="flex flex-col gap-1">
               {names.map((name) => (
                 <div key={name} className="flex items-center gap-2">
                   <TierDot tier={tier} />
-                  <span className="font-mono text-xs text-text-secondary">{name}</span>
+                  <span className="text-code normal-case tracking-normal text-text-secondary">{name}</span>
                 </div>
               ))}
             </div>
@@ -81,7 +81,7 @@ export default function InfrastructureSection() {
       <div className="border-b md:border-b-0 md:border-r border-border">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-6 sm:px-8 py-5 border-b border-border">
-          <h2 className="font-display font-black text-xl tracking-tight">
+          <h2 className="text-heading-sm">
             {t.infrastructure.heading}
           </h2>
           <div className="flex items-center gap-3">
@@ -90,7 +90,7 @@ export default function InfrastructureSection() {
               {TIER_ORDER.map((tier) => (
                 <div key={tier} className="flex items-center gap-1.5">
                   <TierDot tier={tier} />
-                  <span className="font-mono text-[9px] tracking-widest uppercase text-text-muted">
+                  <span className="text-code-2xs text-text-muted">
                     {t.skillTier[tier]}
                   </span>
                 </div>
@@ -123,7 +123,7 @@ function ExperienceLog({ t }: { t: ReturnType<typeof useTranslations> }) {
   return (
     <div className="flex flex-col">
       <div className="px-6 py-5 border-b border-border flex items-center justify-between">
-        <h2 className="font-display font-black text-xl tracking-tight">
+        <h2 className="text-heading-sm">
           {t.infrastructure.logHistory}
         </h2>
         <a
@@ -153,11 +153,11 @@ function ExperienceLog({ t }: { t: ReturnType<typeof useTranslations> }) {
                 />
               </div>
             </div>
-            <h3 className="font-display font-black text-base uppercase tracking-tight mb-0.5">
+            <h3 className="font-display font-black text-base tracking-tight uppercase mb-0.5">
               {entry.role}
             </h3>
             <p className="label-mono text-text-muted mb-2">{entry.company}</p>
-            <p className="font-body text-xs text-text-secondary leading-relaxed line-clamp-2">
+            <p className="text-body-xs text-text-secondary line-clamp-2">
               {entry.description}
             </p>
           </motion.div>

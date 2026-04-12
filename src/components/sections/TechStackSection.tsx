@@ -47,10 +47,10 @@ export default function TechStackSection() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-6 mb-8">
         <div>
-          <h2 className="font-display font-black text-3xl tracking-tight">
+          <h2 className="text-heading">
             {t.tech.title}
           </h2>
-          <p className="font-body text-sm text-text-secondary mt-1">
+          <p className="text-body text-text-secondary mt-1">
             {SKILL_CATEGORIES.reduce((acc, c) => acc + c.skills.length, 0)} {t.skillLevel.skills}
           </p>
         </div>
@@ -61,7 +61,7 @@ export default function TechStackSection() {
             <button
               key={f.id}
               onClick={() => setActiveFilter(f.id)}
-              className={`font-mono text-xs tracking-widest uppercase px-3 py-1.5
+              className={`text-code-xs px-3 py-1.5
                           border transition-all duration-150
                           ${
                             activeFilter === f.id
@@ -126,11 +126,11 @@ export default function TechStackSection() {
                                hover:border-accent/50 transition-colors group"
                   >
                     <div className="flex items-start justify-between gap-2 mb-3">
-                      <h4 className="font-display font-bold text-sm tracking-tight">
+                      <h4 className="text-heading-2xs">
                         {skill.name}
                       </h4>
                       <span
-                        className={`flex-shrink-0 font-mono text-2xs tracking-widest uppercase
+                        className={`flex-shrink-0 text-code-xs
                                     px-1.5 py-0.5 border rounded-none
                                     ${LEVEL_BADGE[skill.level]}`}
                       >

@@ -35,16 +35,16 @@ export default function BlogSection() {
                 <span className="label-mono text-text-muted">•</span>
                 <span className="label-mono text-text-muted">{post.readTime}</span>
                 {post.featured && (
-                  <span className="sm:ml-auto font-mono text-2xs tracking-widest uppercase text-accent">
+                  <span className="sm:ml-auto text-code-xs text-accent">
                     {t.projects.featured}
                   </span>
                 )}
               </div>
 
-              <h3 className="font-display font-black text-xl tracking-tight mb-2">
+              <h3 className="text-heading-sm mb-2">
                 {post.title}
               </h3>
-              <p className="font-body text-sm text-text-secondary leading-relaxed mb-4">
+              <p className="text-body text-text-secondary mb-4">
                 {post.excerpt}
               </p>
 
@@ -58,7 +58,7 @@ export default function BlogSection() {
 
               <a
                 href={`/blog/${post.slug}`}
-                className="font-mono text-xs text-accent hover:underline"
+                className="text-code normal-case tracking-wider text-accent hover:underline"
               >
                 {t.blog.readMore} →
               </a>
@@ -72,20 +72,20 @@ export default function BlogSection() {
             <p className="label-mono mb-3">Journal Index</p>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs text-text-muted">Entries</span>
-                <span className="font-display font-semibold text-sm">
+                <span className="text-code normal-case tracking-wider text-text-muted">Entries</span>
+                <span className="text-heading-2xs">
                   {BLOG_POSTS.length}
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs text-text-muted">Featured</span>
-                <span className="font-display font-semibold text-sm">
+                <span className="text-code normal-case tracking-wider text-text-muted">Featured</span>
+                <span className="text-heading-2xs">
                   {featured.length}
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs text-text-muted">Topics</span>
-                <span className="font-display font-semibold text-sm">
+                <span className="text-code normal-case tracking-wider text-text-muted">Topics</span>
+                <span className="text-heading-2xs">
                   {totalTags.length}
                 </span>
               </div>
@@ -105,7 +105,7 @@ export default function BlogSection() {
 
           <div className="border border-border p-5">
             <p className="label-mono mb-2">Writing Cadence</p>
-            <p className="font-body text-sm text-text-secondary leading-relaxed">
+            <p className="text-body text-text-secondary">
               Deep dives on architecture, mobile systems, and editorial UI. New
               entries every few weeks.
             </p>
