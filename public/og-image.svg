@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d0d0d"/>
+      <stop offset="100%" style="stop-color:#141414"/>
+    </linearGradient>
+    <linearGradient id="accent-line" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6ee7b7;stop-opacity:1"/>
+      <stop offset="60%" style="stop-color:#3b82f6;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle grid lines -->
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Left accent bar -->
+  <rect x="80" y="120" width="3" height="390" fill="#6ee7b7" opacity="0.6"/>
+
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="1200" height="3" fill="url(#accent-line)"/>
+
+  <!-- Handle / domain label -->
+  <text x="107" y="158" font-family="'Courier New', Courier, monospace" font-size="18" fill="#6ee7b7" opacity="0.8" letter-spacing="3">@charlymech</text>
+
+  <!-- Name -->
+  <text x="107" y="260" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="72" font-weight="700" fill="#f5f5f5" letter-spacing="-1">Carlos Sánchez Recio</text>
+
+  <!-- Title line 1 -->
+  <text x="107" y="330" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="32" font-weight="400" fill="#a3a3a3" letter-spacing="1">Mobile &amp; Full Stack Engineer</text>
+
+  <!-- Divider -->
+  <rect x="107" y="360" width="120" height="2" fill="#6ee7b7" opacity="0.5"/>
+
+  <!-- Tech stack pills -->
+  <g font-family="'Courier New', Courier, monospace" font-size="16" fill="#0d0d0d">
+    <!-- Flutter -->
+    <rect x="107" y="385" width="90" height="32" rx="4" fill="#6ee7b7"/>
+    <text x="152" y="406" text-anchor="middle" font-weight="600">Flutter</text>
+    <!-- React Native -->
+    <rect x="209" y="385" width="138" height="32" rx="4" fill="#6ee7b7" opacity="0.85"/>
+    <text x="278" y="406" text-anchor="middle" font-weight="600">React Native</text>
+    <!-- React -->
+    <rect x="359" y="385" width="78" height="32" rx="4" fill="#3b82f6" opacity="0.9"/>
+    <text x="398" y="406" text-anchor="middle" fill="#f5f5f5" font-weight="600">React</text>
+    <!-- NestJS -->
+    <rect x="449" y="385" width="86" height="32" rx="4" fill="#3b82f6" opacity="0.75"/>
+    <text x="492" y="406" text-anchor="middle" fill="#f5f5f5" font-weight="600">NestJS</text>
+    <!-- Python -->
+    <rect x="547" y="385" width="86" height="32" rx="4" fill="#3b82f6" opacity="0.6"/>
+    <text x="590" y="406" text-anchor="middle" fill="#f5f5f5" font-weight="600">Python</text>
+  </g>
+
+  <!-- Location -->
+  <text x="107" y="470" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" fill="#737373" letter-spacing="1">Valladolid, Spain  ·  Freelance open</text>
+
+  <!-- Domain -->
+  <text x="107" y="520" font-family="'Courier New', Courier, monospace" font-size="22" fill="#6ee7b7" opacity="0.7" letter-spacing="2">charlymech.com</text>
+
+  <!-- Right decorative bracket -->
+  <text x="1060" y="340" font-family="'Courier New', Courier, monospace" font-size="280" fill="#ffffff" opacity="0.03" font-weight="700">&gt;</text>
+</svg>
