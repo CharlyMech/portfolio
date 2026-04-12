@@ -22,11 +22,11 @@ export default function PageHeaderReactive({ section }: Props) {
   return (
     <header className="border-b border-border px-6 sm:px-8 md:px-10 py-8">
       <p className="label-mono text-accent mb-2">{s.label}</p>
-      <h1 className="font-display font-black text-[clamp(2.5rem,6vw,4.5rem)] leading-none tracking-tight">
+      <h1 className="text-heading-page">
         {s.title}
       </h1>
       {s.subtitle && (
-        <p className="font-body text-sm text-text-secondary mt-4 max-w-xl leading-relaxed">
+        <p className="text-body text-text-secondary mt-4 max-w-xl">
           {s.subtitle}
         </p>
       )}

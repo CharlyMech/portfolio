@@ -13,14 +13,20 @@ import { ViewTransitions, ClientRouter } from 'astro:transitions';
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
 }
 
 const {
   title = SITE_META.title,
   description = SITE_META.description,
+  ogImage = SITE_META.ogImage,
+  ogType = 'website',
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
+const canonicalURL = new URL(Astro.url.pathname, SITE_META.url).toString();
+const ogImageURL = new URL(ogImage, SITE_META.url).toString();
 ---
 
 <!doctype html>
@@ -30,20 +36,34 @@ const currentPath = Astro.url.pathname;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0d0d0d" />
+    <meta name="author" content="Carlos Sánchez Recio" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
 
     <!-- OG / Social -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={SITE_META.url} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:creator" content="@charlymech" />
+    <meta name="twitter:site" content="@charlymech" />
 
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="en" href={canonicalURL} />
+    <link rel="alternate" hreflang="es" href={canonicalURL} />
+    <link rel="alternate" hreflang="x-default" href={canonicalURL} />
 
     <!-- Sync html[lang] from persisted locale before first paint -->
     <script is:inline>
@@ -70,6 +90,40 @@ const currentPath = Astro.url.pathname;
     <!-- Preload fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- JSON-LD: Person schema (sitewide) -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Carlos Sánchez Recio",
+      "alternateName": "CharlyMech",
+      "url": "https://charlymech.com",
+      "jobTitle": [
+        "Software Engineer",
+        "Mobile Developer",
+        "Full Stack Developer",
+        "Flutter Developer",
+        "React Native Developer"
+      ],
+      "description": SITE_META.description,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Valladolid",
+        "addressCountry": "ES"
+      },
+      "sameAs": [
+        "https://github.com/charlymech",
+        "https://linkedin.com/in/carlos-sanchezrecio-dev/"
+      ],
+      "knowsAbout": [
+        "Flutter", "React Native", "Expo", "React", "Next.js",
+        "NestJS", "Python", "TypeScript", "Node.js",
+        "Data Analysis", "Mobile Development", "Full Stack Development",
+        "Software Architecture"
+      ]
+    })} />
+
+    <slot name="head" />
   </head>
 
   <body class="grain bg-bg-base text-text-primary">
