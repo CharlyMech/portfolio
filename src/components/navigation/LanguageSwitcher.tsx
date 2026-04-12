@@ -32,7 +32,7 @@ export default function LanguageSwitcher() {
         type="button"
         onClick={() => setOpen((o) => !o)}
         className="flex items-center gap-1.5 border border-border px-2.5 py-1 h-7
-                   font-mono text-[10px] tracking-[0.12em] uppercase
+                   text-code-xs
                    text-text-muted hover:text-text-secondary
                    transition-colors duration-200 outline-none"
       >
@@ -66,7 +66,7 @@ export default function LanguageSwitcher() {
                   aria-selected={locale === lang}
                   onClick={() => { setLocale(lang); setOpen(false); }}
                   className={`w-full px-2.5 py-1.5 text-left
-                              font-mono text-[10px] tracking-[0.12em] uppercase
+                              text-code-xs
                               transition-colors duration-150
                               ${locale === lang
                                 ? 'text-accent bg-accent/5'

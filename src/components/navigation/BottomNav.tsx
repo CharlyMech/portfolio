@@ -65,7 +65,7 @@ export default function BottomNav({ currentPath }: BottomNavProps) {
             <span className="flex-shrink-0">
               {ICONS[item.icon ?? 'home'] ?? ICONS.home}
             </span>
-            <span className="font-mono text-[9px] tracking-widest uppercase">
+            <span className="text-code-2xs">
               {navLabels[item.id] ?? item.label}
             </span>
           </a>

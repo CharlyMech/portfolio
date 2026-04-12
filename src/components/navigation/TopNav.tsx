@@ -51,7 +51,7 @@ export default function TopNav({ currentPath }: TopNavProps) {
     <header
       className="fixed top-0 left-0 md:left-[48px] right-0 z-40 h-[56px]
                  flex items-center justify-between px-4 sm:px-6
-                 border-b border-border bg-bg-base/95 backdrop-blur-sm"
+                 border-b border-border bg-bg-base"
     >
       {/* Brand */}
       <a
