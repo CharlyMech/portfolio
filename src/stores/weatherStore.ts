@@ -4,8 +4,8 @@
    ============================================================ */
 
 import { create } from 'zustand';
-import { weatherRepository } from '@/repositories/weather.repository';
-import type { WeatherDomain } from '@/data/models/weather.model';
+import { weatherRepository } from '@/core/repositories/weather';
+import type { WeatherDomain } from '@/core/models/weather';
 
 interface WeatherState {
   weather: WeatherDomain | null;

@@ -3,8 +3,8 @@
    ============================================================ */
 
 import { create } from 'zustand';
-import { submitContactForm } from '@/services/contact.service';
-import type { ContactFormData } from '@/services/contact.service';
+import { submitContactForm } from '@/core/services/contactService';
+import type { ContactFormData } from '@/core/services/contactService';
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 

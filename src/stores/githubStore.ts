@@ -3,8 +3,8 @@
    ============================================================ */
 
 import { create } from 'zustand';
-import { githubRepository } from '@/repositories/github.repository';
-import type { GitHubRepoDomain } from '@/data/models/github.model';
+import { githubRepository } from '@/core/repositories/github';
+import type { GitHubRepoDomain } from '@/core/models/github';
 
 interface GitHubStore {
   repos: GitHubRepoDomain[];

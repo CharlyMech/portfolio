@@ -5,8 +5,8 @@
  *  - Live clock ticking every second
  */
 import { create } from 'zustand';
-import { deriveDateOrder } from '@/lib/utils/dates';
-import type { DateOrder } from '@/lib/utils/dates';
+import { deriveDateOrder } from '@/lib/dateUtils';
+import type { DateOrder } from '@/lib/dateUtils';
 
 export type { DateOrder };
 

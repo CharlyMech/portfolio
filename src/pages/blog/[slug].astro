@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { BLOG_POSTS } from '@/data/portfolio';
+import { BLOG_POSTS } from '@/constants/blog';
 
 export async function getStaticPaths() {
   return BLOG_POSTS.map((post) => ({
