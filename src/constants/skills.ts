@@ -1,0 +1,85 @@
+import type { SkillCategory } from '@/core/models/skill';
+
+export const SKILL_CATEGORIES: SkillCategory[] = [
+  {
+    id: 'mobile',
+    label: 'Mobile',
+    sublabel: 'MOBILE',
+    skills: [
+      { name: 'React Native', tier: 'primary' },
+      { name: 'Expo', tier: 'primary' },
+      { name: 'Flutter', tier: 'secondary' },
+      { name: 'Swift / SwiftUI', tier: 'familiar' },
+    ],
+  },
+  {
+    id: 'frontend',
+    label: 'Front-end',
+    sublabel: 'FRONT-END',
+    skills: [
+      { name: 'React', tier: 'primary' },
+      { name: 'Next.js', tier: 'primary' },
+      { name: 'Astro', tier: 'primary' },
+      { name: 'TypeScript', tier: 'primary' },
+      { name: 'Tailwind CSS', tier: 'primary' },
+      { name: 'Framer Motion', tier: 'secondary' },
+      { name: 'Three.js', tier: 'secondary' },
+      { name: 'WebGL', tier: 'familiar' },
+    ],
+  },
+  {
+    id: 'backend',
+    label: 'Back-end',
+    sublabel: 'BACK-END',
+    skills: [
+      { name: 'Node.js', tier: 'primary' },
+      { name: 'Rust / Axum', tier: 'primary' },
+      { name: 'Golang', tier: 'secondary' },
+      { name: 'Python', tier: 'secondary' },
+      { name: 'GraphQL', tier: 'secondary' },
+      { name: 'gRPC', tier: 'secondary' },
+      { name: 'Elixir', tier: 'familiar' },
+    ],
+  },
+  {
+    id: 'data',
+    label: 'Data & AI',
+    sublabel: 'DATA & AI',
+    skills: [
+      { name: 'PostgreSQL', tier: 'primary' },
+      { name: 'Redis', tier: 'primary' },
+      { name: 'MongoDB', tier: 'secondary' },
+      { name: 'Prisma', tier: 'secondary' },
+      { name: 'OpenAI API', tier: 'secondary' },
+      { name: 'LangChain', tier: 'familiar' },
+    ],
+  },
+  {
+    id: 'systems',
+    label: 'Systems & Cloud',
+    sublabel: 'SYSTEMS & CLOUD',
+    skills: [
+      { name: 'Docker', tier: 'primary' },
+      { name: 'Kubernetes', tier: 'primary' },
+      { name: 'AWS', tier: 'primary' },
+      { name: 'CI/CD (GitHub Actions)', tier: 'primary' },
+      { name: 'Linux', tier: 'primary' },
+      { name: 'Terraform', tier: 'secondary' },
+      { name: 'Grafana / Prometheus', tier: 'secondary' },
+      { name: 'Cloudflare', tier: 'secondary' },
+    ],
+  },
+  {
+    id: 'tools',
+    label: 'Tools',
+    sublabel: 'TOOLS',
+    skills: [
+      { name: 'Figma', tier: 'primary' },
+      { name: 'Git', tier: 'primary' },
+      { name: 'Neovim', tier: 'secondary' },
+      { name: 'Adobe CC', tier: 'secondary' },
+      { name: 'Spline 3D', tier: 'familiar' },
+      { name: 'Blender', tier: 'familiar' },
+    ],
+  },
+];

@@ -1,0 +1,57 @@
+import type { Project } from '@/core/models/project';
+
+export const PROJECTS: Project[] = [
+  {
+    id: 'proj-1',
+    title: 'TradingOS',
+    description: 'Real-time trading dashboard with sub-5ms latency and WebSocket feeds.',
+    longDescription:
+      'A high-performance trading interface built with Rust backend (Axum) and React frontend. Features order book visualization, depth charts, and real-time P&L tracking.',
+    tags: ['Rust', 'React', 'WebSocket', 'Axum', 'PostgreSQL'],
+    status: 'live',
+    github: 'https://github.com',
+    url: 'https://tradingos.dev',
+    featured: true,
+    year: '2023',
+  },
+  {
+    id: 'proj-2',
+    title: 'Microservice Mesh',
+    description: 'Kubernetes operator for dynamic service mesh configuration at scale.',
+    tags: ['Golang', 'Kubernetes', 'gRPC', 'Prometheus'],
+    status: 'live',
+    github: 'https://github.com',
+    featured: true,
+    year: '2023',
+  },
+  {
+    id: 'proj-3',
+    title: 'EditorialUI',
+    description: 'Open-source React component library for editorial-grade interfaces.',
+    tags: ['React', 'TypeScript', 'Storybook', 'Radix'],
+    status: 'wip',
+    github: 'https://github.com',
+    featured: true,
+    year: '2024',
+  },
+  {
+    id: 'proj-4',
+    title: 'Fleet Mobile',
+    description: 'Cross-platform fleet management app for logistics operators.',
+    tags: ['React Native', 'Firebase', 'Maps SDK', 'Redux'],
+    status: 'live',
+    url: 'https://fleetapp.io',
+    featured: false,
+    year: '2022',
+  },
+  {
+    id: 'proj-5',
+    title: 'DevLog CLI',
+    description: 'Terminal-based developer journal with encrypted local storage.',
+    tags: ['Rust', 'TUI', 'SQLite'],
+    status: 'archived',
+    github: 'https://github.com',
+    featured: false,
+    year: '2021',
+  },
+];
