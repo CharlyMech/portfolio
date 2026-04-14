@@ -1,25 +1,9 @@
-/**
- * Date utilities — pure, stateless helpers for date/time formatting.
- * No Zustand, no side effects.
- */
-
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
-
-/** Day/month/year ordering derived from a locale. */
 export type DateOrder = 'DMY' | 'MDY' | 'YMD';
 
-// ---------------------------------------------------------------------------
-// Locale detection
-// ---------------------------------------------------------------------------
-
 /**
- * Derive the date-part order from a BCP-47 locale tag.
- *
- * Strategy: ask Intl.DateTimeFormat to format a known date (2013-11-25)
- * and read back the numeric positions of day / month / year parts.
- *
+ * Derives date-part order from a BCP-47 locale tag.
+ * Probes Intl.DateTimeFormat with a known date (2013-11-25) and reads
+ * back the numeric positions of day/month/year parts.
  * Falls back to YMD (ISO) when the API is unavailable.
  */
 export function deriveDateOrder(locale: string): { order: DateOrder; separator: '/' | '-' } {
@@ -53,14 +37,6 @@ export function deriveDateOrder(locale: string): { order: DateOrder; separator: 
   return { order, separator };
 }
 
-// ---------------------------------------------------------------------------
-// Formatters
-// ---------------------------------------------------------------------------
-
-/**
- * Format a date according to the given order and separator.
- * Pass the values from the date store for locale-aware output.
- */
 export function formatDate(
   input: Date | number | string,
   order: DateOrder,
@@ -80,9 +56,6 @@ export function formatDate(
   return parts[order].join(separator);
 }
 
-/**
- * Format a date as a localised time string (HH:MM:SS, 24 h).
- */
 export function formatTime(input: Date | number | string, locale: string): string {
   return new Date(input).toLocaleTimeString(locale, {
     hour: '2-digit',
