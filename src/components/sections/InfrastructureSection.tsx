@@ -1,11 +1,8 @@
-/** ============================================================
- * InfrastructureSection — Tiered skills grid + truncated log
- * ============================================================ */
-
 'use client';
 
 import { motion } from 'framer-motion';
-import { SKILL_CATEGORIES, EXPERIENCE } from '@/data/portfolio';
+import { SKILL_CATEGORIES } from '@/constants/skills';
+import { EXPERIENCE } from '@/constants/experience';
 import type { ExperienceEntry, SkillTier } from '@/types';
 import { useTranslations } from '@/hooks/use-translations';
 
@@ -77,15 +74,14 @@ export default function InfrastructureSection() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] border-b border-border">
-      {/* ── Left — Skills grid ──────────────────────────────── */}
       <div className="border-b md:border-b-0 md:border-r border-border">
-        {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-6 sm:px-8 py-5 border-b border-border">
           <h2 className="text-heading-sm">
             {t.infrastructure.heading}
           </h2>
           <div className="flex items-center gap-3">
             {/* Tier legend */}
+            {/* Tier legend — hidden on mobile, shown in skill column labels instead */}
             <div className="hidden sm:flex items-center gap-3">
               {TIER_ORDER.map((tier) => (
                 <div key={tier} className="flex items-center gap-1.5">
@@ -101,7 +97,6 @@ export default function InfrastructureSection() {
           </div>
         </div>
 
-        {/* Skills — responsive grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 divide-x divide-border [&>*:nth-child(n+4)]:border-t [&>*:nth-child(n+4)]:border-border">
           {SKILL_CATEGORIES.map((cat, i) => (
             <SkillColumn key={cat.id} cat={cat} index={i} t={t} />
@@ -109,7 +104,6 @@ export default function InfrastructureSection() {
         </div>
       </div>
 
-      {/* ── Right — Experience log (last 3 + link) ───────────── */}
       <ExperienceLog t={t} />
     </div>
   );
@@ -164,7 +158,6 @@ function ExperienceLog({ t }: { t: ReturnType<typeof useTranslations> }) {
         ))}
       </div>
 
-      {/* Footer link */}
       <div className="px-5 py-4 border-t border-border">
         <a
           href="/experience"

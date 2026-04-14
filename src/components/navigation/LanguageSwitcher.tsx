@@ -1,7 +1,3 @@
-/** ============================================================
- * LanguageSwitcher — Custom dropdown, always opens downward
- * ============================================================ */
-
 'use client';
 
 import { useState, useRef, useEffect } from 'react';

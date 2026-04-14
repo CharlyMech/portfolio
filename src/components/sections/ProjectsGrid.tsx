@@ -1,13 +1,8 @@
-/** ============================================================
- * ProjectsGrid — Interactive project cards
- * Status badge, tags, external links
- * ============================================================ */
-
 'use client';
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { PROJECTS } from '@/data/portfolio';
+import { PROJECTS } from '@/constants/projects';
 import type { Project, ProjectStatus } from '@/types';
 import { useTranslations } from '@/hooks/use-translations';
 
@@ -40,7 +35,6 @@ export default function ProjectsGrid() {
 
   return (
     <div className="p-6 md:p-10">
-      {/* Filter bar */}
       <div className="flex items-center gap-2 mb-8 flex-wrap">
         <span className="label-mono mr-2">Filter:</span>  {/* "Filter:" is a UI label intentionally kept in EN */}
         {FILTERS.map((f) => (
@@ -60,7 +54,6 @@ export default function ProjectsGrid() {
         ))}
       </div>
 
-      {/* Grid */}
       <motion.div
         layout
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px
@@ -96,14 +89,12 @@ function ProjectCard({ project, index, statusLabels, t }: {
       className="relative bg-bg-elevated p-6 flex flex-col gap-4
                  cursor-default group"
     >
-      {/* Hover accent line */}
       <motion.div
         className="absolute top-0 left-0 right-0 h-[2px] bg-accent origin-left"
         animate={{ scaleX: hovered ? 1 : 0 }}
         transition={{ duration: 0.25 }}
       />
 
-      {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div>
           <span className="label-mono text-text-muted">{project.year}</span>
@@ -120,12 +111,10 @@ function ProjectCard({ project, index, statusLabels, t }: {
         </span>
       </div>
 
-      {/* Description */}
       <p className="text-body text-text-secondary flex-1">
         {project.description}
       </p>
 
-      {/* Tags */}
       <div className="flex flex-wrap gap-1.5">
         {project.tags.map((tag) => (
           <span key={tag} className="tech-tag">
@@ -134,7 +123,6 @@ function ProjectCard({ project, index, statusLabels, t }: {
         ))}
       </div>
 
-      {/* Links */}
       <div className="flex items-center gap-3 pt-1 border-t border-border">
         {project.github && (
           <a

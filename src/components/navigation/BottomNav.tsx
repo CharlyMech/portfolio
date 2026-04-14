@@ -1,14 +1,13 @@
-/** ============================================================
- * BottomNav — Mobile fixed bottom navigation
- * Animated pill slides horizontally between nav items.
- * IMPORTANT: main content has padding-bottom to avoid overlap.
- * ============================================================ */
+/**
+ * Mobile fixed bottom navigation bar.
+ * Requires `padding-bottom: var(--bottom-nav-height)` on main content to prevent overlap.
+ */
 
 'use client';
 
 import { HomeSimple, CodeBrackets, Suitcase, Calendar, Journal, Mail } from 'iconoir-react';
 import { usePill } from './AnimatedPill';
-import { NAV_ITEMS } from '@/data/portfolio';
+import { NAV_ITEMS } from '@/constants/navigation';
 import { useTranslations } from '@/hooks/use-translations';
 
 interface BottomNavProps {

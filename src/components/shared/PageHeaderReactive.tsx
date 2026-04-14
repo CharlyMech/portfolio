@@ -1,7 +1,7 @@
-/** ============================================================
- * PageHeaderReactive — Client-side page header that reacts to locale changes.
- * Drop-in replacement for PageHeader.astro when i18n is needed.
- * ============================================================ */
+/**
+ * Drop-in replacement for PageHeader.astro when i18n reactivity is needed.
+ * Reads translations from the locale store, re-renders on locale change.
+ */
 
 'use client';
 

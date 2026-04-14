@@ -1,13 +1,8 @@
-/** ============================================================
- * ContactSection — Contact form + social / contact methods
- * Uses Zustand store for form state management
- * ============================================================ */
-
 'use client';
 
 import { motion } from 'framer-motion';
 import { useContactStore } from '@/stores/contactStore';
-import { PROFILE } from '@/data/portfolio';
+import { PROFILE } from '@/constants/profile';
 import { useTranslations } from '@/hooks/use-translations';
 
 export default function ContactSection() {
@@ -22,7 +17,6 @@ export default function ContactSection() {
   return (
     <div className="p-6 md:p-10">
       <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-10">
-        {/* Left — Form */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -56,7 +50,6 @@ export default function ContactSection() {
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Name + Email row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <FormField
                   label={t.contact.name}
@@ -87,7 +80,6 @@ export default function ContactSection() {
                 placeholder={t.contact.subjectPlaceholder}
               />
 
-              {/* Message */}
               <div>
                 <label
                   htmlFor="message"
@@ -134,14 +126,12 @@ export default function ContactSection() {
           )}
         </motion.div>
 
-        {/* Right — Contact info */}
         <motion.div
           initial={{ opacity: 0, x: 16 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}
           className="space-y-8"
         >
-          {/* Direct contact */}
           <div>
             <div className="border-b border-border pb-4 mb-5">
               <h3 className="text-heading-sm">
@@ -173,7 +163,6 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Social links */}
           <div>
             <div className="border-b border-border pb-4 mb-5">
               <h3 className="text-heading-sm">
@@ -204,7 +193,6 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Location */}
           <div className="border border-border p-5">
             <p className="label-mono mb-2">{t.contact.baseOfOperations}</p>
             <h4 className="text-heading">

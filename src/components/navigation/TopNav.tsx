@@ -1,15 +1,14 @@
-/** ============================================================
- * TopNav — Horizontal top navigation bar
- * Desktop: full nav with animated sliding pill indicator
- * Mobile: hidden (replaced by BottomNav)
- * ============================================================ */
+/**
+ * Fixed top navigation bar.
+ * Desktop: full nav with animated pill indicator. Mobile: hidden (BottomNav takes over).
+ */
 
 "use client";
 
 import { useEffect } from "react";
 import { HomeSimple, CodeBrackets, Suitcase, Journal } from "iconoir-react";
 import { usePill } from "./AnimatedPill";
-import { NAV_ITEMS } from "@/data/portfolio";
+import { NAV_ITEMS } from "@/constants/navigation";
 import { useTranslations } from '@/hooks/use-translations';
 import { initLocale } from "@/stores/localeStore";
 import LanguageSwitcher from "./LanguageSwitcher";

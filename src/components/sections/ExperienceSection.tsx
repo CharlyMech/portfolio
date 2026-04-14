@@ -1,11 +1,8 @@
-/** ============================================================
- * ExperienceSection — Full experience & education timeline
- * ============================================================ */
-
 'use client';
 
 import { motion } from 'framer-motion';
-import { EXPERIENCE, EDUCATION, SKILL_CATEGORIES } from '@/data/portfolio';
+import { EXPERIENCE, EDUCATION } from '@/constants/experience';
+import { SKILL_CATEGORIES } from '@/constants/skills';
 import { useTranslations } from '@/hooks/use-translations';
 
 export default function ExperienceSection() {
@@ -13,7 +10,6 @@ export default function ExperienceSection() {
   return (
     <div className="p-6 md:p-10">
       <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-10">
-        {/* Left — Experience timeline */}
         <div>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-8 border-b border-border pb-4">
             <h2 className="text-heading">
@@ -33,7 +29,6 @@ export default function ExperienceSection() {
                 className={`relative pl-8 pb-10 border-l-2 ml-2
                             ${entry.isCurrent ? 'border-accent' : 'border-border'}`}
               >
-                {/* Timeline dot */}
                 <div
                   className={`absolute -left-[7px] top-0 w-3 h-3 border-2
                               ${entry.isCurrent
@@ -42,7 +37,6 @@ export default function ExperienceSection() {
                               }`}
                 />
 
-                {/* Content */}
                 <div className="pl-4">
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2">
                     <div>
@@ -87,9 +81,7 @@ export default function ExperienceSection() {
           </div>
         </div>
 
-        {/* Right — Education + Skills overview */}
         <div className="space-y-10">
-          {/* Education */}
           <div>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 border-b border-border pb-4">
               <h2 className="text-heading">
@@ -124,7 +116,6 @@ export default function ExperienceSection() {
             </div>
           </div>
 
-          {/* Compact skill overview */}
           <div>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 border-b border-border pb-4">
               <h2 className="text-heading">

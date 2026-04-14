@@ -1,13 +1,10 @@
-/** ============================================================
- * Sidebar — vertical left rail (desktop only)
- * Shows icons + vertical text. Animated pill tracks active route.
- * ============================================================ */
+/** Desktop-only vertical left rail with social links and copyright. */
 
 'use client';
 
 import { Github, Linkedin, Twitter } from 'iconoir-react';
 import { getYear } from '@/stores/dateStore';
-import { PROFILE } from '@/data/portfolio';
+import { PROFILE } from '@/constants/profile';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 interface SidebarProps {
@@ -22,7 +19,6 @@ export default function Sidebar({ currentPath }: SidebarProps) {
                  w-[48px] border-r border-border bg-bg-base"
       aria-label="Vertical sidebar"
     >
-      {/* Copyright text — pushed toward top, not fully centered */}
       <div className="flex items-start justify-center pt-16 flex-1">
         <span
           className="writing-vertical label-mono text-text-muted select-none"
@@ -32,7 +28,6 @@ export default function Sidebar({ currentPath }: SidebarProps) {
         </span>
       </div>
 
-      {/* Social icons — raised slightly above the very bottom */}
       <div className="flex flex-col items-center gap-3 pb-10">
         <TooltipProvider>
           {PROFILE.social.map((item) => {
@@ -53,7 +48,6 @@ export default function Sidebar({ currentPath }: SidebarProps) {
                                text-text-muted transition-colors duration-200
                                hover:text-accent"
                   >
-                    {/* Accent bg on hover */}
                     <span className="absolute inset-0 rounded-md bg-accent/0 group-hover:bg-accent/10 transition-colors duration-200" />
                     <Icon width={16} height={16} strokeWidth={1.5} className="relative z-10" />
                   </a>

@@ -1,12 +1,7 @@
-/** ============================================================
- * BlogSection — Editorial post index
- * Grid of posts + right rail stats
- * ============================================================ */
-
 'use client';
 
 import { motion } from 'framer-motion';
-import { BLOG_POSTS } from '@/data/portfolio';
+import { BLOG_POSTS } from '@/constants/blog';
 import { useTranslations } from '@/hooks/use-translations';
 
 export default function BlogSection() {
@@ -19,7 +14,6 @@ export default function BlogSection() {
   return (
     <div className="p-6 md:p-10">
       <div className="grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-8">
-        {/* Posts list */}
         <div className="space-y-4">
           {BLOG_POSTS.map((post, i) => (
             <motion.article
@@ -66,7 +60,6 @@ export default function BlogSection() {
           ))}
         </div>
 
-        {/* Right rail */}
         <aside className="space-y-6">
           <div className="border border-border bg-bg-elevated p-5">
             <p className="label-mono mb-3">Journal Index</p>

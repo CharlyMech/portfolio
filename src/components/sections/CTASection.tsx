@@ -1,8 +1,3 @@
-/** ============================================================
- * CTASection — "Let's build the future" home CTA
- * Split grid: text + button | tech image/visual
- * ============================================================ */
-
 'use client';
 
 import { motion } from 'framer-motion';
@@ -14,7 +9,6 @@ export default function CTASection() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr]">
-      {/* Left — CTA text */}
       <div className="flex flex-col justify-center p-6 sm:p-8 md:p-12 border-b md:border-b-0 md:border-r border-border min-h-[260px] sm:min-h-[280px]">
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
@@ -49,7 +43,6 @@ export default function CTASection() {
         </motion.div>
       </div>
 
-      {/* Right — Circuit board visual */}
       <div
         className="relative overflow-hidden min-h-[200px] md:min-h-0"
         aria-hidden="true"
@@ -76,7 +69,6 @@ function CircuitPattern() {
     >
       <rect width="400" height="300" fill="var(--color-bg-elevated)" />
 
-      {/* Grid lines */}
       {Array.from({ length: 10 }).map((_, i) => (
         <line
           key={`v${i}`}
@@ -100,13 +92,11 @@ function CircuitPattern() {
         />
       ))}
 
-      {/* Circuit traces */}
       <path d="M44 44 H132 V132 H220" stroke="var(--color-accent)" strokeWidth="1.5" opacity="0.4" />
       <path d="M220 132 H308 V88 H400" stroke="var(--color-accent)" strokeWidth="1.5" opacity="0.3" />
       <path d="M0 176 H88 V220 H176 V176 H264" stroke="var(--color-accent)" strokeWidth="1" opacity="0.25" />
       <path d="M132 264 V220 H264 V264" stroke="var(--color-accent)" strokeWidth="1" opacity="0.2" />
 
-      {/* Nodes */}
       {[
         [44, 44], [132, 44], [132, 132], [220, 132],
         [308, 88], [88, 176], [176, 220], [264, 176],
@@ -117,11 +107,9 @@ function CircuitPattern() {
         </g>
       ))}
 
-      {/* Chips */}
       <rect x="160" y="56" width="48" height="32" rx="2" fill="var(--color-bg-overlay)" stroke="var(--color-border)" strokeWidth="1" />
       <rect x="240" y="160" width="40" height="28" rx="2" fill="var(--color-bg-overlay)" stroke="var(--color-border)" strokeWidth="1" />
 
-      {/* Labels */}
       <text x="170" y="76" fill="var(--color-accent)" fontSize="6" fontFamily="monospace" opacity="0.6">CPU</text>
       <text x="248" y="177" fill="var(--color-accent)" fontSize="6" fontFamily="monospace" opacity="0.6">I/O</text>
     </svg>

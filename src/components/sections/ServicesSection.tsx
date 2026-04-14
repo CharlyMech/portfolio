@@ -1,20 +1,16 @@
-/** ============================================================
- * ServicesSection — Freelance services with availability status
- * ============================================================ */
-
 'use client';
 
 import { motion } from 'framer-motion';
-import { SERVICES, PROFILE } from '@/data/portfolio';
+import { SERVICES } from '@/constants/freelance';
+import { PROFILE } from '@/constants/profile';
 import { useTranslations } from '@/hooks/use-translations';
 
 export default function ServicesSection() {
-  const isAvailable = PROFILE.status.availability === 'available';
+  const isAvailable = PROFILE.status.available;
   const t = useTranslations();
 
   return (
     <div className="p-6 md:p-10">
-      {/* Availability banner */}
       <motion.div
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
@@ -37,7 +33,6 @@ export default function ServicesSection() {
         </span>
       </motion.div>
 
-      {/* Services grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-px border border-border bg-border">
         {SERVICES.map((service, i) => (
           <motion.div
@@ -48,22 +43,18 @@ export default function ServicesSection() {
             viewport={{ once: true }}
             className="bg-bg-elevated p-8 group hover:bg-bg-overlay transition-colors"
           >
-            {/* Icon */}
             <div className="font-mono text-heading-sm text-accent mb-6 group-hover:scale-110 transition-transform origin-left">
               {service.icon}
             </div>
 
-            {/* Title */}
             <h3 className="text-heading-sm mb-3">
               {service.title}
             </h3>
 
-            {/* Description */}
             <p className="text-body text-text-secondary mb-6">
               {service.description}
             </p>
 
-            {/* Deliverables */}
             <div>
               <p className="label-mono mb-3">{t.services.deliverables}</p>
               <ul className="space-y-1.5">
@@ -78,7 +69,6 @@ export default function ServicesSection() {
         ))}
       </div>
 
-      {/* Bottom CTA */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

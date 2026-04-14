@@ -4,11 +4,11 @@ import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Map } from "@/components/ui/map";
 import { Github, Linkedin, MapPin, CloudSunny, HalfMoon, SunLight, Cloud, Rain, Snow, Thunderstorm, Fog } from 'iconoir-react';
-import { PROFILE } from '@/data/portfolio';
+import { PROFILE } from '@/constants/profile';
 import { useTranslations } from '@/hooks/use-translations';
 import { useWeatherStore } from '@/stores/weatherStore';
 import { useDateStore } from '@/stores/dateStore';
-import type { WeatherCondition } from '@/data/models/weather.model';
+import type { WeatherCondition } from '@/core/models/weather';
 import { Card } from '../ui/card';
 
 // ---- Animation variants ----
@@ -38,8 +38,6 @@ const slideDown = (delay = 0) => ({
   transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number], delay },
 });
 
-// ---- Sub-components ----
-
 function WeatherIcon({ condition, isDay }: { condition: WeatherCondition; isDay: boolean }) {
   const props = { width: 14, height: 14, strokeWidth: 1.5 };
   if (condition === 'clear') return isDay ? <SunLight {...props} /> : <HalfMoon {...props} />;
@@ -62,8 +60,6 @@ const SOCIAL_ICONS: Record<string, React.ReactNode> = {
   github: <Github width={16} height={16} strokeWidth={1.5} />,
   linkedin: <Linkedin width={16} height={16} strokeWidth={1.5} />,
 };
-
-// ---- Component ----
 
 export default function HeroSection() {
   const t = useTranslations();
@@ -95,7 +91,6 @@ export default function HeroSection() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] border-b border-border">
 
-      {/* ---- Left: text + photo ---- */}
       <div className="p-4 md:p-8 border-b md:border-b-0 md:border-r border-border flex flex-col justify-between min-h-[360px]">
         <div className="flex-1 flex flex-col md:flex-row justify-between items-center space-y-4">
 
@@ -122,7 +117,6 @@ export default function HeroSection() {
               {t.hero.bio}
             </motion.p>
 
-            {/* Social links */}
             <motion.div {...fadeUp(0.5)} className="flex items-center gap-3 pt-2">
               {PROFILE.social.map((social) => (
                 <a
@@ -140,7 +134,6 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Photo */}
           <motion.div {...scaleIn(0.3)} className="flex flex-col h-full">
             <Card className="w-52 rounded-full flex items-center justify-center overflow-hidden">
               <img src="/carlos.png" alt="Carlos" className="w-full h-full object-cover rounded-full" />
@@ -150,13 +143,12 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* ---- Right: map + overlay cards ---- */}
-      {/* The Map component renders its own skeleton while tiles load */}
+      {/* Map renders its own skeleton while tiles load */}
       <div className="relative min-h-[280px]">
 
         <motion.div {...fadeIn(0.2)} className="absolute inset-0">
           <Map
-            center={PROFILE.location.coordinates}
+            center={[PROFILE.location.coordinates.lon, PROFILE.location.coordinates.lat]}
             zoom={10}
             scrollZoom={false}
             dragPan={false}
@@ -168,10 +160,7 @@ export default function HeroSection() {
           />
         </motion.div>
 
-        {/* Overlay: clock + weather */}
         <div className="absolute top-2 left-2 right-2 flex justify-start items-center gap-2 z-20">
-
-          {/* Clock card */}
           <motion.div {...slideDown(0.55)}>
             <Card className="w-fit">
               <div className="flex items-center gap-1.5">
@@ -184,7 +173,6 @@ export default function HeroSection() {
             </Card>
           </motion.div>
 
-          {/* Weather card */}
           <motion.div {...slideDown(0.65)}>
             <Card className="w-fit flex flex-row items-center gap-1.5">
               <AnimatePresence mode="wait">

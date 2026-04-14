@@ -1,7 +1,3 @@
-/** ============================================================
- * ThemeToggle — Animated dark/light theme toggle button
- * ============================================================ */
-
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
