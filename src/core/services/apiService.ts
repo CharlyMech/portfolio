@@ -1,8 +1,3 @@
-/* ============================================================
-   CORE — API Service (HTTP Client)
-   Thin wrapper around fetch. All external calls flow through here.
-   ============================================================ */
-
 export type ApiResponse<T> =
   | { data: T; error: null }
   | { data: null; error: string };
@@ -29,10 +24,7 @@ async function request<T>(
     clearTimeout(timeoutId);
 
     if (!response.ok) {
-      return {
-        data: null,
-        error: `HTTP ${response.status}: ${response.statusText}`,
-      };
+      return { data: null, error: `HTTP ${response.status}: ${response.statusText}` };
     }
 
     const data = (await response.json()) as T;
@@ -40,9 +32,7 @@ async function request<T>(
   } catch (err) {
     clearTimeout(timeoutId);
     if (err instanceof Error) {
-      if (err.name === 'AbortError') {
-        return { data: null, error: 'Request timed out' };
-      }
+      if (err.name === 'AbortError') return { data: null, error: 'Request timed out' };
       return { data: null, error: err.message };
     }
     return { data: null, error: 'Unknown error' };
@@ -53,9 +43,5 @@ export const apiService = {
   get: <T>(url: string, headers?: HeadersInit) =>
     request<T>(url, { method: 'GET', headers }),
   post: <T>(url: string, body: unknown, headers?: HeadersInit) =>
-    request<T>(url, {
-      method: 'POST',
-      body: JSON.stringify(body),
-      headers,
-    }),
+    request<T>(url, { method: 'POST', body: JSON.stringify(body), headers }),
 };
