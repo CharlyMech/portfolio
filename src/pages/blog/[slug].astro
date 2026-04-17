@@ -1,4 +1,5 @@
 ---
+import type { BlogPost } from '@/core/models/blog';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { BLOG_POSTS } from '@/constants/blog';
 
@@ -9,6 +10,7 @@ export async function getStaticPaths() {
   }));
 }
 
+interface Props { post: BlogPost; }
 const { post } = Astro.props;
 ---
 
@@ -38,15 +40,15 @@ const { post } = Astro.props;
         {post.title}
       </h1>
       <div class="flex items-center gap-3">
-        <span class="label-mono text-text-muted">{post.date}</span>
-        <span class="label-mono text-text-muted">•</span>
-        <span class="label-mono text-text-muted">{post.readTime}</span>
+        <span class="label-mono text-foreground-muted">{post.date}</span>
+        <span class="label-mono text-foreground-muted">•</span>
+        <span class="label-mono text-foreground-muted">{post.readTime}</span>
       </div>
     </div>
 
     <div class="space-y-6">
       {post.content.map((paragraph) => (
-        <p class="text-body text-text-secondary">
+        <p class="text-body text-foreground-secondary">
           {paragraph}
         </p>
       ))}
