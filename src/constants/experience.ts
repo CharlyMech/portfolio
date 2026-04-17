@@ -1,62 +1,444 @@
-import type { ExperienceEntry, Education } from '@/core/models/experience';
+import { defaultLocale, type Locale } from "@/i18n";
+import type { Education, ExperienceEntry, WorkModality } from "@/core/models/experience";
 
-export const EXPERIENCE: ExperienceEntry[] = [
-  {
-    id: 'exp-1',
-    role: 'Senior Architect',
-    company: 'Editorial Tech Labs',
-    period: '2022 — Present',
-    isCurrent: true,
-    description: 'Led the migration of legacy monolith to microservices using Rust and K8s.',
-    tags: ['Rust', 'Kubernetes', 'Architecture'],
-  },
-  {
-    id: 'exp-2',
-    role: 'Full Stack Dev',
-    company: 'Quantum Systems',
-    period: '2019 — 2022',
-    isCurrent: false,
-    description: 'Developed real-time trading dashboards and low-latency API layers.',
-    tags: ['React', 'Node.js', 'WebSocket'],
-  },
-  {
-    id: 'exp-3',
-    role: 'Frontend Engineer',
-    company: 'Design Matrix',
-    period: '2017 — 2019',
-    isCurrent: false,
-    description: 'Focused on WebGL implementations and complex UI animations.',
-    tags: ['WebGL', 'Three.js', 'GSAP'],
-  },
-  {
-    id: 'exp-4',
-    role: 'Junior Developer',
-    company: 'Startup Hub',
-    period: '2015 — 2017',
-    isCurrent: false,
-    description: 'Building MVP products for early-stage fintech ventures.',
-    tags: ['React Native', 'Firebase', 'Stripe'],
-  },
+type Multilang<T = string> = Record<Locale, T>;
+
+type LocalizedModality = {
+	key: WorkModality;
+	label: string;
+};
+
+type ExperienceEntryI18n = Omit<
+	ExperienceEntry,
+	| "role"
+	| "company"
+	| "location"
+	| "modality"
+	| "modalityLabel"
+	| "period"
+	| "description"
+	| "note"
+> & {
+	role: Multilang;
+	company?: Multilang;
+	location: Multilang;
+	modality?: Multilang<LocalizedModality>;
+	period: Multilang;
+	description?: Multilang;
+	note?: Multilang;
+};
+
+type EducationI18n = Omit<
+	Education,
+	| "degree"
+	| "institution"
+	| "location"
+	| "modality"
+	| "modalityLabel"
+	| "period"
+	| "description"
+	| "note"
+> & {
+	degree: Multilang;
+	institution: Multilang;
+	location?: Multilang;
+	modality?: Multilang<LocalizedModality>;
+	period: Multilang;
+	description?: Multilang;
+	note?: Multilang;
+};
+
+const MODALITY = {
+	remote: {
+		en: { key: "remote", label: "Remote" },
+		es: { key: "remote", label: "Remoto" },
+	},
+	onsite: {
+		en: { key: "onsite", label: "On-site" },
+		es: { key: "onsite", label: "Presencial" },
+	},
+	hybrid: {
+		en: { key: "hybrid", label: "Hybrid" },
+		es: { key: "hybrid", label: "Híbrido" },
+	},
+} as const satisfies Record<WorkModality, Multilang<LocalizedModality>>;
+
+const EXPERIENCE_I18N: ExperienceEntryI18n[] = [
+	{
+		id: "exp-volone",
+		role: {
+			en: "Full Stack Engineer",
+			es: "Ingeniero Full Stack",
+		},
+		company: {
+			en: "Volone (Esloogan 360)",
+			es: "Volone (Esloogan 360)",
+		},
+		location: {
+			en: "Valladolid, Spain",
+			es: "Valladolid, España",
+		},
+		modality: MODALITY.hybrid,
+		period: {
+			en: "Jan 2026 — Present",
+			es: "Ene 2026 — Actualidad",
+		},
+		isCurrent: true,
+		description: {
+			en: "Lead developer of Volone's core platform, a full-stack digital menu product with video-first browsing, map-based discovery, and QR integration.",
+			es: "Desarrollador principal de la plataforma core de Volone, un producto de carta digital full stack con exploración centrada en vídeo, descubrimiento por mapa e integración con QR.",
+		},
+		tags: [
+			"Next.js",
+			"Tailwind CSS",
+			"NestJs",
+			"React Native Expo",
+			"Flutter",
+			"MongoDB",
+			"AWS",
+		],
+	},
+	{
+		id: "exp-it2b",
+		role: {
+			en: "Full Stack Engineer",
+			es: "Ingeniero Full Stack",
+		},
+		company: {
+			en: "IT2B",
+			es: "IT2B",
+		},
+		location: {
+			en: "Palma de Mallorca, Spain",
+			es: "Palma de Mallorca, España",
+		},
+		modality: MODALITY.onsite,
+		period: {
+			en: "Jan — Oct 2025",
+			es: "Ene — Oct 2025",
+		},
+		isCurrent: false,
+		description: {
+			en: "Maintained and extended a tourism back-office application for activity scheduling and booking flows, while building custom solutions for client-specific needs.",
+			es: "Mantuve y amplié una aplicación de back office turístico para gestión de actividades y reservas, además de desarrollar soluciones a medida para necesidades específicas de clientes.",
+		},
+		tags: ["Angular", "Sass CSS", "Bootstrap", "PHP Symfony"],
+		note: {
+			en: "Contract ended due to personal relocation.",
+			es: "El contrato terminó por una reubicación personal.",
+		},
+	},
+	{
+		id: "exp-freelance",
+		role: {
+			en: "Freelance Developer",
+			es: "Desarrollador Freelance",
+		},
+		location: {
+			en: "Ibiza, Spain",
+			es: "Ibiza, España",
+		},
+		modality: MODALITY.remote,
+		period: {
+			en: "Sept 2025 — Mar 2026",
+			es: "Sept 2025 — Mar 2026",
+		},
+		isCurrent: false,
+		description: {
+			en: "Built end-to-end digital products ranging from cross-platform apps to APIs and modern dashboards, combining design sensitivity, performance, and clean architecture.",
+			es: "Desarrollé productos digitales end-to-end, desde apps multiplataforma hasta APIs y dashboards modernos, combinando criterio de diseño, rendimiento y arquitectura limpia.",
+		},
+		tags: [
+			"Astrojs",
+			"Tailwind CSS",
+			"Next.js",
+			"Flutter",
+			"React Native Expo",
+			"NestJs",
+			"Supabase",
+		],
+	},
+	{
+		id: "exp-onmi",
+		role: {
+			en: "Full Stack Developer (Internship)",
+			es: "Desarrollador Full Stack (Prácticas)",
+		},
+		company: {
+			en: "Omniaccess",
+			es: "Omniaccess",
+		},
+		location: {
+			en: "Palma de Mallorca, Spain",
+			es: "Palma de Mallorca, España",
+		},
+		modality: MODALITY.hybrid,
+		period: {
+			en: "Mar - Jun 2024",
+			es: "Mar - Jun 2024",
+		},
+		isCurrent: false,
+		description: {
+			en: "Worked on API maintenance and feature delivery for real-time vessel networking and location systems, plus a final internship POC app for Starlink ISP clients.",
+			es: "Trabajé en mantenimiento de APIs y entrega de funcionalidades para sistemas de red y localización de embarcaciones en tiempo real, además de una app POC final para clientes ISP de Starlink.",
+		},
+		tags: ["NestJs", "Vue2", "Flutter"],
+	},
 ];
 
-export const EDUCATION: Education[] = [
-  {
-    id: 'edu-1',
-    degree: 'B.Sc. Computer Science',
-    institution: 'Technical University Berlin',
-    period: '2011 — 2015',
-    description: 'Specialization in distributed systems and compilers.',
-  },
-  {
-    id: 'edu-2',
-    degree: 'AWS Solutions Architect',
-    institution: 'Amazon Web Services',
-    period: '2020',
-  },
-  {
-    id: 'edu-3',
-    degree: 'Certified Kubernetes Administrator',
-    institution: 'CNCF',
-    period: '2021',
-  },
+const NON_TECH_EXPERIENCE_I18N: ExperienceEntryI18n[] = [
+	{
+		id: "exp-miro",
+		role: {
+			en: "Delivery Driver",
+			es: "Repartidor",
+		},
+		company: {
+			en: "Exclusivas Miró",
+			es: "Exclusivas Miró",
+		},
+		location: {
+			en: "Ibiza, Spain",
+			es: "Ibiza, España",
+		},
+		period: {
+			en: "Jun - Oct Summers 2016-2021",
+			es: "Jun - Oct Veranos 2016-2021",
+		},
+		isCurrent: false,
+	},
+	{
+		id: "exp-javier",
+		role: {
+			en: "Delivery Driver",
+			es: "Repartidor",
+		},
+		company: {
+			en: "Frutas Javier",
+			es: "Frutas Javier",
+		},
+		location: {
+			en: "Ibiza, Spain",
+			es: "Ibiza, España",
+		},
+		period: {
+			en: "Jun - Oct Summers 2022-2023",
+			es: "Jun - Oct Veranos 2022-2023",
+		},
+		isCurrent: false,
+	},
+	{
+		id: "exp-bunyola",
+		role: {
+			en: "Valet",
+			es: "Valet",
+		},
+		company: {
+			en: "Virgin Exclusive Son Bunyola Hotel",
+			es: "Virgin Exclusive Son Bunyola Hotel",
+		},
+		location: {
+			en: "Palma de Mallorca, Spain",
+			es: "Palma de Mallorca, España",
+		},
+		period: {
+			en: "Jul - Nov 2024",
+			es: "Jul - Nov 2024",
+		},
+		isCurrent: false,
+	},
 ];
+
+const EDUCATION_I18N: EducationI18n[] = [
+	{
+		id: "edu-physics",
+		degree: {
+			en: "Bachelor's Degree in Physics",
+			es: "Grado en Física",
+		},
+		institution: {
+			en: "University of the Balearic Islands",
+			es: "Universidad de las Islas Baleares",
+		},
+		location: {
+			en: "Palma de Mallorca, Spain",
+			es: "Palma de Mallorca, España",
+		},
+		period: {
+			en: "2017 — 2020",
+			es: "2017 — 2020",
+		},
+		note: {
+			en: "Studies not completed.",
+			es: "Estudios no finalizados.",
+		},
+	},
+	{
+		id: "edu-asir",
+		degree: {
+			en: "Systems and Network Administration",
+			es: "Administración de Sistemas y Redes",
+		},
+		institution: {
+			en: "IES Sa Colomina",
+			es: "IES Sa Colomina",
+		},
+		location: {
+			en: "Ibiza, Spain",
+			es: "Ibiza, España",
+		},
+		period: {
+			en: "2020 - 2022",
+			es: "2020 - 2022",
+		},
+		tags: [
+			"Linux",
+			"Networking",
+			"PHP",
+			"Python",
+			"Bash/Batch",
+			"Powershell",
+			"MySQL",
+		],
+	},
+	{
+		id: "edu-dam",
+		degree: {
+			en: "Cross-Platform Application Development",
+			es: "Desarrollo de Aplicaciones Multiplataforma",
+		},
+		institution: {
+			en: "CESUR",
+			es: "CESUR",
+		},
+		location: {
+			en: "Palma de Mallorca, Spain",
+			es: "Palma de Mallorca, España",
+		},
+		period: {
+			en: "2022 - 2024",
+			es: "2022 - 2024",
+		},
+		tags: [
+			"Android",
+			"Kotlin",
+			"Java",
+			"Flutter",
+			"MongoDB",
+			"PostgreSQL",
+			"MySQL",
+			"MongoDB",
+			"Git",
+			"Scrum",
+		],
+	},
+	{
+		id: "edu-ai",
+		degree: {
+			en: "AI and Big Data Specialization",
+			es: "Especialización en IA y Big Data",
+		},
+		institution: {
+			en: "IEDIB",
+			es: "IEDIB",
+		},
+		location: {
+			en: "Palma de Mallorca, Spain",
+			es: "Palma de Mallorca, España",
+		},
+		modality: MODALITY.remote,
+		period: {
+			en: "2024 - 2025",
+			es: "2024 - 2025",
+		},
+		tags: [
+			"Python",
+			"Jupyter",
+			"Pandas",
+			"NumPy",
+			"Matplotlib/seaborn",
+			"Scikit-learn",
+			"TensorFlow",
+			"PyTorch",
+			"Hadoop",
+			"Spark",
+			"Azure",
+			"Databricks",
+			"Power BI",
+		],
+	},
+];
+
+const CERITIFICATES_I18N: EducationI18n[] = [
+	// {
+	// 	id: "cert-example",
+	// 	degree: {
+	// 		en: "Certification Name",
+	// 		es: "Nombre de la certificación",
+	// 	},
+	// 	institution: {
+	// 		en: "Provider",
+	// 		es: "Proveedor",
+	// 	},
+	// 	period: {
+	// 		en: "2025",
+	// 		es: "2025",
+	// 	},
+	// 	description: {
+	// 		en: "Short description.",
+	// 		es: "Descripción breve.",
+	// 	},
+	// },
+];
+
+function resolveField<T>(field: Multilang<T>, locale: Locale): T {
+	return field[locale] ?? field[defaultLocale];
+}
+
+function localizeExperienceEntry(entry: ExperienceEntryI18n, locale: Locale): ExperienceEntry {
+	const modality = entry.modality ? resolveField(entry.modality, locale) : undefined;
+
+	return {
+		...entry,
+		role: resolveField(entry.role, locale),
+		company: entry.company ? resolveField(entry.company, locale) : undefined,
+		location: resolveField(entry.location, locale),
+		modality: modality?.key,
+		modalityLabel: modality?.label,
+		period: resolveField(entry.period, locale),
+		description: entry.description ? resolveField(entry.description, locale) : undefined,
+		note: entry.note ? resolveField(entry.note, locale) : undefined,
+	};
+}
+
+function localizeEducationEntry(entry: EducationI18n, locale: Locale): Education {
+	const modality = entry.modality ? resolveField(entry.modality, locale) : undefined;
+
+	return {
+		...entry,
+		degree: resolveField(entry.degree, locale),
+		institution: resolveField(entry.institution, locale),
+		location: entry.location ? resolveField(entry.location, locale) : undefined,
+		modality: modality?.key,
+		modalityLabel: modality?.label,
+		period: resolveField(entry.period, locale),
+		description: entry.description ? resolveField(entry.description, locale) : undefined,
+		note: entry.note ? resolveField(entry.note, locale) : undefined,
+	};
+}
+
+export function getExperienceEntries(locale: Locale) {
+	return EXPERIENCE_I18N.map((entry) => localizeExperienceEntry(entry, locale));
+}
+
+export function getNonTechExperienceEntries(locale: Locale) {
+	return NON_TECH_EXPERIENCE_I18N.map((entry) => localizeExperienceEntry(entry, locale));
+}
+
+export function getEducationEntries(locale: Locale) {
+	return EDUCATION_I18N.map((entry) => localizeEducationEntry(entry, locale));
+}
+
+export function getCertificateEntries(locale: Locale) {
+	return CERITIFICATES_I18N.map((entry) => localizeEducationEntry(entry, locale));
+}
