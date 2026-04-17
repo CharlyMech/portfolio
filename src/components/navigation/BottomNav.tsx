@@ -47,9 +47,9 @@ export default function BottomNav({ currentPath: initialPath }: BottomNavProps) 
     (item) =>
       currentPath === item.href ||
       (item.href !== '/' && currentPath.startsWith(item.href)),
-  ) ?? NAV_ITEMS[0];
+  );
 
-  const { containerRef, setItemRef, pill } = usePill(activeItem.id, { variant: 'line-top' });
+  const { containerRef, setItemRef, pill } = usePill(activeItem?.id ?? '', { variant: 'line-top' });
 
   return (
     <nav
@@ -68,8 +68,8 @@ export default function BottomNav({ currentPath: initialPath }: BottomNavProps) 
             ref={(el) => setItemRef(item.id, el)}
             className={`relative z-10 flex flex-1 flex-col items-center justify-center gap-1 h-full
                         transition-colors duration-200
-                        ${activeItem.id === item.id ? 'text-accent' : 'text-foreground-muted'}`}
-            aria-current={activeItem.id === item.id ? 'page' : undefined}
+                        ${activeItem?.id === item.id ? 'text-accent' : 'text-foreground-muted'}`}
+            aria-current={activeItem?.id === item.id ? 'page' : undefined}
           >
             <span className="flex-shrink-0">
               {ICONS[item.icon ?? 'home'] ?? ICONS.home}

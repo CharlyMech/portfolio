@@ -46,14 +46,13 @@ export default function TopNav({ currentPath: initialPath }: TopNavProps) {
     contact: t.nav.contact,
   };
 
-  const activeItem =
-    NAV_ITEMS.find(
-      (item) =>
-        currentPath === item.href ||
-        (item.href !== "/" && currentPath.startsWith(item.href))
-    ) ?? NAV_ITEMS[0];
+  const activeItem = NAV_ITEMS.find(
+    (item) =>
+      currentPath === item.href ||
+      (item.href !== "/" && currentPath.startsWith(item.href))
+  );
 
-  const { containerRef, setItemRef, pill } = usePill(activeItem.id, { variant: 'line-bottom' });
+  const { containerRef, setItemRef, pill } = usePill(activeItem?.id ?? '', { variant: 'line-bottom' });
 
   return (
     <header
@@ -87,11 +86,11 @@ export default function TopNav({ currentPath: initialPath }: TopNavProps) {
               className={`relative z-10 px-4 h-[56px] flex items-center gap-2
                           font-mono text-xs tracking-[0.12em] uppercase
                           transition-colors duration-200
-                          ${activeItem.id === item.id
+                          ${activeItem?.id === item.id
                   ? "text-accent"
                   : "text-foreground-muted hover:text-foreground-secondary"
                 }`}
-              aria-current={activeItem.id === item.id ? "page" : undefined}
+              aria-current={activeItem?.id === item.id ? "page" : undefined}
             >
               {NAV_ICONS[item.icon ?? "home"]}
               {navLabels[item.id] ?? item.label}
