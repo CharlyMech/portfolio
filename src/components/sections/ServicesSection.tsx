@@ -19,16 +19,16 @@ export default function ServicesSection() {
                     ${
                       isAvailable
                         ? 'border-status-available/30 bg-status-available/5'
-                        : 'border-border bg-bg-elevated'
+                        : 'border-border bg-elevated'
                     }`}
       >
         <span className={`status-dot ${isAvailable ? 'available' : 'busy'}`} />
-        <span className="text-code-xs text-text-secondary">
+        <span className="text-code-xs text-foreground-secondary">
           {isAvailable
             ? 'Currently available for new projects — limited slots'
             : 'Currently fully booked — open to exploratory calls'}
         </span>
-        <span className="sm:ml-auto w-full sm:w-auto label-mono text-text-muted">
+        <span className="sm:ml-auto w-full sm:w-auto label-mono text-foreground-muted">
           Updated: {PROFILE.status.updatedAt}
         </span>
       </motion.div>
@@ -41,7 +41,7 @@ export default function ServicesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
             viewport={{ once: true }}
-            className="bg-bg-elevated p-8 group hover:bg-bg-overlay transition-colors"
+            className="bg-elevated p-8 group hover:bg-overlay transition-colors"
           >
             <div className="font-mono text-heading-sm text-accent mb-6 group-hover:scale-110 transition-transform origin-left">
               {service.icon}
@@ -51,7 +51,7 @@ export default function ServicesSection() {
               {service.title}
             </h3>
 
-            <p className="text-body text-text-secondary mb-6">
+            <p className="text-body text-foreground-secondary mb-6">
               {service.description}
             </p>
 
@@ -81,7 +81,7 @@ export default function ServicesSection() {
           <h3 className="text-heading mb-1">
             {t.services.allServicesInclude}
           </h3>
-          <ul className="text-body text-text-secondary space-y-1 mt-2">
+          <ul className="text-body text-foreground-secondary space-y-1 mt-2">
             {t.services.includes.map((item) => (
               <li key={item}>— {item}</li>
             ))}

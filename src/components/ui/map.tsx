@@ -27,9 +27,14 @@ const defaultStyles = {
 
 type Theme = "light" | "dark";
 
-// Check document class for theme (works with next-themes, etc.)
+// Check document theme attribute or class (works with next-themes, data-theme, etc.)
 function getDocumentTheme(): Theme | null {
   if (typeof document === "undefined") return null;
+  // Check data-theme attribute first (used by themeStore)
+  const attr = document.documentElement.getAttribute("data-theme");
+  if (attr === "dark") return "dark";
+  if (attr === "light") return "light";
+  // Fall back to class-based detection
   if (document.documentElement.classList.contains("dark")) return "dark";
   if (document.documentElement.classList.contains("light")) return "light";
   return null;
@@ -60,7 +65,7 @@ function useResolvedTheme(themeProp?: "light" | "dark"): Theme {
     });
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ["class"],
+      attributeFilter: ["class", "data-theme"],
     });
 
     // Also watch for system preference changes

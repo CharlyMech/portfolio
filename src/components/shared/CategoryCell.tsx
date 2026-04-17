@@ -35,13 +35,13 @@ export function CategoryCell({
         {skills.map((skill, i) => (
           <span key={skill.name} className="flex items-center gap-1.5">
             {skill.icon && (
-              <i className={`${skill.icon} text-base text-text-secondary`} aria-hidden />
+              <i className={`${skill.icon} text-base text-foreground-secondary`} aria-hidden />
             )}
-            <span className="text-code normal-case tracking-normal text-text-secondary">
+            <span className="text-code normal-case tracking-normal text-foreground-secondary">
               {skill.name}
             </span>
             {direction === 'row' && i < skills.length - 1 && (
-              <span className="text-text-muted mx-1 select-none">·</span>
+              <span className="text-foreground-muted mx-1 select-none">·</span>
             )}
           </span>
         ))}

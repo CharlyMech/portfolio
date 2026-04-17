@@ -33,7 +33,7 @@ export default function TechStackSection() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-6 mb-8">
         <div>
           <h2 className="text-heading">{t.tech.title}</h2>
-          <p className="text-body text-text-secondary mt-1">
+          <p className="text-body text-foreground-secondary mt-1">
             {SKILLS.length} {t.skillLevel.skills}
           </p>
         </div>
@@ -47,7 +47,7 @@ export default function TechStackSection() {
                 ${
                   activeFilter === f.id
                     ? 'border-accent text-accent bg-accent/10'
-                    : 'border-border text-text-muted hover:border-text-secondary hover:text-text-secondary'
+                    : 'border-border text-foreground-muted hover:border-text-secondary hover:text-foreground-secondary'
                 }`}
             >
               {f.label}
@@ -73,7 +73,7 @@ export default function TechStackSection() {
               <div className="flex items-center gap-4 mb-6">
                 <span className="label-mono text-accent">{GROUP_LABELS[groupId]}</span>
                 <div className="flex-1 h-px bg-border" />
-                <span className="label-mono text-text-muted">
+                <span className="label-mono text-foreground-muted">
                   {SKILLS.filter((s) => s.group === groupId).length} {t.skillLevel.skills}
                 </span>
               </div>
@@ -83,7 +83,7 @@ export default function TechStackSection() {
                 {entries.map(([category, skills], ci) => (
                   <div key={category}>
                     <div className="flex items-center gap-3 mb-3">
-                      <span className="label-mono text-text-muted">{category.toUpperCase()}</span>
+                      <span className="label-mono text-foreground-muted">{category.toUpperCase()}</span>
                       <div className="flex-1 h-px bg-border/50" />
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
@@ -95,7 +95,7 @@ export default function TechStackSection() {
                           transition={{ duration: 0.3, delay: (ci * 0.03) + (si * 0.04) }}
                           viewport={{ once: true }}
                           whileHover={{ y: -2 }}
-                          className="border border-border bg-bg-elevated p-4 cursor-default
+                          className="border border-border bg-elevated p-4 cursor-default
                                      hover:border-accent/50 transition-colors"
                         >
                           <h4 className="text-heading-2xs">{skill.name}</h4>

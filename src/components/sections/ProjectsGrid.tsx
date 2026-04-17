@@ -9,7 +9,7 @@ import { useTranslations } from '@/hooks/use-translations';
 const STATUS_COLORS: Record<ProjectStatus, string> = {
   live: 'text-status-available border-status-available/30 bg-status-available/10',
   wip: 'text-accent border-accent/30 bg-accent/10',
-  archived: 'text-text-muted border-border bg-bg-muted/50',
+  archived: 'text-foreground-muted border-border bg-muted/50',
 };
 
 export default function ProjectsGrid() {
@@ -46,7 +46,7 @@ export default function ProjectsGrid() {
                         ${
                           activeFilter === f.id
                             ? 'border-accent text-accent bg-accent/10'
-                            : 'border-border text-text-muted hover:border-text-secondary hover:text-text-secondary'
+                            : 'border-border text-foreground-muted hover:border-text-secondary hover:text-foreground-secondary'
                         }`}
           >
             {f.label}
@@ -86,7 +86,7 @@ function ProjectCard({ project, index, statusLabels, t }: {
       transition={{ duration: 0.3, delay: index * 0.05 }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      className="relative bg-bg-elevated p-6 flex flex-col gap-4
+      className="relative bg-elevated p-6 flex flex-col gap-4
                  cursor-default group"
     >
       <motion.div
@@ -97,7 +97,7 @@ function ProjectCard({ project, index, statusLabels, t }: {
 
       <div className="flex items-start justify-between gap-3">
         <div>
-          <span className="label-mono text-text-muted">{project.year}</span>
+          <span className="label-mono text-foreground-muted">{project.year}</span>
           <h3 className="text-heading-xs mt-1">
             {project.title}
           </h3>
@@ -111,7 +111,7 @@ function ProjectCard({ project, index, statusLabels, t }: {
         </span>
       </div>
 
-      <p className="text-body text-text-secondary flex-1">
+      <p className="text-body text-foreground-secondary flex-1">
         {project.description}
       </p>
 
@@ -129,7 +129,7 @@ function ProjectCard({ project, index, statusLabels, t }: {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-code normal-case tracking-wider text-text-muted hover:text-accent
+            className="text-code normal-case tracking-wider text-foreground-muted hover:text-accent
                        transition-colors flex items-center gap-1"
           >
             <span>⌥</span> {t.projects.viewCode}
@@ -140,7 +140,7 @@ function ProjectCard({ project, index, statusLabels, t }: {
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-code normal-case tracking-wider text-text-muted hover:text-accent
+            className="text-code normal-case tracking-wider text-foreground-muted hover:text-accent
                        transition-colors flex items-center gap-1 ml-auto"
           >
             {t.projects.viewProject} <span>→</span>

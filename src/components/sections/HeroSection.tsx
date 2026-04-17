@@ -78,12 +78,12 @@ export default function HeroSection() {
 
   const localTime = weather?.timezone
     ? new Intl.DateTimeFormat('en-GB', {
-        timeZone: weather.timezone,
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false,
-      }).format(now)
+      timeZone: weather.timezone,
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    }).format(now)
     : null;
 
   const titleLines = t.hero.title.split('\n');
@@ -95,7 +95,7 @@ export default function HeroSection() {
         <div className="flex-1 flex flex-col md:flex-row justify-between items-center space-y-4">
 
           <div className="flex-1 flex flex-col justify-start items-start space-y-2">
-            <motion.p {...fadeUp(0.1)} className="text-body text-text-secondary">
+            <motion.p {...fadeUp(0.1)} className="text-body text-foreground-secondary">
               {t.hero.name} ({t.hero.nickName})
             </motion.p>
 
@@ -109,26 +109,27 @@ export default function HeroSection() {
               </motion.h1>
             ))}
 
-            <motion.h2 {...fadeUp(0.34)} className="text-heading-sm text-text-primary">
+            <motion.h2 {...fadeUp(0.34)} className="text-heading-sm text-foreground">
               {t.hero.subtitle}
             </motion.h2>
 
-            <motion.p {...fadeUp(0.42)} className="text-body text-text-secondary max-w-sm mt-2">
+            <motion.p {...fadeUp(0.42)} className="text-body text-foreground-secondary max-w-sm mt-2">
               {t.hero.bio}
             </motion.p>
 
-            <motion.div {...fadeUp(0.5)} className="flex items-center gap-3 pt-2">
+            <motion.div {...fadeUp(0.5)} className="flex items-center md:justify-start justify-center gap-3 pt-2 w-full">
               {PROFILE.social.map((social) => (
                 <a
                   key={social.platform}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-text-muted hover:text-accent transition-colors"
+                  className="text-foreground-muted hover:text-primary-foreground hover:bg-primary-500 hover:scale-105 transition-all duration-200 flex items-center gap-1.5 px-2 py-1 rounded-none bg-surface focus-visible:bg-primary-500 focus-visible:text-primary-foreground focus-visible:outline-none focus-visible:scale-105"
                   aria-label={social.platform}
                   title={social.handle}
                 >
                   {SOCIAL_ICONS[social.icon] ?? null}
+                  {social.platform}
                 </a>
               ))}
             </motion.div>
@@ -164,9 +165,9 @@ export default function HeroSection() {
           <motion.div {...slideDown(0.55)}>
             <Card className="w-fit">
               <div className="flex items-center gap-1.5">
-                <MapPin width={11} height={11} strokeWidth={1.5} className="text-text-muted shrink-0" />
-                <span className="label-mono text-text-muted">{PROFILE.location.city}</span>
-                <span className="text-code text-text-primary tabular-nums normal-case tracking-normal ml-1">
+                <MapPin width={11} height={11} strokeWidth={1.5} className="text-foreground-muted shrink-0" />
+                <span className="label-mono text-foreground-muted">{PROFILE.location.city}</span>
+                <span className="text-code text-foreground tabular-nums normal-case tracking-normal ml-1">
                   {localTime ?? <Skeleton className="w-16 h-3" />}
                 </span>
               </div>
@@ -193,13 +194,13 @@ export default function HeroSection() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -6 }}
                     transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] }}
-                    className="flex items-center gap-1.5 text-text-secondary"
+                    className="flex items-center gap-1.5 text-foreground-secondary"
                   >
                     <WeatherIcon condition={weather.condition} isDay={weather.isDay} />
-                    <span className="text-code tabular-nums normal-case tracking-normal text-text-primary">
+                    <span className="text-code tabular-nums normal-case tracking-normal text-foreground">
                       {weather.temperatureC}°C
                     </span>
-                    <span className="text-code-xs text-text-muted">
+                    <span className="text-code-xs text-foreground-muted">
                       {weather.conditionLabel}
                     </span>
                   </motion.div>
@@ -210,7 +211,7 @@ export default function HeroSection() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="text-code text-text-muted"
+                    className="text-code text-foreground-muted"
                   >
                     —
                   </motion.span>

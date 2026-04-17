@@ -26,7 +26,7 @@ export default function ContactSection() {
             <h2 className="text-heading mb-1">
               {t.contact.sendTransmission}
             </h2>
-            <p className="text-body text-text-secondary">
+            <p className="text-body text-foreground-secondary">
               {t.contact.formSubtitle}
             </p>
           </div>
@@ -41,7 +41,7 @@ export default function ContactSection() {
               <h3 className="text-heading-sm mb-2">
                 {t.contact.transmissionReceived}
               </h3>
-              <p className="text-body text-text-secondary mb-6">
+              <p className="text-body text-foreground-secondary mb-6">
                 {t.contact.replyPromise}
               </p>
               <button onClick={reset} className="btn-outline text-xs">
@@ -94,8 +94,8 @@ export default function ContactSection() {
                   onChange={(e) => setField('message', e.target.value)}
                   placeholder={t.contact.messagePlaceholder}
                   required
-                  className="w-full bg-bg-elevated border border-border
-                             text-body text-text-primary placeholder:text-text-muted
+                  className="w-full bg-elevated border border-border
+                             text-body text-foreground placeholder:text-foreground-muted
                              px-4 py-3 resize-none
                              focus:outline-none focus:border-accent
                              transition-colors duration-200"
@@ -149,13 +149,13 @@ export default function ContactSection() {
                              hover:border-accent group transition-colors"
                 >
                   <div>
-                    <p className="label-mono text-text-muted mb-0.5">{c.label}</p>
-                    <p className="text-heading-2xs text-text-primary
+                    <p className="label-mono text-foreground-muted mb-0.5">{c.label}</p>
+                    <p className="text-heading-2xs text-foreground
                                   group-hover:text-accent transition-colors">
                       {c.value}
                     </p>
                   </div>
-                  <span className="font-mono text-text-muted group-hover:text-accent transition-colors sm:ml-auto">
+                  <span className="font-mono text-foreground-muted group-hover:text-accent transition-colors sm:ml-auto">
                     →
                   </span>
                 </a>
@@ -179,13 +179,13 @@ export default function ContactSection() {
                   className="flex flex-wrap items-center gap-3 p-3 border border-border
                              hover:border-accent group transition-colors"
                 >
-                  <span className="text-code text-text-muted w-16">
+                  <span className="text-code text-foreground-muted w-16">
                     {s.platform}
                   </span>
-                  <span className="text-body text-text-secondary group-hover:text-text-primary transition-colors">
+                  <span className="text-body text-foreground-secondary group-hover:text-foreground transition-colors">
                     {s.handle}
                   </span>
-                  <span className="sm:ml-auto font-mono text-text-muted group-hover:text-accent transition-colors text-xs">
+                  <span className="sm:ml-auto font-mono text-foreground-muted group-hover:text-accent transition-colors text-xs">
                     ↗
                   </span>
                 </a>
@@ -199,7 +199,7 @@ export default function ContactSection() {
               {PROFILE.location.city}, {PROFILE.location.country}
             </h4>
             <p className="coord-text mt-1">{PROFILE.location.coords}</p>
-            <p className="text-body-xs text-text-secondary mt-3">
+            <p className="text-body-xs text-foreground-secondary mt-3">
               {t.contact.timezone}
             </p>
           </div>
@@ -233,8 +233,8 @@ function FormField({ label, id, type, value, onChange, placeholder, required }: 
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         required={required}
-        className="w-full bg-bg-elevated border border-border
-                   text-body text-text-primary placeholder:text-text-muted
+        className="w-full bg-elevated border border-border
+                   text-body text-foreground placeholder:text-foreground-muted
                    px-4 py-3
                    focus:outline-none focus:border-accent
                    transition-colors duration-200"

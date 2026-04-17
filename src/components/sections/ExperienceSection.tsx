@@ -33,7 +33,7 @@ export default function ExperienceSection() {
                   className={`absolute -left-[7px] top-0 w-3 h-3 border-2
                               ${entry.isCurrent
                                 ? 'bg-accent border-accent shadow-[0_0_12px_var(--color-accent)]'
-                                : 'bg-bg-elevated border-border'
+                                : 'bg-elevated border-border'
                               }`}
                 />
 
@@ -43,12 +43,12 @@ export default function ExperienceSection() {
                       <h3 className="text-heading-sm">
                         {entry.role}
                       </h3>
-                      <p className="label-mono text-text-muted mt-0.5">
+                      <p className="label-mono text-foreground-muted mt-0.5">
                         {entry.company}
                       </p>
                     </div>
                     <div className="flex-shrink-0 text-left sm:text-right">
-                      <span className="text-code normal-case tracking-wider text-text-muted">
+                      <span className="text-code normal-case tracking-wider text-foreground-muted">
                         {entry.period}
                       </span>
                       {entry.isCurrent && (
@@ -62,7 +62,7 @@ export default function ExperienceSection() {
                     </div>
                   </div>
 
-                  <p className="text-body text-text-secondary mb-4">
+                  <p className="text-body text-foreground-secondary mb-4">
                     {entry.description}
                   </p>
 
@@ -102,12 +102,12 @@ export default function ExperienceSection() {
                   <h3 className="text-heading-xs">
                     {edu.degree}
                   </h3>
-                  <p className="label-mono text-text-muted">{edu.institution}</p>
-                  <p className="text-code normal-case tracking-wider text-text-muted mt-1">
+                  <p className="label-mono text-foreground-muted">{edu.institution}</p>
+                  <p className="text-code normal-case tracking-wider text-foreground-muted mt-1">
                     {edu.period}
                   </p>
                   {edu.description && (
-                    <p className="text-body-xs text-text-secondary mt-2">
+                    <p className="text-body-xs text-foreground-secondary mt-2">
                       {edu.description}
                     </p>
                   )}

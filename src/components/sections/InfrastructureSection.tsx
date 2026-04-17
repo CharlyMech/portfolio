@@ -5,16 +5,14 @@ import { EXPERIENCE } from '@/constants/experience';
 import { skillsByGroup } from '@/constants/skills';
 import type { ExperienceEntry } from '@/core/models/experience';
 import { useTranslations } from '@/hooks/use-translations';
-import type { GitHubLanguageStat } from '@/core/models/github';
 import { LanguagePie } from '@/components/charts/LanguagePie';
 import { CategoryCell } from '@/components/shared/CategoryCell';
+import { useGitHubActivityStore } from '@/stores/githubActivityStore';
 
-interface Props {
-  topLanguages?: GitHubLanguageStat[];
-}
-
-export default function InfrastructureSection({ topLanguages }: Props) {
+export default function InfrastructureSection() {
   const t = useTranslations();
+  const { data: ghData } = useGitHubActivityStore();
+  const topLanguages = ghData?.topLanguages;
   const mainCategories = Object.entries(skillsByGroup('main'));
   const otherByCategory = skillsByGroup('other');
   const showPie = topLanguages && topLanguages.length > 0;
@@ -28,7 +26,7 @@ export default function InfrastructureSection({ topLanguages }: Props) {
         <div className="border-b md:border-b-0 md:border-r border-border flex flex-col">
           <div className="px-6 sm:px-8 py-5 border-b border-border flex items-center justify-between">
             <h2 className="text-heading-sm">{t.infrastructure.heading}</h2>
-            <span className="label-mono text-text-muted">MAIN</span>
+            <span className="label-mono text-foreground-muted">MAIN</span>
           </div>
 
           <div className="flex flex-col sm:flex-row flex-1 border-b border-border">
@@ -37,21 +35,21 @@ export default function InfrastructureSection({ topLanguages }: Props) {
                 <LanguagePie languages={topLanguages} />
               </div>
             )}
-            <div className="flex-1 divide-y divide-border">
+            <div className="flex-1 divide-y divide-border flex flex-col">
               {mainCategories.map(([category, skills], i) => (
-                <CategoryCell key={category} category={category} skills={skills} index={i} />
+                <CategoryCell className='flex-1' key={category} category={category} skills={skills} index={i} />
               ))}
             </div>
           </div>
 
           <div className="border-t border-border">
-            <div className="px-6 sm:px-8 py-3 border-b border-border bg-bg-elevated">
-              <span className="label-mono text-text-muted">MORE SKILLS</span>
+            <div className="px-6 sm:px-8 py-3 border-b border-border bg-elevated">
+              <span className="label-mono text-foreground-muted">MORE SKILLS</span>
             </div>
             {/* Mobile · Front-end · Back-end — 3 cols */}
             <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-border border-b border-border">
               {topRow.map(([category, skills], i) => (
-                <CategoryCell className='flex items-center' key={category} category={category} skills={skills as { name: string; icon?: string }[]} index={i} />
+                <CategoryCell key={category} category={category} skills={skills as { name: string; icon?: string }[]} index={i} />
               ))}
             </div>
             {/* Databases, Data & AI, Cloud & Ops — full-width rows */}
@@ -79,7 +77,7 @@ function ExperienceLog({ t }: { t: ReturnType<typeof useTranslations> }) {
     <div className="flex flex-col">
       <div className="px-6 py-5 border-b border-border flex items-center justify-between">
         <h2 className="text-heading-sm">{t.infrastructure.logHistory}</h2>
-        <a href="/experience" className="label-mono text-text-muted hover:text-accent transition-colors">
+        <a href="/experience" className="label-mono text-foreground-muted hover:text-accent transition-colors">
           {t.infrastructure.viewAll}
         </a>
       </div>
@@ -95,7 +93,7 @@ function ExperienceLog({ t }: { t: ReturnType<typeof useTranslations> }) {
             className={`p-5 timeline-entry ${entry.isCurrent ? 'active' : ''}`}
           >
             <div className="flex items-center gap-3 mb-2">
-              <span className="label-mono text-text-muted">{entry.period}</span>
+              <span className="label-mono text-foreground-muted">{entry.period}</span>
               <div className="flex-1 progress-bar">
                 <div
                   className="progress-bar-fill"
@@ -106,14 +104,14 @@ function ExperienceLog({ t }: { t: ReturnType<typeof useTranslations> }) {
             <h3 className="font-display font-black text-base tracking-tight uppercase mb-0.5">
               {entry.role}
             </h3>
-            <p className="label-mono text-text-muted mb-2">{entry.company}</p>
-            <p className="text-body-xs text-text-secondary line-clamp-2">{entry.description}</p>
+            <p className="label-mono text-foreground-muted mb-2">{entry.company}</p>
+            <p className="text-body-xs text-foreground-secondary line-clamp-2">{entry.description}</p>
           </motion.div>
         ))}
       </div>
 
       <div className="px-5 py-4 border-t border-border">
-        <a href="/experience" className="label-mono text-text-muted hover:text-accent transition-colors">
+        <a href="/experience" className="label-mono text-foreground-muted hover:text-accent transition-colors">
           {EXPERIENCE.length - LOG_LIMIT} {t.experienceSection.entries} {t.infrastructure.viewAll}
         </a>
       </div>

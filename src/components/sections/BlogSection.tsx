@@ -22,12 +22,12 @@ export default function BlogSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
               viewport={{ once: true }}
-              className="border border-border bg-bg-elevated p-6 hover:border-accent/50 transition-colors"
+              className="border border-border bg-elevated p-6 hover:border-accent/50 transition-colors"
             >
               <div className="flex flex-wrap items-center gap-3 mb-3">
-                <span className="label-mono text-text-muted">{post.date}</span>
-                <span className="label-mono text-text-muted">•</span>
-                <span className="label-mono text-text-muted">{post.readTime}</span>
+                <span className="label-mono text-foreground-muted">{post.date}</span>
+                <span className="label-mono text-foreground-muted">•</span>
+                <span className="label-mono text-foreground-muted">{post.readTime}</span>
                 {post.featured && (
                   <span className="sm:ml-auto text-code-xs text-accent">
                     {t.projects.featured}
@@ -38,7 +38,7 @@ export default function BlogSection() {
               <h3 className="text-heading-sm mb-2">
                 {post.title}
               </h3>
-              <p className="text-body text-text-secondary mb-4">
+              <p className="text-body text-foreground-secondary mb-4">
                 {post.excerpt}
               </p>
 
@@ -61,23 +61,23 @@ export default function BlogSection() {
         </div>
 
         <aside className="space-y-6">
-          <div className="border border-border bg-bg-elevated p-5">
+          <div className="border border-border bg-elevated p-5">
             <p className="label-mono mb-3">Journal Index</p>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-code normal-case tracking-wider text-text-muted">Entries</span>
+                <span className="text-code normal-case tracking-wider text-foreground-muted">Entries</span>
                 <span className="text-heading-2xs">
                   {BLOG_POSTS.length}
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-code normal-case tracking-wider text-text-muted">Featured</span>
+                <span className="text-code normal-case tracking-wider text-foreground-muted">Featured</span>
                 <span className="text-heading-2xs">
                   {featured.length}
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-code normal-case tracking-wider text-text-muted">Topics</span>
+                <span className="text-code normal-case tracking-wider text-foreground-muted">Topics</span>
                 <span className="text-heading-2xs">
                   {totalTags.length}
                 </span>
@@ -85,7 +85,7 @@ export default function BlogSection() {
             </div>
           </div>
 
-          <div className="border border-border bg-bg-elevated p-5">
+          <div className="border border-border bg-elevated p-5">
             <p className="label-mono mb-3">Focus Areas</p>
             <div className="flex flex-wrap gap-1.5">
               {totalTags.slice(0, 8).map((tag) => (
@@ -98,7 +98,7 @@ export default function BlogSection() {
 
           <div className="border border-border p-5">
             <p className="label-mono mb-2">Writing Cadence</p>
-            <p className="text-body text-text-secondary">
+            <p className="text-body text-foreground-secondary">
               Deep dives on architecture, mobile systems, and editorial UI. New
               entries every few weeks.
             </p>
