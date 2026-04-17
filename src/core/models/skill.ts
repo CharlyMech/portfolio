@@ -1,14 +1,8 @@
-export type SkillTier = "primary" | "secondary" | "familiar";
+export type SkillGroup = 'main' | 'other';
 
 export interface Skill {
 	name: string;
-	tier: SkillTier;
+	group: SkillGroup;
+	category: string;
 	icon?: string;
-}
-
-export interface SkillCategory {
-	id: string;
-	label: string;
-	sublabel: string;
-	skills: Skill[];
 }
