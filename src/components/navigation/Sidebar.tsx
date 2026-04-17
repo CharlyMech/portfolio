@@ -16,12 +16,12 @@ export default function Sidebar({ currentPath }: SidebarProps) {
     <aside
       className="hidden md:flex fixed left-0 top-0 bottom-0 z-50
                  flex-col items-center justify-between
-                 w-[48px] border-r border-border bg-bg-base"
+                 w-[48px] border-r border-border bg-background"
       aria-label="Vertical sidebar"
     >
       <div className="flex items-start justify-center pt-16 flex-1">
         <span
-          className="writing-vertical label-mono text-text-muted select-none"
+          className="writing-vertical label-mono text-foreground-muted select-none"
           style={{ fontSize: '0.55rem', letterSpacing: '0.2em' }}
         >
           &#169; Carlos Sánchez Recio (CharlyMech) - {getYear()}
@@ -45,14 +45,19 @@ export default function Sidebar({ currentPath }: SidebarProps) {
                     rel="noopener noreferrer"
                     aria-label={item.platform}
                     className="group relative flex items-center justify-center w-8 h-8 rounded-md
-                               text-text-muted transition-colors duration-200
+                               text-foreground-muted transition-colors duration-200
                                hover:text-accent"
                   >
                     <span className="absolute inset-0 rounded-md bg-accent/0 group-hover:bg-accent/10 transition-colors duration-200" />
                     <Icon width={16} height={16} strokeWidth={1.5} className="relative z-10" />
                   </a>
                 </TooltipTrigger>
-                <TooltipContent side="right" sideOffset={8}>
+                <TooltipContent
+                  side="right"
+                  sideOffset={8}
+                  className="bg-surface text-foreground border border-border shadow-none"
+                  style={{ ['--tooltip-arrow-fill' as string]: 'rgb(var(--bg-surface))' }}
+                >
                   {item.handle}
                 </TooltipContent>
               </Tooltip>

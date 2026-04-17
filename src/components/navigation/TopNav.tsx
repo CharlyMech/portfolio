@@ -5,8 +5,8 @@
 
 "use client";
 
-import { useEffect } from "react";
-import { HomeSimple, CodeBrackets, Suitcase, Journal } from "iconoir-react";
+import { useEffect, useState } from "react";
+import { HomeSimple, CodeBrackets, Suitcase, Mail } from "iconoir-react";
 import { usePill } from "./AnimatedPill";
 import { NAV_ITEMS } from "@/constants/navigation";
 import { useTranslations } from '@/hooks/use-translations';
@@ -18,23 +18,32 @@ const NAV_ICONS: Record<string, React.ReactNode> = {
   home: <HomeSimple width={15} height={15} strokeWidth={2} />,
   code: <CodeBrackets width={15} height={15} strokeWidth={2} />,
   briefcase: <Suitcase width={15} height={15} strokeWidth={2} />,
-  blog: <Journal width={15} height={15} strokeWidth={2} />,
+  mail: <Mail width={15} height={15} strokeWidth={2} />,
 };
 
 interface TopNavProps {
   currentPath: string;
 }
 
-export default function TopNav({ currentPath }: TopNavProps) {
+export default function TopNav({ currentPath: initialPath }: TopNavProps) {
   const t = useTranslations();
+  const [currentPath, setCurrentPath] = useState(initialPath);
 
   useEffect(() => { initLocale(); }, []);
+
+  useEffect(() => {
+    function onNavigate() {
+      setCurrentPath(window.location.pathname);
+    }
+    document.addEventListener('astro:page-load', onNavigate);
+    return () => document.removeEventListener('astro:page-load', onNavigate);
+  }, []);
 
   const navLabels: Record<string, string> = {
     home: t.nav.home,
     projects: t.nav.projects,
     services: t.nav.services,
-    blog: t.nav.blog,
+    contact: t.nav.contact,
   };
 
   const activeItem =
@@ -50,13 +59,13 @@ export default function TopNav({ currentPath }: TopNavProps) {
     <header
       className="fixed top-0 left-0 md:left-[48px] right-0 z-40 h-[56px]
                  flex items-center justify-between px-4 sm:px-6
-                 border-b border-border bg-bg-base"
+                 border-b border-border bg-background"
     >
       {/* Brand */}
       <a
         href="/"
         className="font-display font-black text-xs sm:text-sm tracking-[0.12em] sm:tracking-[0.15em] uppercase
-                   text-text-primary hover:text-accent transition-colors"
+                   text-foreground hover:text-accent transition-colors"
       >
         CharlyMech
       </a>
@@ -80,7 +89,7 @@ export default function TopNav({ currentPath }: TopNavProps) {
                           transition-colors duration-200
                           ${activeItem.id === item.id
                   ? "text-accent"
-                  : "text-text-muted hover:text-text-secondary"
+                  : "text-foreground-muted hover:text-foreground-secondary"
                 }`}
               aria-current={activeItem.id === item.id ? "page" : undefined}
             >

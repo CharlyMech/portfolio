@@ -29,7 +29,7 @@ export default function LanguageSwitcher() {
         onClick={() => setOpen((o) => !o)}
         className="flex items-center gap-1.5 border border-border px-2.5 py-1 h-7
                    text-code-xs
-                   text-text-muted hover:text-text-secondary
+                   text-foreground-muted hover:text-foreground-secondary
                    transition-colors duration-200 outline-none"
       >
         <Translate width={12} height={12} strokeWidth={1.5} color="currentColor" />
@@ -52,7 +52,7 @@ export default function LanguageSwitcher() {
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.12 }}
             className="absolute top-full left-0 mt-1 z-50 min-w-full
-                       border border-border bg-bg-base shadow-md"
+                       border border-border bg-background shadow-md"
           >
             {locales.map((lang: Locale) => (
               <li key={lang}>
@@ -66,7 +66,7 @@ export default function LanguageSwitcher() {
                               transition-colors duration-150
                               ${locale === lang
                                 ? 'text-accent bg-accent/5'
-                                : 'text-text-muted hover:text-text-secondary hover:bg-accent/5'
+                                : 'text-foreground-muted hover:text-foreground-secondary hover:bg-accent/5'
                               }`}
                 >
                   {localeLabels[lang]}

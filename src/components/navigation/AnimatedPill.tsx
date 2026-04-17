@@ -55,6 +55,15 @@ export function usePill<K extends string>(
     measure();
   }, [activeKey, inset]);
 
+  // ResizeObserver re-measures when the active item resizes (e.g. locale change widens label).
+  useLayoutEffect(() => {
+    const el = itemRefs.current.get(activeKey);
+    if (!el) return;
+    const ro = new ResizeObserver(() => measure());
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [activeKey]);
+
   const isLine = variant === 'line-bottom' || variant === 'line-top';
 
   const positionClasses = variant === 'fill'
