@@ -3,6 +3,7 @@ import TopNav from "@/components/navigation/TopNav";
 import Sidebar from "@/components/navigation/Sidebar";
 import BottomNav from "@/components/navigation/BottomNav";
 import "@/styles/global.css";
+import "@/bones/registry";
 import { SITE_META } from "@/constants/profile";
 import { ViewTransitions, ClientRouter } from "astro:transitions";
 
@@ -94,6 +95,21 @@ const ogImageURL = new URL(ogImage, SITE_META.url).toString();
 				} catch (_) {}
 			})();
 		</script>
+		<!-- Re-apply theme after each view transition swap (html attr resets to SSR default) -->
+		<script is:inline>
+			document.addEventListener("astro:after-swap", function () {
+				try {
+					var stored = JSON.parse(
+						localStorage.getItem("portfolio-theme") || "{}"
+					);
+					var theme = stored.state && stored.state.theme;
+					if (theme)
+						document
+							.getElementById("html-root")
+							.setAttribute("data-theme", theme);
+				} catch (_) {}
+			});
+		</script>
 		<ViewTransitions />
 
 		<!-- Preload fonts -->
@@ -148,7 +164,7 @@ const ogImageURL = new URL(ogImage, SITE_META.url).toString();
 		<slot name="head" />
 	</head>
 
-	<body class="grain bg-bg-base text-text-primary">
+	<body class="grain bg-background text-foreground">
 		<!-- Sidebar (desktop only — fixed left rail) -->
 		<Sidebar currentPath={currentPath} client:load transition:persist />
 
