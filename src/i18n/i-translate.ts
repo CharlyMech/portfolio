@@ -105,6 +105,8 @@ export interface Translations {
 		fullList: string;
 		entries: string;
 		current: string;
+		nonTechExperience: string;
+		certificates: string;
 	};
 	lang: { switchTo: string; en: string; es: string };
 }

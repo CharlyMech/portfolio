@@ -1,13 +1,10 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import PageHeaderReactive from '@/components/shared/PageHeaderReactive';
-import ExperienceSection from '@/components/sections/ExperienceSection';
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHeaderReactive from "@/components/shared/PageHeaderReactive";
+import ExperienceSection from "@/components/sections/ExperienceSection";
 ---
 
-<BaseLayout
-  title="Experience — Carlos Dev"
-  description="9+ years of engineering experience across startups, scale-ups, and enterprise systems."
->
-  <PageHeaderReactive section="experience" client:load />
-  <ExperienceSection client:visible />
+<BaseLayout title="Experience — Carlos Dev">
+	<PageHeaderReactive section="experience" hideSubtitle client:load />
+	<ExperienceSection client:visible />
 </BaseLayout>
