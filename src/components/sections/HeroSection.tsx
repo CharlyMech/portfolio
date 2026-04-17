@@ -119,18 +119,33 @@ export default function HeroSection() {
 
             <motion.div {...fadeUp(0.5)} className="flex items-center md:justify-start justify-center gap-3 pt-2 w-full">
               {PROFILE.social.map((social) => (
-                <a
+                <motion.div
                   key={social.platform}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-foreground-muted hover:text-primary-foreground hover:bg-primary-500 hover:scale-105 transition-all duration-200 flex items-center gap-1.5 px-2 py-1 rounded-none bg-surface focus-visible:bg-primary-500 focus-visible:text-primary-foreground focus-visible:outline-none focus-visible:scale-105"
-                  aria-label={social.platform}
-                  title={social.handle}
+                  className="relative"
+                  whileHover="hover"
+                  initial="rest"
                 >
-                  {SOCIAL_ICONS[social.icon] ?? null}
-                  {social.platform}
-                </a>
+                  <a
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-foreground-muted hover:text-primary-foreground transition-colors duration-200 flex items-center gap-1.5 px-2 py-1 rounded-none focus-visible:text-primary-foreground focus-visible:outline-none"
+                    aria-label={social.platform}
+                    title={social.handle}
+                  >
+                    {SOCIAL_ICONS[social.icon] ?? null}
+                    {social.platform}
+                  </a>
+                  <motion.div
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-500"
+                    initial={{ scaleX: 0, originX: 0 }}
+                    variants={{
+                      rest: { scaleX: 0, originX: 0 },
+                      hover: { scaleX: 1, originX: 0 }
+                    }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  />
+                </motion.div>
               ))}
             </motion.div>
           </div>
