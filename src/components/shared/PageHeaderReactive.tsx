@@ -6,13 +6,14 @@
 'use client';
 
 import { useTranslations } from '@/hooks/use-translations';
-import type { Translations } from '@/i18n/en';
+import type { Translations } from '@/i18n/i-translate';
 
-interface Props {
+export interface Props {
   section: keyof Pick<
     Translations,
     'experience' | 'projects' | 'services' | 'blog' | 'tech' | 'contact'
   >;
+  [key: string]: unknown;
 }
 
 export default function PageHeaderReactive({ section }: Props) {
@@ -26,7 +27,7 @@ export default function PageHeaderReactive({ section }: Props) {
         {s.title}
       </h1>
       {s.subtitle && (
-        <p className="text-body text-text-secondary mt-4 max-w-xl">
+        <p className="text-body text-foreground-secondary mt-4 max-w-xl">
           {s.subtitle}
         </p>
       )}
