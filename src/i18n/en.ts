@@ -171,6 +171,8 @@ export const en: Translations = {
 		fullList: "Full list →",
 		entries: "entries",
 		current: "Current",
+		nonTechExperience: "Other Experience",
+		certificates: "Certificates",
 	},
 
 	// Language switcher
