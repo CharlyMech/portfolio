@@ -6,7 +6,7 @@ export const en: Translations = {
 		home: "Home",
 		projects: "Projects",
 		services: "Services",
-		blog: "Blog",
+		contact: "Contact",
 	},
 
 	// Site meta
@@ -52,7 +52,6 @@ export const en: Translations = {
 	// CTA section (home)
 	cta: {
 		heading: "LET'S BUILD\nTHE FUTURE.",
-		subheading: "Open for collaborations and architectural audits.",
 		button: "Send Transmission",
 	},
 
@@ -104,19 +103,6 @@ export const en: Translations = {
 			"Code review & knowledge transfer",
 			"30-day post-delivery support",
 		],
-	},
-
-	// Pages — Blog
-	blog: {
-		pageTitle: "Blog — Carlos Sánchez Recio",
-		pageDescription:
-			"Field notes on distributed systems, mobile performance, and editorial UI design.",
-		label: "// Blog",
-		title: "FIELD NOTES.",
-		subtitle:
-			"Essays on architecture, performance, and the craft of digital systems.",
-		readMore: "Read more",
-		minRead: "min read",
 	},
 
 	// Pages — Tech

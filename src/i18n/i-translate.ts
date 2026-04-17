@@ -1,5 +1,5 @@
 export interface Translations {
-	nav: { home: string; projects: string; services: string; blog: string };
+	nav: { home: string; projects: string; services: string; contact: string };
 	site: { title: string; description: string };
 	hero: {
 		name: string;
@@ -24,7 +24,7 @@ export interface Translations {
 		viewAll: string;
 	};
 	skillTier: { primary: string; secondary: string; familiar: string };
-	cta: { heading: string; subheading: string; button: string };
+	cta: { heading: string; button: string };
 	experience: {
 		pageTitle: string;
 		pageDescription: string;
@@ -53,15 +53,6 @@ export interface Translations {
 		getInTouch: string;
 		allServicesInclude: string;
 		includes: string[];
-	};
-	blog: {
-		pageTitle: string;
-		pageDescription: string;
-		label: string;
-		title: string;
-		subtitle: string;
-		readMore: string;
-		minRead: string;
 	};
 	tech: {
 		pageTitle: string;

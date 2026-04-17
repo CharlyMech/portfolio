@@ -6,7 +6,7 @@ export const es: Translations = {
 		home: "Inicio",
 		projects: "Proyectos",
 		services: "Servicios",
-		blog: "Blog",
+		contact: "Contacto",
 	},
 
 	// Site meta
@@ -52,7 +52,6 @@ export const es: Translations = {
 	// CTA section (home)
 	cta: {
 		heading: "CONSTRUYAMOS\nEL FUTURO.",
-		subheading: "Abierto a colaboraciones y auditorías de arquitectura.",
 		button: "Enviar Transmisión",
 	},
 
@@ -104,19 +103,6 @@ export const es: Translations = {
 			"Revisión de código y transferencia de conocimiento",
 			"Soporte de 30 días post-entrega",
 		],
-	},
-
-	// Pages — Blog
-	blog: {
-		pageTitle: "Blog — Carlos Sánchez Recio",
-		pageDescription:
-			"Notas de campo sobre sistemas distribuidos, rendimiento móvil y diseño de UI editorial.",
-		label: "// Blog",
-		title: "NOTAS DE CAMPO.",
-		subtitle:
-			"Ensayos sobre arquitectura, rendimiento y el arte de los sistemas digitales.",
-		readMore: "Leer más",
-		minRead: "min de lectura",
 	},
 
 	// Pages — Tech
