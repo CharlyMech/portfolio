@@ -5,37 +5,55 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Tokens propios
-        bg: {
-          base: 'var(--color-bg-base)',
-          elevated: 'var(--color-bg-elevated)',
-          overlay: 'var(--color-bg-overlay)',
-          muted: 'var(--color-bg-muted)',
-          surface: 'var(--color-surface)',
+        // Design tokens — channel format enables opacity modifiers (bg-surface/50)
+        background: 'rgb(var(--bg-background) / <alpha-value>)',
+        elevated: 'rgb(var(--bg-elevated) / <alpha-value>)',
+        overlay: 'rgb(var(--bg-overlay) / <alpha-value>)',
+        surface: 'rgb(var(--bg-surface) / <alpha-value>)',
+        foreground: 'rgb(var(--foreground) / <alpha-value>)',
+        'foreground-secondary': 'rgb(var(--foreground-secondary) / <alpha-value>)',
+        'foreground-muted': 'rgb(var(--foreground-muted) / <alpha-value>)',
+        'foreground-inverse': 'rgb(var(--foreground-inverse) / <alpha-value>)',
+
+        muted: {
+          DEFAULT: 'rgb(var(--bg-muted) / <alpha-value>)',
+          foreground: 'var(--muted-foreground)',
         },
+
         border: {
-          DEFAULT: 'var(--color-border)',
-          subtle: 'var(--color-border-subtle)',
+          DEFAULT: 'rgb(var(--border) / var(--border-opacity, 0.08))',
+          subtle: 'rgb(var(--border-subtle) / var(--border-subtle-opacity, 0.04))',
         },
-        text: {
-          primary: 'var(--color-text-primary)',
-          secondary: 'var(--color-text-secondary)',
-          muted: 'var(--color-text-muted)',
-          inverse: 'var(--color-text-inverse)',
-        },
+
         accent: {
           DEFAULT: 'var(--color-accent)',
           hover: 'var(--color-accent-hover)',
           muted: 'var(--color-accent-muted)',
         },
+
+        // Primary scale
+        primary: {
+          DEFAULT: 'var(--primary-600)',
+          foreground: 'var(--primary-foreground)',
+          50: 'var(--primary-50)',
+          100: 'var(--primary-100)',
+          200: 'var(--primary-200)',
+          300: 'var(--primary-300)',
+          400: 'var(--primary-400)',
+          500: 'var(--primary-500)',
+          600: 'var(--primary-600)',
+          700: 'var(--primary-700)',
+          800: 'var(--primary-800)',
+          900: 'var(--primary-900)',
+          950: 'var(--primary-950)',
+        },
+
         status: {
           available: 'var(--color-status-available)',
           busy: 'var(--color-status-busy)',
         },
 
-        // Shadcn / Tailwind semantic tokens
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
+        // Shadcn semantic tokens
         card: {
           DEFAULT: 'var(--card)',
           foreground: 'var(--card-foreground)',
@@ -44,17 +62,9 @@ export default {
           DEFAULT: 'var(--popover)',
           foreground: 'var(--popover-foreground)',
         },
-        primary: {
-          DEFAULT: 'var(--primary)',
-          foreground: 'var(--primary-foreground)',
-        },
         secondary: {
           DEFAULT: 'var(--secondary)',
           foreground: 'var(--secondary-foreground)',
-        },
-        muted: {
-          DEFAULT: 'var(--muted)',
-          foreground: 'var(--muted-foreground)',
         },
         destructive: {
           DEFAULT: 'var(--destructive)',
