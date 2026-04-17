@@ -1,110 +1,71 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { SKILL_CATEGORIES } from '@/constants/skills';
 import { EXPERIENCE } from '@/constants/experience';
-import type { ExperienceEntry, SkillTier } from '@/types';
+import { skillsByGroup } from '@/constants/skills';
+import type { ExperienceEntry } from '@/core/models/experience';
 import { useTranslations } from '@/hooks/use-translations';
+import type { GitHubLanguageStat } from '@/core/models/github';
+import { LanguagePie } from '@/components/charts/LanguagePie';
+import { CategoryCell } from '@/components/shared/CategoryCell';
 
-const TIER_ORDER: SkillTier[] = ['primary', 'secondary', 'familiar'];
-
-/** Dot indicator per tier */
-function TierDot({ tier }: { tier: SkillTier }) {
-  const colors: Record<SkillTier, string> = {
-    primary: 'bg-accent',
-    secondary: 'bg-text-secondary',
-    familiar: 'bg-text-muted/50',
-  };
-  return <span className={`inline-block w-1.5 h-1.5 rounded-full flex-shrink-0 ${colors[tier]}`} />;
+interface Props {
+  topLanguages?: GitHubLanguageStat[];
 }
 
-/** One category column */
-function SkillColumn({
-  cat,
-  index,
-  t,
-}: {
-  cat: typeof SKILL_CATEGORIES[number];
-  index: number;
-  t: ReturnType<typeof useTranslations>;
-}) {
-  const byTier = TIER_ORDER.reduce<Record<SkillTier, string[]>>(
-    (acc, tier) => {
-      acc[tier] = cat.skills.filter((s) => s.tier === tier).map((s) => s.name);
-      return acc;
-    },
-    { primary: [], secondary: [], familiar: [] },
-  );
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.06 }}
-      viewport={{ once: true }}
-      className="p-5 flex flex-col gap-4"
-    >
-      <p className="label-mono">{cat.sublabel}</p>
-
-      {TIER_ORDER.map((tier) => {
-        const names = byTier[tier];
-        if (!names.length) return null;
-        return (
-          <div key={tier}>
-            <p className="text-code-2xs text-text-muted mb-1.5">
-              {t.skillTier[tier]}
-            </p>
-            <div className="flex flex-col gap-1">
-              {names.map((name) => (
-                <div key={name} className="flex items-center gap-2">
-                  <TierDot tier={tier} />
-                  <span className="text-code normal-case tracking-normal text-text-secondary">{name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-      })}
-    </motion.div>
-  );
-}
-
-export default function InfrastructureSection() {
+export default function InfrastructureSection({ topLanguages }: Props) {
   const t = useTranslations();
+  const mainCategories = Object.entries(skillsByGroup('main'));
+  const otherByCategory = skillsByGroup('other');
+  const showPie = topLanguages && topLanguages.length > 0;
+
+  const topRow = ['Mobile', 'Front-end', 'Back-end'].map((cat) => [cat, otherByCategory[cat] ?? []] as const);
+  const fullRows = ['Databases', 'Data & AI', 'Cloud & Ops'].map((cat) => [cat, otherByCategory[cat] ?? []] as const);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] border-b border-border">
-      <div className="border-b md:border-b-0 md:border-r border-border">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-6 sm:px-8 py-5 border-b border-border">
-          <h2 className="text-heading-sm">
-            {t.infrastructure.heading}
-          </h2>
-          <div className="flex items-center gap-3">
-            {/* Tier legend */}
-            {/* Tier legend — hidden on mobile, shown in skill column labels instead */}
-            <div className="hidden sm:flex items-center gap-3">
-              {TIER_ORDER.map((tier) => (
-                <div key={tier} className="flex items-center gap-1.5">
-                  <TierDot tier={tier} />
-                  <span className="text-code-2xs text-text-muted">
-                    {t.skillTier[tier]}
-                  </span>
-                </div>
+    <div className="border-b border-border">
+      <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] border-b border-border">
+        <div className="border-b md:border-b-0 md:border-r border-border flex flex-col">
+          <div className="px-6 sm:px-8 py-5 border-b border-border flex items-center justify-between">
+            <h2 className="text-heading-sm">{t.infrastructure.heading}</h2>
+            <span className="label-mono text-text-muted">MAIN</span>
+          </div>
+
+          <div className="flex flex-col sm:flex-row flex-1 border-b border-border">
+            {showPie && (
+              <div className="sm:w-64 lg:w-[350px] flex-shrink-0 border-b sm:border-b-0 sm:border-r border-border p-4 flex items-center justify-center">
+                <LanguagePie languages={topLanguages} />
+              </div>
+            )}
+            <div className="flex-1 divide-y divide-border">
+              {mainCategories.map(([category, skills], i) => (
+                <CategoryCell key={category} category={category} skills={skills} index={i} />
               ))}
             </div>
-            <span className="label-mono text-text-muted hidden sm:block">·</span>
-            <span className="label-mono">{t.infrastructure.systemReport}</span>
+          </div>
+
+          <div className="border-t border-border">
+            <div className="px-6 sm:px-8 py-3 border-b border-border bg-bg-elevated">
+              <span className="label-mono text-text-muted">MORE SKILLS</span>
+            </div>
+            {/* Mobile · Front-end · Back-end — 3 cols */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-border border-b border-border">
+              {topRow.map(([category, skills], i) => (
+                <CategoryCell className='flex items-center' key={category} category={category} skills={skills as { name: string; icon?: string }[]} index={i} />
+              ))}
+            </div>
+            {/* Databases, Data & AI, Cloud & Ops — full-width rows */}
+            <div className="divide-y divide-border">
+              {fullRows.map(([category, skills], i) => (
+                <CategoryCell key={category} category={category} skills={skills as { name: string; icon?: string }[]} index={topRow.length + i} />
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 divide-x divide-border [&>*:nth-child(n+4)]:border-t [&>*:nth-child(n+4)]:border-border">
-          {SKILL_CATEGORIES.map((cat, i) => (
-            <SkillColumn key={cat.id} cat={cat} index={i} t={t} />
-          ))}
-        </div>
+        {/* Right column: experience log */}
+        <ExperienceLog t={t} />
       </div>
-
-      <ExperienceLog t={t} />
     </div>
   );
 }
@@ -117,13 +78,8 @@ function ExperienceLog({ t }: { t: ReturnType<typeof useTranslations> }) {
   return (
     <div className="flex flex-col">
       <div className="px-6 py-5 border-b border-border flex items-center justify-between">
-        <h2 className="text-heading-sm">
-          {t.infrastructure.logHistory}
-        </h2>
-        <a
-          href="/experience"
-          className="label-mono text-text-muted hover:text-accent transition-colors"
-        >
+        <h2 className="text-heading-sm">{t.infrastructure.logHistory}</h2>
+        <a href="/experience" className="label-mono text-text-muted hover:text-accent transition-colors">
           {t.infrastructure.viewAll}
         </a>
       </div>
@@ -151,18 +107,13 @@ function ExperienceLog({ t }: { t: ReturnType<typeof useTranslations> }) {
               {entry.role}
             </h3>
             <p className="label-mono text-text-muted mb-2">{entry.company}</p>
-            <p className="text-body-xs text-text-secondary line-clamp-2">
-              {entry.description}
-            </p>
+            <p className="text-body-xs text-text-secondary line-clamp-2">{entry.description}</p>
           </motion.div>
         ))}
       </div>
 
       <div className="px-5 py-4 border-t border-border">
-        <a
-          href="/experience"
-          className="label-mono text-text-muted hover:text-accent transition-colors"
-        >
+        <a href="/experience" className="label-mono text-text-muted hover:text-accent transition-colors">
           {EXPERIENCE.length - LOG_LIMIT} {t.experienceSection.entries} {t.infrastructure.viewAll}
         </a>
       </div>
