@@ -8,8 +8,15 @@ export default function CTASection() {
   const headingLines = t.cta.heading.split('\n');
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr]">
-      <div className="flex flex-col justify-center p-6 sm:p-8 md:p-12 border-b md:border-b-0 md:border-r border-border min-h-[260px] sm:min-h-[280px]">
+    <div className="relative overflow-hidden min-h-[320px] sm:min-h-[360px]">
+      {/* Circuit fills entire section */}
+      <CircuitPattern />
+
+      {/* Dark gradient overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background/70" />
+
+      {/* Content centered over the circuit */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-6 sm:px-12 text-center z-10">
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -19,16 +26,6 @@ export default function CTASection() {
         >
           {headingLines[0]}<br />{headingLines[1]}
         </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.4, delay: 0.15 }}
-          viewport={{ once: true }}
-          className="label-mono text-text-muted mb-8"
-        >
-          {t.cta.subheading}
-        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 8 }}
@@ -42,76 +39,128 @@ export default function CTASection() {
           </a>
         </motion.div>
       </div>
-
-      <div
-        className="relative overflow-hidden min-h-[200px] md:min-h-0"
-        aria-hidden="true"
-      >
-        <CircuitPattern />
-        <div className="absolute inset-0 bg-gradient-to-t from-bg-base/80 via-transparent to-transparent" />
-        <div className="absolute bottom-3 right-3">
-          <span className="label-mono text-text-muted/60">BERLIN, 2024</span>
-        </div>
-      </div>
     </div>
   );
 }
 
-/** SVG circuit-board decorative pattern */
 function CircuitPattern() {
   return (
     <svg
-      className="w-full h-full min-h-[200px]"
-      viewBox="0 0 400 300"
+      className="w-full h-full min-h-[320px] sm:min-h-[360px]"
+      viewBox="0 0 800 360"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid slice"
     >
-      <rect width="400" height="300" fill="var(--color-bg-elevated)" />
+      <defs>
+        <filter id="particle-glow" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur stdDeviation="2.5" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
 
-      {Array.from({ length: 10 }).map((_, i) => (
-        <line
-          key={`v${i}`}
-          x1={i * 44}
-          y1="0"
-          x2={i * 44}
-          y2="300"
-          stroke="var(--color-border)"
-          strokeWidth="0.5"
-        />
+      <rect width="800" height="360" style={{ fill: 'rgb(var(--bg-elevated))' }} />
+
+      {/* Grid */}
+      {Array.from({ length: 19 }).map((_, i) => (
+        <line key={`v${i}`} x1={i * 44} y1="0" x2={i * 44} y2="360" style={{ stroke: 'rgb(var(--border) / var(--border-opacity, 0.08))' }} strokeWidth="0.5" />
       ))}
-      {Array.from({ length: 8 }).map((_, i) => (
-        <line
-          key={`h${i}`}
-          x1="0"
-          y1={i * 44}
-          x2="400"
-          y2={i * 44}
-          stroke="var(--color-border)"
-          strokeWidth="0.5"
-        />
+      {Array.from({ length: 9 }).map((_, i) => (
+        <line key={`h${i}`} x1="0" y1={i * 44} x2="800" y2={i * 44} style={{ stroke: 'rgb(var(--border) / var(--border-opacity, 0.08))' }} strokeWidth="0.5" />
       ))}
 
-      <path d="M44 44 H132 V132 H220" stroke="var(--color-accent)" strokeWidth="1.5" opacity="0.4" />
-      <path d="M220 132 H308 V88 H400" stroke="var(--color-accent)" strokeWidth="1.5" opacity="0.3" />
-      <path d="M0 176 H88 V220 H176 V176 H264" stroke="var(--color-accent)" strokeWidth="1" opacity="0.25" />
-      <path d="M132 264 V220 H264 V264" stroke="var(--color-accent)" strokeWidth="1" opacity="0.2" />
+      {/* Left-side input traces → center CPU */}
+      <path id="circuit-a" d="M0 88 H88 V176 H220 V132 H308" stroke="var(--primary-500)" strokeWidth="1.5" />
+      <path id="circuit-b" d="M0 264 H132 V220 H308" stroke="var(--primary-500)" strokeWidth="1.5" />
 
+      {/* Center CPU block (400,160) → right output traces */}
+      <path id="circuit-c" d="M492 176 H580 V132 H712 V88 H800" stroke="var(--primary-500)" strokeWidth="1.5" />
+      <path id="circuit-d" d="M492 220 H624 V264 H800" stroke="var(--primary-500)" strokeWidth="1.5" />
+
+      {/* Top/bottom power rails — enter/exit CPU top (y=120) and bottom (y=240) */}
+      <path id="circuit-e" d="M176 44 H352 V120" stroke="var(--primary-500)" strokeWidth="1" />
+      <path id="circuit-f" d="M176 316 H352 V240" stroke="var(--primary-500)" strokeWidth="1" />
+      <path id="circuit-g" d="M448 120 V44 H624" stroke="var(--primary-500)" strokeWidth="1" />
+      <path id="circuit-h" d="M448 240 V316 H624" stroke="var(--primary-500)" strokeWidth="1" />
+
+      {/* Particles — left inputs */}
+      <circle r="2" fill="var(--primary-500)" filter="url(#particle-glow)">
+        <animateMotion dur="3.5s" repeatCount="indefinite" begin="0s"><mpath href="#circuit-a" /></animateMotion>
+      </circle>
+      <circle r="1.5" fill="var(--primary-500)" filter="url(#particle-glow)">
+        <animateMotion dur="3.5s" repeatCount="indefinite" begin="-1.75s"><mpath href="#circuit-a" /></animateMotion>
+      </circle>
+      <circle r="2" fill="var(--primary-500)" filter="url(#particle-glow)">
+        <animateMotion dur="4s" repeatCount="indefinite" begin="-0.8s"><mpath href="#circuit-b" /></animateMotion>
+      </circle>
+
+      {/* Particles — right outputs */}
+      <circle r="2" fill="var(--primary-500)" filter="url(#particle-glow)">
+        <animateMotion dur="3.5s" repeatCount="indefinite" begin="-0.4s"><mpath href="#circuit-c" /></animateMotion>
+      </circle>
+      <circle r="1.5" fill="var(--primary-500)" filter="url(#particle-glow)">
+        <animateMotion dur="3.5s" repeatCount="indefinite" begin="-2s"><mpath href="#circuit-c" /></animateMotion>
+      </circle>
+      <circle r="2" fill="var(--primary-500)" filter="url(#particle-glow)">
+        <animateMotion dur="4s" repeatCount="indefinite" begin="-1.5s"><mpath href="#circuit-d" /></animateMotion>
+      </circle>
+
+      {/* Particles — top/bottom rails */}
+      <circle r="1.5" fill="var(--primary-500)" filter="url(#particle-glow)">
+        <animateMotion dur="5s" repeatCount="indefinite" begin="0s"><mpath href="#circuit-e" /></animateMotion>
+      </circle>
+      <circle r="1.5" fill="var(--primary-500)" filter="url(#particle-glow)">
+        <animateMotion dur="5s" repeatCount="indefinite" begin="-2s"><mpath href="#circuit-f" /></animateMotion>
+      </circle>
+      <circle r="1.5" fill="var(--primary-500)" filter="url(#particle-glow)">
+        <animateMotion dur="5s" repeatCount="indefinite" begin="-1s"><mpath href="#circuit-g" /></animateMotion>
+      </circle>
+      <circle r="1.5" fill="var(--primary-500)" filter="url(#particle-glow)" >
+        <animateMotion dur="5s" repeatCount="indefinite" begin="-3s"><mpath href="#circuit-h" /></animateMotion>
+      </circle>
+
+      {/* Connection nodes */}
       {[
-        [44, 44], [132, 44], [132, 132], [220, 132],
-        [308, 88], [88, 176], [176, 220], [264, 176],
+        [88, 176], [220, 176], [220, 132], [308, 132],
+        [308, 220], [132, 220], [132, 264],
+        [492, 176], [580, 176], [580, 132], [712, 132],
+        [492, 220], [624, 220], [624, 264],
+        [352, 88], [352, 264], [448, 88], [448, 264],
       ].map(([x, y], i) => (
         <g key={i}>
-          <circle cx={x} cy={y} r="4" fill="var(--color-bg-elevated)" stroke="var(--color-accent)" strokeWidth="1.5" opacity="0.6" />
-          <circle cx={x} cy={y} r="1.5" fill="var(--color-accent)" opacity="0.8" />
+          <circle cx={x} cy={y} r="3" style={{ fill: 'rgb(var(--bg-elevated))' }} stroke="var(--primary-500)" strokeWidth="1.5" />
+          <circle cx={x} cy={y} r="1" fill="var(--primary-500)" />
         </g>
       ))}
 
-      <rect x="160" y="56" width="48" height="32" rx="2" fill="var(--color-bg-overlay)" stroke="var(--color-border)" strokeWidth="1" />
-      <rect x="240" y="160" width="40" height="28" rx="2" fill="var(--color-bg-overlay)" stroke="var(--color-border)" strokeWidth="1" />
+      {/* Center CPU chip — content sits on top via absolute positioning */}
+      <rect x="308" y="120" width="184" height="120" rx="4"
+        style={{ fill: 'rgb(var(--bg-overlay))' }} stroke="var(--primary-500)" strokeWidth="1.5" />
+      <rect x="316" y="128" width="168" height="104" rx="2"
+        style={{ fill: 'rgb(var(--bg-elevated))', stroke: 'rgb(var(--border) / var(--border-opacity, 0.08))' }} strokeWidth="1" />
 
-      <text x="170" y="76" fill="var(--color-accent)" fontSize="6" fontFamily="monospace" opacity="0.6">CPU</text>
-      <text x="248" y="177" fill="var(--color-accent)" fontSize="6" fontFamily="monospace" opacity="0.6">I/O</text>
+      {/* Pin marks on CPU sides */}
+      {[140, 160, 180, 200, 220].map((y, i) => (
+        <g key={`lpin-${i}`}>
+          <line x1="296" y1={y} x2="308" y2={y} stroke="var(--primary-500)" strokeWidth="1" />
+          <line x1="492" y1={y} x2="504" y2={y} stroke="var(--primary-500)" strokeWidth="1" />
+        </g>
+      ))}
+      {[352, 376, 400, 424, 448].map((x, i) => (
+        <g key={`tpin-${i}`}>
+          <line x1={x} y1="108" x2={x} y2="120" stroke="var(--primary-500)" strokeWidth="1" />
+          <line x1={x} y1="240" x2={x} y2="252" stroke="var(--primary-500)" strokeWidth="1" />
+        </g>
+      ))}
+
+      {/* Small decorative labels */}
+      <text x="20" y="82" fill="var(--primary-500)" fontSize="7" fontFamily="monospace" >IN_A</text>
+      <text x="20" y="258" fill="var(--primary-500)" fontSize="7" fontFamily="monospace" >IN_B</text>
+      <text x="724" y="82" fill="var(--primary-500)" fontSize="7" fontFamily="monospace" >OUT_A</text>
+      <text x="724" y="258" fill="var(--primary-500)" fontSize="7" fontFamily="monospace" >OUT_B</text>
     </svg>
   );
 }
