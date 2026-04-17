@@ -20,7 +20,7 @@ export const es: Translations = {
 	hero: {
 		name: "Carlos Sánchez Recio",
 		nickName: "CharlyMech",
-		title: "DESARROLLADOR\nMOBILE",
+		title: "MOBILE",
 		subtitle: "& Full Stack",
 		bio: "Construyendo sistemas escalables y aplicaciones de alto rendimiento, convirtiendo problemas complejos en soluciones listas para producción.",
 		currentStatus: "Estado actual",
@@ -36,10 +36,10 @@ export const es: Translations = {
 
 	// Infrastructure section (home)
 	infrastructure: {
-		heading: "INFRAESTRUCTURA CENTRAL",
+		heading: "CORE INFRASTRUCTURE",
 		systemReport: "Informe del Sistema",
-		logHistory: "REGISTRO: HISTORIAL",
-		viewAll: "Historial completo →",
+		logHistory: "LOG: HISTORY",
+		viewAll: "Full history →",
 	},
 
 	// Skill tiers
