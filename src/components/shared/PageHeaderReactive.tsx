@@ -11,12 +11,13 @@ import type { Translations } from '@/i18n/i-translate';
 export interface Props {
   section: keyof Pick<
     Translations,
-    'experience' | 'projects' | 'services' | 'blog' | 'tech' | 'contact'
+    'experience' | 'projects' | 'services' | 'tech' | 'contact'
   >;
+  hideSubtitle?: boolean;
   [key: string]: unknown;
 }
 
-export default function PageHeaderReactive({ section }: Props) {
+export default function PageHeaderReactive({ section, hideSubtitle }: Props) {
   const t = useTranslations();
   const s = t[section] as { label: string; title: string; subtitle?: string };
 
@@ -26,7 +27,7 @@ export default function PageHeaderReactive({ section }: Props) {
       <h1 className="text-heading-page">
         {s.title}
       </h1>
-      {s.subtitle && (
+      {s.subtitle && !hideSubtitle && (
         <p className="text-body text-foreground-secondary mt-4 max-w-xl">
           {s.subtitle}
         </p>
