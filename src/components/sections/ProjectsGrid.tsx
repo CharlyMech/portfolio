@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROJECTS } from '@/constants/projects';
-import type { Project, ProjectStatus } from '@/types';
+import type { Project, ProjectStatus } from '@/core/models/project';
 import { useTranslations } from '@/hooks/use-translations';
 
 const STATUS_COLORS: Record<ProjectStatus, string> = {

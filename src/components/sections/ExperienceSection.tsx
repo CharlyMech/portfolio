@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { EXPERIENCE, EDUCATION } from '@/constants/experience';
-import { SKILL_CATEGORIES } from '@/constants/skills';
+import { skillsByGroup } from '@/constants/skills';
 import { useTranslations } from '@/hooks/use-translations';
 
 export default function ExperienceSection() {
@@ -127,17 +127,17 @@ export default function ExperienceSection() {
             </div>
 
             <div className="space-y-5">
-              {SKILL_CATEGORIES.slice(0, 3).map((cat, i) => (
+              {Object.entries(skillsByGroup('main')).slice(0, 3).map(([category, skills], i) => (
                 <motion.div
-                  key={cat.id}
+                  key={category}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 0.35, delay: i * 0.08 }}
                   viewport={{ once: true }}
                 >
-                  <p className="label-mono mb-2">{cat.sublabel}</p>
+                  <p className="label-mono mb-2">{category.toUpperCase()}</p>
                   <div className="flex flex-wrap gap-1.5">
-                    {cat.skills.map((skill) => (
+                    {skills.map((skill) => (
                       <span key={skill.name} className="tech-tag">
                         {skill.name}
                       </span>
