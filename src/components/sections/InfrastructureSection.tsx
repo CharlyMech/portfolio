@@ -10,6 +10,7 @@ import {
 import { skillsByGroup } from '@/constants/skills';
 import type { Education, ExperienceEntry } from '@/core/models/experience';
 import { useTranslations } from '@/hooks/use-translations';
+import { Skeleton } from 'boneyard-js/react';
 import { LanguagePie } from '@/components/charts/LanguagePie';
 import { CategoryCell } from '@/components/shared/CategoryCell';
 import { useGitHubActivityStore } from '@/stores/githubActivityStore';
@@ -17,7 +18,7 @@ import { useLocaleStore } from '@/stores/localeStore';
 
 export default function InfrastructureSection() {
   const t = useTranslations();
-  const { data: ghData } = useGitHubActivityStore();
+  const { data: ghData, loading: ghLoading } = useGitHubActivityStore();
   const topLanguages = ghData?.topLanguages;
   const mainCategories = Object.entries(skillsByGroup('main'));
   const otherByCategory = skillsByGroup('other');
@@ -36,9 +37,11 @@ export default function InfrastructureSection() {
           </div>
 
           <div className="flex flex-col sm:flex-row flex-1 border-b border-border">
-            {showPie && (
+            {(showPie || ghLoading) && (
               <div className="sm:w-64 lg:w-[350px] flex-shrink-0 border-b sm:border-b-0 sm:border-r border-border p-4 flex items-center justify-center">
-                <LanguagePie languages={topLanguages} />
+                <Skeleton name="language-pie" loading={ghLoading} className="w-full">
+                  {showPie && <LanguagePie languages={topLanguages} />}
+                </Skeleton>
               </div>
             )}
             <div className="flex-1 divide-y divide-border flex flex-col">
