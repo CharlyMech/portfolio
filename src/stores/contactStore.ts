@@ -1,47 +1,38 @@
-/* ============================================================
-   Contact — Zustand store
-   ============================================================ */
-
 import { create } from 'zustand';
-import { submitContactForm } from '@/core/services/contactService';
-import type { ContactFormData } from '@/core/services/contactService';
+import type { FormStatus } from '@/core/services/contactService';
 
-type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
+export type { FormStatus };
+
+interface ContactFormFields {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 interface ContactStore {
-  form: ContactFormData;
+  form: ContactFormFields;
   status: FormStatus;
-  error: string | null;
-  setField: (field: keyof ContactFormData, value: string) => void;
-  submit: () => Promise<void>;
+  setField: (field: keyof ContactFormFields, value: string) => void;
+  setStatus: (status: FormStatus) => void;
   reset: () => void;
 }
 
-const defaultForm: ContactFormData = {
+const defaultForm: ContactFormFields = {
   name: '',
   email: '',
   subject: '',
   message: '',
 };
 
-export const useContactStore = create<ContactStore>((set, get) => ({
+export const useContactStore = create<ContactStore>((set) => ({
   form: defaultForm,
   status: 'idle',
-  error: null,
 
   setField: (field, value) =>
     set((state) => ({ form: { ...state.form, [field]: value } })),
 
-  submit: async () => {
-    const { form } = get();
-    set({ status: 'submitting', error: null });
-    const { success, error } = await submitContactForm(form);
-    if (!success) {
-      set({ status: 'error', error });
-    } else {
-      set({ status: 'success', form: defaultForm });
-    }
-  },
+  setStatus: (status) => set({ status }),
 
-  reset: () => set({ form: defaultForm, status: 'idle', error: null }),
+  reset: () => set({ form: defaultForm, status: 'idle' }),
 }));

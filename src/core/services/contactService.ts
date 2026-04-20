@@ -1,19 +1,44 @@
-import { apiService } from '@/core/services/apiService';
+export type FormStatus =
+  | 'idle'
+  | 'submitting'
+  | 'success'
+  | 'error'
+  | 'rate_limited'
+  | 'network_error'
+  | 'server_error';
 
 export interface ContactFormData {
   name: string;
   email: string;
   subject: string;
   message: string;
+  cfToken: string;
+  company: string;
 }
 
-// Replace with your actual form endpoint (Formspree, custom API, etc.)
-const CONTACT_ENDPOINT = 'https://formspree.io/f/your-form-id';
+const CONTACT_ENDPOINT = '/api/contact';
+const TIMEOUT_MS = 8000;
 
-export async function submitContactForm(
-  form: ContactFormData,
-): Promise<{ success: boolean; error: string | null }> {
-  const result = await apiService.post<{ success: boolean }>(CONTACT_ENDPOINT, form);
-  if (result.error) return { success: false, error: result.error };
-  return { success: true, error: null };
+export async function sendContact(data: ContactFormData): Promise<FormStatus> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
+  try {
+    const res = await fetch(CONTACT_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeout);
+
+    if (res.status === 200) return 'success';
+    if (res.status === 429) return 'rate_limited';
+    if (res.status >= 500) return 'server_error';
+    return 'error';
+  } catch {
+    clearTimeout(timeout);
+    return 'network_error';
+  }
 }

@@ -1,17 +1,47 @@
 'use client';
 
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
+import { toast } from 'sonner';
 import { useContactStore } from '@/stores/contactStore';
+import { sendContact } from '@/core/services/contactService';
 import { PROFILE } from '@/constants/profile';
 import { useTranslations } from '@/hooks/use-translations';
 
 export default function ContactSection() {
-  const { form, status, error, setField, submit, reset } = useContactStore();
+  const { form, status, setField, setStatus, reset } = useContactStore();
   const t = useTranslations();
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await submit();
+    if (status === 'submitting') return;
+
+    const cfToken = (formRef.current?.querySelector<HTMLInputElement>('[name="cf-turnstile-response"]')?.value) ?? '';
+
+    setStatus('submitting');
+
+    const result = await sendContact({
+      name: form.name,
+      email: form.email,
+      subject: form.subject,
+      message: form.message,
+      cfToken,
+      company: '',
+    });
+
+    setStatus(result);
+
+    if (result === 'success') {
+      reset();
+      formRef.current?.reset();
+      return;
+    }
+
+    if (result === 'rate_limited') toast.error(t.contact.errorRateLimited);
+    else if (result === 'network_error') toast.error(t.contact.errorNetwork);
+    else if (result === 'server_error') toast.error(t.contact.errorServer);
+    else toast.error(t.contact.errorInvalid);
   };
 
   return (
@@ -49,7 +79,17 @@ export default function ContactSection() {
               </button>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+              {/* honeypot */}
+              <input
+                name="company"
+                type="text"
+                tabIndex={-1}
+                aria-hidden="true"
+                style={{ display: 'none' }}
+                autoComplete="off"
+              />
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <FormField
                   label={t.contact.name}
@@ -102,9 +142,11 @@ export default function ContactSection() {
                 />
               </div>
 
-              {error && (
-                <p className="text-code text-status-busy">{error}</p>
-              )}
+              {/* Turnstile */}
+              <div
+                className="cf-turnstile"
+                data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
+              />
 
               <div className="flex items-center gap-4 pt-2">
                 <button
