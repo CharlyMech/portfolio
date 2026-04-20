@@ -99,10 +99,17 @@ export const es: Translations = {
 		allServicesInclude: "Todos los servicios incluyen:",
 		includes: [
 			"Código fuente con documentación completa",
-			"Configuración de pipeline CI/CD",
-			"Revisión de código y transferencia de conocimiento",
+			"Diseño básico generado por IA",
+			"Despliegue básico incluido",
 			"Soporte de 30 días post-entrega",
 		],
+		notIncluded: "No incluido (disponible a través de especialistas externos):",
+		notIncludes: [
+			"Diseño personalizado completo (requiere diseñador externo)",
+			"Estrategia SEO completa (requiere especialista SEO externo)",
+		],
+		availableMessage: "Actualmente disponible para nuevos proyectos — plazas limitadas",
+		unavailableMessage: "Actualmente no disponible para nuevos proyectos — vuelve más tarde",
 	},
 
 	// Pages — Tech
@@ -140,6 +147,11 @@ export const es: Translations = {
 		transmissionReceived: "Transmisión recibida.",
 		replyPromise: "Te responderé en menos de 24 horas.",
 		sendAnother: "Enviar otro",
+		// Error toasts
+		errorRateLimited: "Demasiadas solicitudes. Inténtalo más tarde.",
+		errorNetwork: "Problema de conexión. Revisa tu red.",
+		errorServer: "Error del servidor. Inténtalo más tarde.",
+		errorInvalid: "Envío inválido. Revisa los campos.",
 		// Sidebar
 		directContact: "Contacto Directo",
 		findMeOnline: "Encuéntrame Online",

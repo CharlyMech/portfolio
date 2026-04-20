@@ -99,10 +99,17 @@ export const en: Translations = {
 		allServicesInclude: "All services include:",
 		includes: [
 			"Source code with full documentation",
-			"CI/CD pipeline setup",
-			"Code review & knowledge transfer",
+			"Basic AI-generated design",
+			"Simple deployment setup",
 			"30-day post-delivery support",
 		],
+		notIncluded: "Not included (available via external specialists):",
+		notIncludes: [
+			"Full custom design (requires external designer)",
+			"Full SEO strategy (requires external SEO specialist)",
+		],
+		availableMessage: "Currently available for new projects — limited slots",
+		unavailableMessage: "Currently not available for new projects — check back later",
 	},
 
 	// Pages — Tech
@@ -139,6 +146,11 @@ export const en: Translations = {
 		transmissionReceived: "Transmission received.",
 		replyPromise: "I'll get back to you within 24 hours.",
 		sendAnother: "Send another",
+		// Error toasts
+		errorRateLimited: "Too many requests. Please try again later.",
+		errorNetwork: "Connection issue. Check your network.",
+		errorServer: "Server error. Try again later.",
+		errorInvalid: "Invalid submission. Check your inputs.",
 		// Sidebar
 		directContact: "Direct Contact",
 		findMeOnline: "Find Me Online",

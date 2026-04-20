@@ -53,6 +53,10 @@ export interface Translations {
 		getInTouch: string;
 		allServicesInclude: string;
 		includes: string[];
+		notIncluded: string;
+		notIncludes: string[];
+		availableMessage: string;
+		unavailableMessage: string;
 	};
 	tech: {
 		pageTitle: string;
@@ -80,6 +84,10 @@ export interface Translations {
 		transmissionReceived: string;
 		replyPromise: string;
 		sendAnother: string;
+		errorRateLimited: string;
+		errorNetwork: string;
+		errorServer: string;
+		errorInvalid: string;
 		directContact: string;
 		findMeOnline: string;
 		baseOfOperations: string;
