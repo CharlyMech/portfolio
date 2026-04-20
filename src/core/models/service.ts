@@ -3,5 +3,5 @@ export interface Service {
   title: string;
   description: string;
   deliverables: string[];
-  icon: string;
+  icon: string; // iconoir component name, e.g. 'Globe'
 }
