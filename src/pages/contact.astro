@@ -8,9 +8,6 @@ import ContactSection from '@/components/sections/ContactSection';
   title="Contact — Carlos Dev"
   description="Get in touch for collaborations, architectural audits, or just to say hello."
 >
-  <Fragment slot="head">
-    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  </Fragment>
   <PageHeaderReactive section="contact" client:load />
   <ContactSection client:load />
 </BaseLayout>

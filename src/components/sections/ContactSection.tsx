@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef } from 'react'; // needed for formRef.reset()
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 import { useContactStore } from '@/stores/contactStore';
@@ -13,11 +13,9 @@ export default function ContactSection() {
   const t = useTranslations();
   const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (status === 'submitting') return;
-
-    const cfToken = (formRef.current?.querySelector<HTMLInputElement>('[name="cf-turnstile-response"]')?.value) ?? '';
 
     setStatus('submitting');
 
@@ -26,13 +24,14 @@ export default function ContactSection() {
       email: form.email,
       subject: form.subject,
       message: form.message,
-      cfToken,
       company: '',
+      project: 'portfolio',
     });
 
     setStatus(result);
 
     if (result === 'success') {
+      toast.success(t.contact.successToast);
       reset();
       formRef.current?.reset();
       return;
@@ -142,11 +141,6 @@ export default function ContactSection() {
                 />
               </div>
 
-              {/* Turnstile */}
-              <div
-                className="cf-turnstile"
-                data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
-              />
 
               <div className="flex items-center gap-4 pt-2">
                 <button
