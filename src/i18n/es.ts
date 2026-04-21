@@ -188,6 +188,7 @@ export const es: Translations = {
 		sendMessage: "Enviar Mensaje →",
 		sending: "Enviando...",
 		// Success
+		successToast: "Mensaje enviado. Te respondo pronto.",
 		transmissionReceived: "Transmisión recibida.",
 		replyPromise: "Te responderé en menos de 24 horas.",
 		sendAnother: "Enviar otro",

@@ -82,6 +82,7 @@ export interface Translations {
 		messagePlaceholder: string;
 		sendMessage: string;
 		sending: string;
+		successToast: string;
 		transmissionReceived: string;
 		replyPromise: string;
 		sendAnother: string;

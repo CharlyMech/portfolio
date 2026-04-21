@@ -185,6 +185,7 @@ export const en: Translations = {
 		sendMessage: "Send Message →",
 		sending: "Sending...",
 		// Success
+		successToast: "Message sent. I'll get back to you soon.",
 		transmissionReceived: "Transmission received.",
 		replyPromise: "I'll get back to you within 24 hours.",
 		sendAnother: "Send another",
