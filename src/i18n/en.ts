@@ -72,17 +72,58 @@ export const en: Translations = {
 		pageDescription:
 			"A selection of projects spanning distributed systems, mobile apps, and editorial interfaces.",
 		label: "// Projects",
-		title: "SELECTED WORK.",
+		title: "ALL OF MY CODE.",
 		subtitle:
 			"A curated set of projects across distributed systems, mobile engineering, and high-craft frontends.",
 		status: {
-			live: "Live",
-			wip: "WIP",
+			dev: "Dev",
+			prod: "Prod",
 			archived: "Archived",
+			backlog: "Backlog",
+			paused: "Paused",
 		},
 		viewProject: "View Project",
 		viewCode: "View Code",
 		featured: "Featured",
+		items: {
+			"proj-1": {
+				description:
+					"Time registration app for easy time tracking and PYME accessible.",
+			},
+			"proj-2": {
+				description:
+					"(MVP) Fleet management with time registration and reports tracking.",
+			},
+			"proj-3": {
+				description: "VSCode extension that shames and blames your code.",
+			},
+			"proj-4": {
+				description: "AdventJS Challenge 2024 version from @midudev.",
+			},
+			"proj-5": {
+				description:
+					"Flutter widget for displaying GitHub profile information.",
+			},
+			"proj-6": {
+				description:
+					"Weather app with offline capabilities and minimalism design.",
+			},
+			"proj-7": {
+				description:
+					"MacOS extension for dropping status icons into a phantom zone and viewing them as a dropdown menu.",
+			},
+			"proj-8": {
+				description:
+					"Logistics management all-in-one app for efficient cargo tracking and delivery.",
+			},
+			"proj-9": {
+				description: "Social media app for travelers and food enthusiasts.",
+			},
+			"proj-10": {
+				description:
+					"Full stack app and server service to track, manage and interact with local and remote AI agents.",
+			},
+		},
 	},
 
 	// Pages — Services
@@ -109,7 +150,8 @@ export const en: Translations = {
 			"Full SEO strategy (requires external SEO specialist)",
 		],
 		availableMessage: "Currently available for new projects — limited slots",
-		unavailableMessage: "Currently not available for new projects — check back later",
+		unavailableMessage:
+			"Currently not available for new projects — check back later",
 	},
 
 	// Pages — Tech
@@ -185,6 +227,9 @@ export const en: Translations = {
 		current: "Current",
 		nonTechExperience: "Other Experience",
 		certificates: "Certificates",
+		sortNewest: "Date — Newest",
+		sortOldest: "Date — Oldest",
+		present: "Present",
 	},
 
 	// Language switcher

@@ -72,17 +72,58 @@ export const es: Translations = {
 		pageDescription:
 			"Una selección de proyectos en sistemas distribuidos, apps móviles e interfaces editoriales.",
 		label: "// Proyectos",
-		title: "TRABAJO SELECTO.",
+		title: "TODO DE MI CÓDIGO.",
 		subtitle:
 			"Un conjunto curado de proyectos en sistemas distribuidos, ingeniería móvil y frontends de alto nivel.",
 		status: {
-			live: "En vivo",
-			wip: "En progreso",
+			dev: "Dev",
+			prod: "Prod",
 			archived: "Archivado",
+			backlog: "Backlog",
+			paused: "Pausado",
 		},
 		viewProject: "Ver Proyecto",
 		viewCode: "Ver Código",
 		featured: "Destacado",
+		items: {
+			"proj-1": {
+				description:
+					"App de registro de tiempo fácil de usar y accesible para PYMEs.",
+			},
+			"proj-2": {
+				description:
+					"(MVP) Gestión de flota con registro de tiempo y seguimiento de reportes.",
+			},
+			"proj-3": {
+				description:
+					"Extensión de VSCode que avergüenza y culpa tu código.",
+			},
+			"proj-4": { description: "Reto AdventJS 2024 de @midudev." },
+			"proj-5": {
+				description:
+					"Widget de Flutter para mostrar información del perfil de GitHub.",
+			},
+			"proj-6": {
+				description:
+					"App del tiempo con capacidades offline y diseño minimalista.",
+			},
+			"proj-7": {
+				description:
+					"Extensión de MacOS para ocultar iconos de estado en una zona fantasma y verlos como menú desplegable.",
+			},
+			"proj-8": {
+				description:
+					"App integral de gestión logística para seguimiento eficiente de carga y entregas.",
+			},
+			"proj-9": {
+				description:
+					"Red social para viajeros y entusiastas de la gastronomía.",
+			},
+			"proj-10": {
+				description:
+					"App full stack y servicio de servidor para rastrear, gestionar e interactuar con agentes de IA locales y remotos.",
+			},
+		},
 	},
 
 	// Pages — Services
@@ -103,13 +144,16 @@ export const es: Translations = {
 			"Despliegue básico incluido",
 			"Soporte de 30 días post-entrega",
 		],
-		notIncluded: "No incluido (disponible a través de especialistas externos):",
+		notIncluded:
+			"No incluido (disponible a través de especialistas externos):",
 		notIncludes: [
 			"Diseño personalizado completo (requiere diseñador externo)",
 			"Estrategia SEO completa (requiere especialista SEO externo)",
 		],
-		availableMessage: "Actualmente disponible para nuevos proyectos — plazas limitadas",
-		unavailableMessage: "Actualmente no disponible para nuevos proyectos — vuelve más tarde",
+		availableMessage:
+			"Actualmente disponible para nuevos proyectos — plazas limitadas",
+		unavailableMessage:
+			"Actualmente no disponible para nuevos proyectos — vuelve más tarde",
 	},
 
 	// Pages — Tech
@@ -186,6 +230,9 @@ export const es: Translations = {
 		current: "Actual",
 		nonTechExperience: "Otra Experiencia",
 		certificates: "Certificados",
+		sortNewest: "Fecha — Más reciente",
+		sortOldest: "Fecha — Más antiguo",
+		present: "Actualidad",
 	},
 
 	// Language switcher

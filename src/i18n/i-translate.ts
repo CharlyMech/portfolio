@@ -38,10 +38,11 @@ export interface Translations {
 		label: string;
 		title: string;
 		subtitle: string;
-		status: { live: string; wip: string; archived: string };
+		status: { dev: string; prod: string; archived: string; backlog: string; paused: string };
 		viewProject: string;
 		viewCode: string;
 		featured: string;
+		items: Record<string, { description: string }>;
 	};
 	services: {
 		pageTitle: string;
@@ -115,6 +116,9 @@ export interface Translations {
 		current: string;
 		nonTechExperience: string;
 		certificates: string;
+		sortNewest: string;
+		sortOldest: string;
+		present: string;
 	};
 	lang: { switchTo: string; en: string; es: string };
 }
