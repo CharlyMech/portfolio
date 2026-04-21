@@ -1,13 +1,13 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import PageHeaderReactive from '@/components/shared/PageHeaderReactive';
-import ProjectsGrid from '@/components/sections/ProjectsGrid';
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHeaderReactive from "@/components/shared/PageHeaderReactive";
+import ProjectsGrid from "@/components/sections/ProjectsGrid";
 ---
 
 <BaseLayout
-  title="Projects — Carlos Dev"
-  description="A selection of projects spanning distributed systems, mobile apps, and editorial interfaces."
+	title="Projects — Carlos Dev"
+	description="A selection of projects spanning distributed systems, mobile apps, and editorial interfaces."
 >
-  <PageHeaderReactive section="projects" client:load />
-  <ProjectsGrid client:load />
+	<PageHeaderReactive hideSubtitle section="projects" client:load />
+	<ProjectsGrid client:load />
 </BaseLayout>
