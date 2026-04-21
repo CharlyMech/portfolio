@@ -258,6 +258,10 @@ function pickRandomItem<T extends { id: string }>(items: T[], previousId?: strin
   return candidates[Math.floor(Math.random() * candidates.length)] ?? null;
 }
 
+function formatPeriod(period: { start: string; end?: string }, labelPresent: string): string {
+  return period.end ? `${period.start} — ${period.end}` : `${period.start} — ${labelPresent}`;
+}
+
 function mapExperienceToLogEntry(
   entry: ExperienceEntry,
   t: ReturnType<typeof useTranslations>,
@@ -266,11 +270,11 @@ function mapExperienceToLogEntry(
     id: entry.id,
     category: 'experience',
     categoryLabel: t.experienceSection.experience,
-    period: entry.period,
+    period: formatPeriod(entry.period, t.experienceSection.present),
     title: entry.role,
     subtitle: [entry.company, entry.location].filter(Boolean).join(' · '),
     description: entry.description ?? entry.note,
-    isCurrent: entry.isCurrent,
+    isCurrent: !entry.period.end,
   };
 }
 
@@ -284,7 +288,7 @@ function mapEducationToLogEntry(
     category,
     categoryLabel:
       category === 'education' ? t.experienceSection.education : t.experienceSection.certificates,
-    period: entry.period,
+    period: formatPeriod(entry.period, t.experienceSection.present),
     title: entry.degree,
     subtitle: [entry.institution, entry.location].filter(Boolean).join(' · '),
     description: entry.description ?? entry.note,

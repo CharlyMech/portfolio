@@ -1,6 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Sort, SortDown, SortUp, NavArrowDown, Check } from 'iconoir-react';
 import {
   getCertificateEntries,
   getEducationEntries,
@@ -8,50 +10,26 @@ import {
   getNonTechExperienceEntries,
 } from '@/constants/experience';
 import { skillsByGroup } from '@/constants/skills';
+import { DEVICON_MAP } from '@/constants/devicon-map';
 import { useTranslations } from '@/hooks/use-translations';
 import { useLocaleStore } from '@/stores/localeStore';
 
-const TAG_ICON_MAP: Record<string, string> = {
-  'Next.js': 'devicon-nextjs-plain',
-  'Tailwind CSS': 'devicon-tailwindcss-plain',
-  'NestJs': 'devicon-nestjs-plain',
-  'NestJS': 'devicon-nestjs-plain',
-  'React Native Expo': 'devicon-react-original',
-  'React Native': 'devicon-react-original',
-  'React': 'devicon-react-original',
-  'Flutter': 'devicon-flutter-plain',
-  'MongoDB': 'devicon-mongodb-plain',
-  'AWS': 'devicon-amazonwebservices-plain',
-  'Angular': 'devicon-angular-plain',
-  'Sass CSS': 'devicon-sass-plain',
-  'Bootstrap': 'devicon-bootstrap-plain',
-  'PHP Symfony': 'devicon-symfony-plain',
-  'Vue2': 'devicon-vuejs-plain',
-  'Vue': 'devicon-vuejs-plain',
-  'Astrojs': 'devicon-astro-plain',
-  'Astro': 'devicon-astro-plain',
-  'Supabase': 'devicon-supabase-plain',
-  'Docker': 'devicon-docker-plain',
-  'PostgreSQL': 'devicon-postgresql-plain',
-  'MySQL': 'devicon-mysql-plain',
-  'Python': 'devicon-python-plain',
-  'Linux': 'devicon-linux-plain',
-  'Git': 'devicon-git-plain',
-  'Kotlin': 'devicon-kotlin-plain',
-  'Java': 'devicon-java-plain',
-  'Android': 'devicon-android-plain',
-  'Azure': 'devicon-azure-plain',
-  'Firebase': 'devicon-firebase-plain',
-  'FastAPI': 'devicon-fastapi-plain',
-  'Node.js': 'devicon-nodejs-plain',
-  'GraphQL': 'devicon-graphql-plain',
-  'Swift': 'devicon-swift-plain',
-  'GitHub': 'devicon-github-original',
-  'Expo': 'devicon-expo-original',
-};
+type SortDir = 'desc' | 'asc';
+
+import type { Period } from '@/core/models/experience';
+
+function extractSortYear(period: Period): number {
+  if (!period.end) return Infinity;
+  const years = [...period.end.matchAll(/\d{4}/g)].map((m) => parseInt(m[0], 10));
+  return years.length ? Math.max(...years) : 0;
+}
+
+function formatPeriod(period: Period, labelPresent: string): string {
+  return period.end ? `${period.start} — ${period.end}` : `${period.start} — ${labelPresent}`;
+}
 
 function TagPill({ tag }: { tag: string }) {
-  const icon = TAG_ICON_MAP[tag];
+  const icon = DEVICON_MAP[tag];
   return (
     <span className="tech-tag inline-flex items-center gap-1">
       {icon && <i className={`${icon} text-sm`} aria-hidden />}
@@ -60,13 +38,108 @@ function TagPill({ tag }: { tag: string }) {
   );
 }
 
+function SortDropdown({
+  value,
+  onChange,
+  labelNewest,
+  labelOldest,
+}: {
+  value: SortDir;
+  onChange: (v: SortDir) => void;
+  labelNewest: string;
+  labelOldest: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
+  const options: { id: SortDir; label: string; icon: React.ReactNode }[] = [
+    { id: 'desc', label: labelNewest, icon: <SortDown width={11} height={11} strokeWidth={1.5} /> },
+    { id: 'asc',  label: labelOldest, icon: <SortUp   width={11} height={11} strokeWidth={1.5} /> },
+  ];
+
+  const active = options.find((o) => o.id === value)!;
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="flex items-center gap-1.5 border border-border px-2.5 py-1 h-7
+                   text-code-xs text-foreground-muted hover:text-foreground-secondary
+                   transition-colors duration-200 outline-none"
+      >
+        <Sort width={11} height={11} strokeWidth={1.5} color="currentColor" />
+        {active.label}
+        <NavArrowDown
+          width={10} height={10} strokeWidth={2} color="currentColor"
+          className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+        />
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.ul
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.12 }}
+            className="absolute top-full left-0 mt-1 z-50 min-w-[160px]
+                       border border-border bg-background shadow-md"
+          >
+            {options.map((o) => (
+              <li key={o.id}>
+                <button
+                  type="button"
+                  onClick={() => { onChange(o.id); setOpen(false); }}
+                  className={`w-full px-2.5 py-1.5 text-left text-code-xs
+                              flex items-center gap-2 transition-colors duration-150
+                              ${value === o.id
+                                ? 'text-accent bg-accent/5'
+                                : 'text-foreground-muted hover:text-foreground-secondary hover:bg-accent/5'
+                              }`}
+                >
+                  <span className="flex-shrink-0 w-3.5 flex items-center justify-center">
+                    {value === o.id
+                      ? <Check width={11} height={11} strokeWidth={2} />
+                      : o.icon}
+                  </span>
+                  {o.label}
+                </button>
+              </li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function ExperienceSection() {
   const t = useTranslations();
   const locale = useLocaleStore((state) => state.locale);
-  const experienceEntries = getExperienceEntries(locale);
+  const [expSort, setExpSort] = useState<SortDir>('desc');
+  const [eduSort, setEduSort] = useState<SortDir>('desc');
+
+  const allExperienceEntries = getExperienceEntries(locale);
   const nonTechEntries = getNonTechExperienceEntries(locale);
-  const educationEntries = getEducationEntries(locale);
+  const allEducationEntries = getEducationEntries(locale);
   const certificateEntries = getCertificateEntries(locale);
+
+  const sortEntries = <T extends { period: Period }>(arr: T[], dir: SortDir) =>
+    [...arr].sort((a, b) => {
+      const diff = extractSortYear(a.period) - extractSortYear(b.period);
+      return dir === 'desc' ? -diff : diff;
+    });
+
+  const experienceEntries = sortEntries(allExperienceEntries, expSort);
+  const educationEntries = sortEntries(allEducationEntries, eduSort);
 
   return (
     <div className="p-6 md:p-10">
@@ -79,7 +152,15 @@ export default function ExperienceSection() {
           <div>
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-8 border-b border-border pb-4">
               <h2 className="text-heading">{t.experienceSection.experience}</h2>
-              <span className="label-mono">{experienceEntries.length} {t.experienceSection.entries}</span>
+              <div className="flex items-center gap-3">
+                <span className="label-mono">{experienceEntries.length} {t.experienceSection.entries}</span>
+                <SortDropdown
+                  value={expSort}
+                  onChange={setExpSort}
+                  labelNewest={t.experienceSection.sortNewest}
+                  labelOldest={t.experienceSection.sortOldest}
+                />
+              </div>
             </div>
 
             <div className="space-y-0">
@@ -91,11 +172,11 @@ export default function ExperienceSection() {
                   transition={{ duration: 0.45, delay: i * 0.1 }}
                   viewport={{ once: true }}
                   className={`relative pl-8 pb-10 border-l-2 ml-2
-                              ${entry.isCurrent ? 'border-accent' : 'border-border'}`}
+                              ${!entry.period.end ? 'border-accent' : 'border-border'}`}
                 >
                   <div
                     className={`absolute -left-[7px] top-0 w-3 h-3 border-2
-                                ${entry.isCurrent
+                                ${!entry.period.end
                         ? 'bg-accent border-accent shadow-[0_0_12px_var(--color-accent)]'
                         : 'bg-elevated border-border'
                       }`}
@@ -112,9 +193,9 @@ export default function ExperienceSection() {
                       </div>
                       <div className="flex-shrink-0 text-left sm:text-right">
                         <span className="text-code normal-case tracking-wider text-foreground-muted">
-                          {entry.period}
+                          {formatPeriod(entry.period, t.experienceSection.present)}
                         </span>
-                        {entry.isCurrent && (
+                        {!entry.period.end && (
                           <div className="flex items-center gap-1.5 justify-end mt-1">
                             <span className="status-dot available" />
                             <span className="text-code-xs text-status-available">
@@ -164,7 +245,7 @@ export default function ExperienceSection() {
                       {entry.location && <span> · {entry.location}</span>}
                     </p>
                   </div>
-                  <span className="text-code-xs text-foreground-muted flex-shrink-0">{entry.period}</span>
+                  <span className="text-code-xs text-foreground-muted flex-shrink-0">{formatPeriod(entry.period, t.experienceSection.present)}</span>
                 </motion.div>
               ))}
             </div>
@@ -175,6 +256,12 @@ export default function ExperienceSection() {
           <div>
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 border-b border-border pb-4">
               <h2 className="text-heading">{t.experienceSection.education}</h2>
+              <SortDropdown
+                value={eduSort}
+                onChange={setEduSort}
+                labelNewest={t.experienceSection.sortNewest}
+                labelOldest={t.experienceSection.sortOldest}
+              />
             </div>
             <div className="space-y-4">
               {educationEntries.map((edu, i) => (
@@ -188,7 +275,7 @@ export default function ExperienceSection() {
                 >
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-1">
                     <h3 className="text-heading-xs">{edu.degree}</h3>
-                    <span className="text-code-xs text-foreground-muted flex-shrink-0">{edu.period}</span>
+                    <span className="text-code-xs text-foreground-muted flex-shrink-0">{formatPeriod(edu.period, t.experienceSection.present)}</span>
                   </div>
                   <p className="label-mono text-foreground-muted">
                     {edu.institution}
@@ -227,7 +314,7 @@ export default function ExperienceSection() {
                   >
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-1">
                       <h3 className="text-heading-xs">{cert.degree}</h3>
-                      <span className="text-code-xs text-foreground-muted flex-shrink-0">{cert.period}</span>
+                      <span className="text-code-xs text-foreground-muted flex-shrink-0">{formatPeriod(cert.period, t.experienceSection.present)}</span>
                     </div>
                     <p className="label-mono text-foreground-muted">{cert.institution}</p>
                     {cert.description && (
