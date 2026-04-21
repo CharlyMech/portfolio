@@ -129,7 +129,7 @@ export default function HeroSection() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-foreground-muted hover:text-primary-foreground transition-colors duration-200 flex items-center gap-1.5 px-2 py-1 rounded-none focus-visible:text-primary-foreground focus-visible:outline-none"
+                    className="text-foreground-muted hover:text-accent transition-colors duration-200 flex items-center gap-1.5 px-2 py-1 rounded-none focus-visible:text-accent focus-visible:outline-none"
                     aria-label={social.platform}
                     title={social.handle}
                   >
