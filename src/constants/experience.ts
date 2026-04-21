@@ -1,11 +1,21 @@
 import { defaultLocale, type Locale } from "@/i18n";
-import type { Education, ExperienceEntry, WorkModality } from "@/core/models/experience";
+import type {
+	Education,
+	ExperienceEntry,
+	Period,
+	WorkModality,
+} from "@/core/models/experience";
 
 type Multilang<T = string> = Record<Locale, T>;
 
 type LocalizedModality = {
 	key: WorkModality;
 	label: string;
+};
+
+type PeriodI18n = {
+	start: Multilang;
+	end?: Multilang;
 };
 
 type ExperienceEntryI18n = Omit<
@@ -23,7 +33,7 @@ type ExperienceEntryI18n = Omit<
 	company?: Multilang;
 	location: Multilang;
 	modality?: Multilang<LocalizedModality>;
-	period: Multilang;
+	period: PeriodI18n;
 	description?: Multilang;
 	note?: Multilang;
 };
@@ -43,7 +53,7 @@ type EducationI18n = Omit<
 	institution: Multilang;
 	location?: Multilang;
 	modality?: Multilang<LocalizedModality>;
-	period: Multilang;
+	period: PeriodI18n;
 	description?: Multilang;
 	note?: Multilang;
 };
@@ -80,10 +90,8 @@ const EXPERIENCE_I18N: ExperienceEntryI18n[] = [
 		},
 		modality: MODALITY.hybrid,
 		period: {
-			en: "Jan 2026 — Present",
-			es: "Ene 2026 — Actualidad",
+			start: { en: "Jan 2026", es: "Ene 2026" },
 		},
-		isCurrent: true,
 		description: {
 			en: "Lead developer of Volone's core platform, a full-stack digital menu product with video-first browsing, map-based discovery, and QR integration.",
 			es: "Desarrollador principal de la plataforma core de Volone, un producto de carta digital full stack con exploración centrada en vídeo, descubrimiento por mapa e integración con QR.",
@@ -114,10 +122,9 @@ const EXPERIENCE_I18N: ExperienceEntryI18n[] = [
 		},
 		modality: MODALITY.onsite,
 		period: {
-			en: "Jan — Oct 2025",
-			es: "Ene — Oct 2025",
+			start: { en: "Jan 2025", es: "Ene 2025" },
+			end:   { en: "Oct 2025", es: "Oct 2025" },
 		},
-		isCurrent: false,
 		description: {
 			en: "Maintained and extended a tourism back-office application for activity scheduling and booking flows, while building custom solutions for client-specific needs.",
 			es: "Mantuve y amplié una aplicación de back office turístico para gestión de actividades y reservas, además de desarrollar soluciones a medida para necesidades específicas de clientes.",
@@ -140,10 +147,9 @@ const EXPERIENCE_I18N: ExperienceEntryI18n[] = [
 		},
 		modality: MODALITY.remote,
 		period: {
-			en: "Sept 2025 — Mar 2026",
-			es: "Sept 2025 — Mar 2026",
+			start: { en: "Sep 2024", es: "Sep 2024" },
+			end:   { en: "Mar 2026", es: "Mar 2026" },
 		},
-		isCurrent: false,
 		description: {
 			en: "Built end-to-end digital products ranging from cross-platform apps to APIs and modern dashboards, combining design sensitivity, performance, and clean architecture.",
 			es: "Desarrollé productos digitales end-to-end, desde apps multiplataforma hasta APIs y dashboards modernos, combinando criterio de diseño, rendimiento y arquitectura limpia.",
@@ -174,10 +180,9 @@ const EXPERIENCE_I18N: ExperienceEntryI18n[] = [
 		},
 		modality: MODALITY.hybrid,
 		period: {
-			en: "Mar - Jun 2024",
-			es: "Mar - Jun 2024",
+			start: { en: "Mar 2024", es: "Mar 2024" },
+			end:   { en: "Jun 2024", es: "Jun 2024" },
 		},
-		isCurrent: false,
 		description: {
 			en: "Worked on API maintenance and feature delivery for real-time vessel networking and location systems, plus a final internship POC app for Starlink ISP clients.",
 			es: "Trabajé en mantenimiento de APIs y entrega de funcionalidades para sistemas de red y localización de embarcaciones en tiempo real, además de una app POC final para clientes ISP de Starlink.",
@@ -202,10 +207,9 @@ const NON_TECH_EXPERIENCE_I18N: ExperienceEntryI18n[] = [
 			es: "Ibiza, España",
 		},
 		period: {
-			en: "Jun - Oct Summers 2016-2021",
-			es: "Jun - Oct Veranos 2016-2021",
+			start: { en: "Jun 2016", es: "Jun 2016" },
+			end:   { en: "Oct 2021", es: "Oct 2021" },
 		},
-		isCurrent: false,
 	},
 	{
 		id: "exp-javier",
@@ -222,10 +226,9 @@ const NON_TECH_EXPERIENCE_I18N: ExperienceEntryI18n[] = [
 			es: "Ibiza, España",
 		},
 		period: {
-			en: "Jun - Oct Summers 2022-2023",
-			es: "Jun - Oct Veranos 2022-2023",
+			start: { en: "Jun 2022", es: "Jun 2022" },
+			end:   { en: "Oct 2023", es: "Oct 2023" },
 		},
-		isCurrent: false,
 	},
 	{
 		id: "exp-bunyola",
@@ -242,10 +245,9 @@ const NON_TECH_EXPERIENCE_I18N: ExperienceEntryI18n[] = [
 			es: "Palma de Mallorca, España",
 		},
 		period: {
-			en: "Jul - Nov 2024",
-			es: "Jul - Nov 2024",
+			start: { en: "Jul 2024", es: "Jul 2024" },
+			end:   { en: "Nov 2024", es: "Nov 2024" },
 		},
-		isCurrent: false,
 	},
 ];
 
@@ -265,8 +267,8 @@ const EDUCATION_I18N: EducationI18n[] = [
 			es: "Palma de Mallorca, España",
 		},
 		period: {
-			en: "2017 — 2020",
-			es: "2017 — 2020",
+			start: { en: "2017", es: "2017" },
+			end:   { en: "2020", es: "2020" },
 		},
 		note: {
 			en: "Studies not completed.",
@@ -288,8 +290,8 @@ const EDUCATION_I18N: EducationI18n[] = [
 			es: "Ibiza, España",
 		},
 		period: {
-			en: "2020 - 2022",
-			es: "2020 - 2022",
+			start: { en: "2020", es: "2020" },
+			end:   { en: "2022", es: "2022" },
 		},
 		tags: [
 			"Linux",
@@ -316,8 +318,8 @@ const EDUCATION_I18N: EducationI18n[] = [
 			es: "Palma de Mallorca, España",
 		},
 		period: {
-			en: "2022 - 2024",
-			es: "2022 - 2024",
+			start: { en: "2022", es: "2022" },
+			end:   { en: "2024", es: "2024" },
 		},
 		tags: [
 			"Android",
@@ -327,7 +329,6 @@ const EDUCATION_I18N: EducationI18n[] = [
 			"MongoDB",
 			"PostgreSQL",
 			"MySQL",
-			"MongoDB",
 			"Git",
 			"Scrum",
 		],
@@ -348,8 +349,8 @@ const EDUCATION_I18N: EducationI18n[] = [
 		},
 		modality: MODALITY.remote,
 		period: {
-			en: "2024 - 2025",
-			es: "2024 - 2025",
+			start: { en: "2024", es: "2024" },
+			end:   { en: "2025", es: "2025" },
 		},
 		tags: [
 			"Python",
@@ -369,34 +370,26 @@ const EDUCATION_I18N: EducationI18n[] = [
 	},
 ];
 
-const CERITIFICATES_I18N: EducationI18n[] = [
-	// {
-	// 	id: "cert-example",
-	// 	degree: {
-	// 		en: "Certification Name",
-	// 		es: "Nombre de la certificación",
-	// 	},
-	// 	institution: {
-	// 		en: "Provider",
-	// 		es: "Proveedor",
-	// 	},
-	// 	period: {
-	// 		en: "2025",
-	// 		es: "2025",
-	// 	},
-	// 	description: {
-	// 		en: "Short description.",
-	// 		es: "Descripción breve.",
-	// 	},
-	// },
-];
+const CERITIFICATES_I18N: EducationI18n[] = [];
 
 function resolveField<T>(field: Multilang<T>, locale: Locale): T {
 	return field[locale] ?? field[defaultLocale];
 }
 
-function localizeExperienceEntry(entry: ExperienceEntryI18n, locale: Locale): ExperienceEntry {
-	const modality = entry.modality ? resolveField(entry.modality, locale) : undefined;
+function localizePeriod(period: PeriodI18n, locale: Locale): Period {
+	return {
+		start: resolveField(period.start, locale),
+		end: period.end ? resolveField(period.end, locale) : undefined,
+	};
+}
+
+function localizeExperienceEntry(
+	entry: ExperienceEntryI18n,
+	locale: Locale,
+): ExperienceEntry {
+	const modality = entry.modality
+		? resolveField(entry.modality, locale)
+		: undefined;
 
 	return {
 		...entry,
@@ -405,34 +398,49 @@ function localizeExperienceEntry(entry: ExperienceEntryI18n, locale: Locale): Ex
 		location: resolveField(entry.location, locale),
 		modality: modality?.key,
 		modalityLabel: modality?.label,
-		period: resolveField(entry.period, locale),
-		description: entry.description ? resolveField(entry.description, locale) : undefined,
+		period: localizePeriod(entry.period, locale),
+		description: entry.description
+			? resolveField(entry.description, locale)
+			: undefined,
 		note: entry.note ? resolveField(entry.note, locale) : undefined,
 	};
 }
 
-function localizeEducationEntry(entry: EducationI18n, locale: Locale): Education {
-	const modality = entry.modality ? resolveField(entry.modality, locale) : undefined;
+function localizeEducationEntry(
+	entry: EducationI18n,
+	locale: Locale,
+): Education {
+	const modality = entry.modality
+		? resolveField(entry.modality, locale)
+		: undefined;
 
 	return {
 		...entry,
 		degree: resolveField(entry.degree, locale),
 		institution: resolveField(entry.institution, locale),
-		location: entry.location ? resolveField(entry.location, locale) : undefined,
+		location: entry.location
+			? resolveField(entry.location, locale)
+			: undefined,
 		modality: modality?.key,
 		modalityLabel: modality?.label,
-		period: resolveField(entry.period, locale),
-		description: entry.description ? resolveField(entry.description, locale) : undefined,
+		period: localizePeriod(entry.period, locale),
+		description: entry.description
+			? resolveField(entry.description, locale)
+			: undefined,
 		note: entry.note ? resolveField(entry.note, locale) : undefined,
 	};
 }
 
 export function getExperienceEntries(locale: Locale) {
-	return EXPERIENCE_I18N.map((entry) => localizeExperienceEntry(entry, locale));
+	return EXPERIENCE_I18N.map((entry) =>
+		localizeExperienceEntry(entry, locale),
+	);
 }
 
 export function getNonTechExperienceEntries(locale: Locale) {
-	return NON_TECH_EXPERIENCE_I18N.map((entry) => localizeExperienceEntry(entry, locale));
+	return NON_TECH_EXPERIENCE_I18N.map((entry) =>
+		localizeExperienceEntry(entry, locale),
+	);
 }
 
 export function getEducationEntries(locale: Locale) {
@@ -440,5 +448,7 @@ export function getEducationEntries(locale: Locale) {
 }
 
 export function getCertificateEntries(locale: Locale) {
-	return CERITIFICATES_I18N.map((entry) => localizeEducationEntry(entry, locale));
+	return CERITIFICATES_I18N.map((entry) =>
+		localizeEducationEntry(entry, locale),
+	);
 }
