@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
-
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   site: 'https://charlymech.com',
@@ -11,7 +11,8 @@ export default defineConfig({
     tailwind({ applyBaseStyles: false }),
     sitemap(),
   ],
-  output: 'static',
+  output: 'server',
+  adapter: vercel(),
   vite: {
     resolve: {
       alias: {
