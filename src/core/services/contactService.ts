@@ -12,14 +12,15 @@ export interface ContactFormData {
   email: string;
   subject: string;
   message: string;
-  cfToken: string;
   company: string;
+  project: string;
 }
 
 const CONTACT_ENDPOINT = '/api/contact';
 const TIMEOUT_MS = 8000;
 
 export async function sendContact(data: ContactFormData): Promise<FormStatus> {
+
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
