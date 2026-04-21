@@ -2,13 +2,93 @@
 
 'use client';
 
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Twitter } from 'iconoir-react';
 import { getYear } from '@/stores/dateStore';
 import { PROFILE } from '@/constants/profile';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 interface SidebarProps {
   currentPath: string;
+}
+
+function SocialLink({ item }: { item: typeof PROFILE.social[number] }) {
+  const [hovered, setHovered] = useState(false);
+
+  const Icon = item.icon === 'github'
+    ? Github
+    : item.icon === 'linkedin'
+      ? Linkedin
+      : Twitter;
+
+  return (
+    <div
+      className="relative flex items-center"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <motion.a
+        href={item.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={item.platform}
+        className="relative flex items-center justify-center w-8 h-8"
+        whileHover="hover"
+        initial="rest"
+        animate={hovered ? 'hover' : 'rest'}
+      >
+        {/* bg pill */}
+        <motion.span
+          className="absolute inset-0 rounded-md bg-accent"
+          variants={{
+            rest: { opacity: 0, scale: 0.7 },
+            hover: { opacity: 0.12, scale: 1 },
+          }}
+          transition={{ duration: 0.25, ease: [0.34, 1.56, 0.64, 1] }}
+        />
+
+        {/* icon */}
+        <motion.span
+          className="relative z-10"
+          variants={{
+            rest: { color: 'var(--color-foreground-muted)', y: 0 },
+            hover: { color: 'var(--color-accent)', y: -1 },
+          }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+        >
+          <Icon width={16} height={16} strokeWidth={1.5} />
+        </motion.span>
+      </motion.a>
+
+      {/* tooltip */}
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            role="tooltip"
+            initial={{ opacity: 0, x: -6, scale: 0.92 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: -4, scale: 0.95 }}
+            transition={{ duration: 0.18, ease: [0.34, 1.56, 0.64, 1] }}
+            className="absolute left-full ml-3 z-50 pointer-events-none
+                       whitespace-nowrap px-2.5 py-1
+                       bg-surface border border-border
+                       label-mono text-foreground text-[0.65rem]"
+          >
+            {item.handle}
+            {/* arrow */}
+            <span
+              className="absolute right-full top-1/2 -translate-y-1/2
+                         border-4 border-transparent border-r-border"
+            />
+            <span
+              className="absolute right-full top-1/2 -translate-y-1/2 translate-x-px
+                         border-4 border-transparent border-r-surface"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 }
 
 export default function Sidebar({ currentPath }: SidebarProps) {
@@ -29,41 +109,9 @@ export default function Sidebar({ currentPath }: SidebarProps) {
       </div>
 
       <div className="flex flex-col items-center gap-3 pb-10">
-        <TooltipProvider>
-          {PROFILE.social.map((item) => {
-            const Icon = item.icon === 'github'
-              ? Github
-              : item.icon === 'linkedin'
-                ? Linkedin
-                : Twitter;
-            return (
-              <Tooltip key={item.platform}>
-                <TooltipTrigger asChild>
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={item.platform}
-                    className="group relative flex items-center justify-center w-8 h-8 rounded-md
-                               text-foreground-muted transition-colors duration-200
-                               hover:text-accent"
-                  >
-                    <span className="absolute inset-0 rounded-md bg-accent/0 group-hover:bg-accent/10 transition-colors duration-200" />
-                    <Icon width={16} height={16} strokeWidth={1.5} className="relative z-10" />
-                  </a>
-                </TooltipTrigger>
-                <TooltipContent
-                  side="right"
-                  sideOffset={8}
-                  className="bg-surface text-foreground border border-border shadow-none"
-                  style={{ ['--tooltip-arrow-fill' as string]: 'rgb(var(--bg-surface))' }}
-                >
-                  {item.handle}
-                </TooltipContent>
-              </Tooltip>
-            );
-          })}
-        </TooltipProvider>
+        {PROFILE.social.map((item) => (
+          <SocialLink key={item.platform} item={item} />
+        ))}
       </div>
     </aside>
   );
