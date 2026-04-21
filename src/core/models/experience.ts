@@ -1,5 +1,10 @@
 export type WorkModality = "remote" | "onsite" | "hybrid";
 
+export interface Period {
+	start: string;
+	end?: string;
+}
+
 export interface ExperienceEntry {
 	id: string;
 	role: string;
@@ -7,8 +12,7 @@ export interface ExperienceEntry {
 	location: string;
 	modality?: WorkModality;
 	modalityLabel?: string;
-	period: string;
-	isCurrent: boolean;
+	period: Period;
 	description?: string;
 	tags?: string[];
 	note?: string;
@@ -21,9 +25,8 @@ export interface Education {
 	location?: string;
 	modality?: WorkModality;
 	modalityLabel?: string;
-	period: string;
+	period: Period;
 	description?: string;
-	onGoing?: boolean;
 	tags?: string[];
 	note?: string;
 }
