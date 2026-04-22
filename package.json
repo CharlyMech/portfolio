@@ -19,6 +19,7 @@
     "@astrojs/vercel": "^8.2.11",
     "@fontsource-variable/orbitron": "^5.2.8",
     "@fontsource-variable/space-grotesk": "^5.2.10",
+    "@vercel/analytics": "^2.0.1",
     "astro": "^5.0.0",
     "boneyard-js": "^1.7.6",
     "class-variance-authority": "^0.7.1",

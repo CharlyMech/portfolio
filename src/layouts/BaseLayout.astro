@@ -9,6 +9,7 @@ import { SITE_META } from "@/constants/profile";
 import { en } from "@/i18n/en";
 import { es } from "@/i18n/es";
 import { ViewTransitions, ClientRouter } from "astro:transitions";
+import Analytics from "@vercel/analytics/astro";
 
 type Section = "home" | "projects" | "contact" | "experience" | "services";
 
@@ -58,12 +59,9 @@ const {
 
 const sectionLabels = SECTION_LABELS[section];
 const computedTitle =
-	section === "home"
-		? BASE_NAME
-		: `${BASE_NAME} | ${sectionLabels.en}`;
+	section === "home" ? BASE_NAME : `${BASE_NAME} | ${sectionLabels.en}`;
 const title = Astro.props.title ?? computedTitle;
-const description =
-	Astro.props.description ?? SECTION_DESCRIPTIONS[section].en;
+const description = Astro.props.description ?? SECTION_DESCRIPTIONS[section].en;
 
 const currentPath = Astro.url.pathname;
 const canonicalURL = new URL(Astro.url.pathname, SITE_META.url).toString();
@@ -124,15 +122,14 @@ const ogImageURL = new URL(ogImage, SITE_META.url).toString();
 				window.__portfolioTitleBase = baseName;
 				window.__portfolioDescriptions = descriptions;
 				if (window.__portfolioTitleInit) {
-					window.__portfolioApplyMeta &&
-						window.__portfolioApplyMeta();
+					window.__portfolioApplyMeta && window.__portfolioApplyMeta();
 					return;
 				}
 				window.__portfolioTitleInit = true;
 				function readLocale() {
 					try {
 						var stored = JSON.parse(
-							localStorage.getItem("portfolio-locale") || "{}"
+							localStorage.getItem("portfolio-locale") || "{}",
 						);
 						return (stored.state && stored.state.locale) || "en";
 					} catch (_) {
@@ -140,9 +137,7 @@ const ogImageURL = new URL(ogImage, SITE_META.url).toString();
 					}
 				}
 				function readSection() {
-					var m = document.querySelector(
-						'meta[name="page-section"]'
-					);
+					var m = document.querySelector('meta[name="page-section"]');
 					return (m && m.getAttribute("content")) || "home";
 				}
 				function setMeta(selector, value) {
@@ -173,10 +168,7 @@ const ogImageURL = new URL(ogImage, SITE_META.url).toString();
 				}
 				window.__portfolioApplyMeta = applyMeta;
 				applyMeta();
-				document.addEventListener(
-					"portfolio:locale-change",
-					applyMeta
-				);
+				document.addEventListener("portfolio:locale-change", applyMeta);
 				document.addEventListener("astro:after-swap", applyMeta);
 			})();
 		</script>
@@ -185,7 +177,7 @@ const ogImageURL = new URL(ogImage, SITE_META.url).toString();
 			(function () {
 				try {
 					var stored = JSON.parse(
-						localStorage.getItem("portfolio-theme") || "{}"
+						localStorage.getItem("portfolio-theme") || "{}",
 					);
 					var theme = stored.state && stored.state.theme;
 					if (theme)
@@ -200,7 +192,7 @@ const ogImageURL = new URL(ogImage, SITE_META.url).toString();
 			document.addEventListener("astro:after-swap", function () {
 				try {
 					var stored = JSON.parse(
-						localStorage.getItem("portfolio-theme") || "{}"
+						localStorage.getItem("portfolio-theme") || "{}",
 					);
 					var theme = stored.state && stored.state.theme;
 					if (theme)
@@ -299,5 +291,6 @@ const ogImageURL = new URL(ogImage, SITE_META.url).toString();
 		<BottomNav currentPath={currentPath} client:load transition:persist />
 		<Toaster client:load />
 		<ClientRouter />
+		<Analytics />
 	</body>
 </html>
