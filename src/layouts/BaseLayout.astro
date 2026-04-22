@@ -6,21 +6,64 @@ import { Toaster } from "@/components/ui/sonner";
 import "@/styles/global.css";
 import "@/bones/registry";
 import { SITE_META } from "@/constants/profile";
+import { en } from "@/i18n/en";
+import { es } from "@/i18n/es";
 import { ViewTransitions, ClientRouter } from "astro:transitions";
+
+type Section = "home" | "projects" | "contact" | "experience" | "services";
 
 interface Props {
 	title?: string;
 	description?: string;
 	ogImage?: string;
 	ogType?: "website" | "article";
+	section?: Section;
 }
 
+const BASE_NAME = "Carlos Sánchez Recio";
+
+const SECTION_LABELS: Record<Section, { en: string; es: string }> = {
+	home: { en: "", es: "" },
+	projects: { en: "Projects", es: "Proyectos" },
+	contact: { en: "Contact", es: "Contacto" },
+	experience: { en: "Career", es: "Experiencia y estudios" },
+	services: { en: "Freelance services", es: "Servicios freelance" },
+};
+
+const SECTION_DESCRIPTIONS: Record<Section, { en: string; es: string }> = {
+	home: { en: en.site.description, es: es.site.description },
+	projects: {
+		en: en.projects.pageDescription,
+		es: es.projects.pageDescription,
+	},
+	contact: {
+		en: en.contact.pageDescription,
+		es: es.contact.pageDescription,
+	},
+	experience: {
+		en: en.experience.pageDescription,
+		es: es.experience.pageDescription,
+	},
+	services: {
+		en: en.services.pageDescription,
+		es: es.services.pageDescription,
+	},
+};
+
 const {
-	title = SITE_META.title,
-	description = SITE_META.description,
 	ogImage = SITE_META.ogImage,
 	ogType = "website",
+	section = "home",
 } = Astro.props;
+
+const sectionLabels = SECTION_LABELS[section];
+const computedTitle =
+	section === "home"
+		? BASE_NAME
+		: `${BASE_NAME} | ${sectionLabels.en}`;
+const title = Astro.props.title ?? computedTitle;
+const description =
+	Astro.props.description ?? SECTION_DESCRIPTIONS[section].en;
 
 const currentPath = Astro.url.pathname;
 const canonicalURL = new URL(Astro.url.pathname, SITE_META.url).toString();
@@ -40,6 +83,7 @@ const ogImageURL = new URL(ogImage, SITE_META.url).toString();
 			content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 		/>
 		<meta name="googlebot" content="index, follow" />
+		<meta name="page-section" content={section} />
 
 		<!-- OG / Social -->
 		<meta property="og:title" content={title} />
@@ -66,19 +110,74 @@ const ogImageURL = new URL(ogImage, SITE_META.url).toString();
 		<link rel="alternate" hreflang="es" href={canonicalURL} />
 		<link rel="alternate" hreflang="x-default" href={canonicalURL} />
 
-		<!-- Sync html[lang] from persisted locale before first paint -->
-		<script is:inline>
+		<!-- Sync html[lang] + document.title + description meta from persisted locale -->
+		<script
+			is:inline
+			define:vars={{
+				baseName: BASE_NAME,
+				labels: SECTION_LABELS,
+				descriptions: SECTION_DESCRIPTIONS,
+			}}
+		>
 			(function () {
-				try {
-					var stored = JSON.parse(
-						localStorage.getItem("portfolio-locale") || "{}"
+				window.__portfolioTitleLabels = labels;
+				window.__portfolioTitleBase = baseName;
+				window.__portfolioDescriptions = descriptions;
+				if (window.__portfolioTitleInit) {
+					window.__portfolioApplyMeta &&
+						window.__portfolioApplyMeta();
+					return;
+				}
+				window.__portfolioTitleInit = true;
+				function readLocale() {
+					try {
+						var stored = JSON.parse(
+							localStorage.getItem("portfolio-locale") || "{}"
+						);
+						return (stored.state && stored.state.locale) || "en";
+					} catch (_) {
+						return "en";
+					}
+				}
+				function readSection() {
+					var m = document.querySelector(
+						'meta[name="page-section"]'
 					);
-					var locale = stored.state && stored.state.locale;
-					if (locale)
-						document
-							.getElementById("html-root")
-							.setAttribute("lang", locale);
-				} catch (_) {}
+					return (m && m.getAttribute("content")) || "home";
+				}
+				function setMeta(selector, value) {
+					var el = document.querySelector(selector);
+					if (el && value != null) el.setAttribute("content", value);
+				}
+				function applyMeta() {
+					var locale = readLocale();
+					var section = readSection();
+					var loc = locale === "es" ? "es" : "en";
+					var lbls = window.__portfolioTitleLabels;
+					var descs = window.__portfolioDescriptions;
+					var base = window.__portfolioTitleBase;
+					var label = lbls[section] && lbls[section][loc];
+					var title = label ? base + " | " + label : base;
+					document.title = title;
+					document
+						.getElementById("html-root")
+						.setAttribute("lang", locale);
+					var desc = descs[section] && descs[section][loc];
+					if (desc) {
+						setMeta('meta[name="description"]', desc);
+						setMeta('meta[property="og:description"]', desc);
+						setMeta('meta[name="twitter:description"]', desc);
+					}
+					setMeta('meta[property="og:title"]', title);
+					setMeta('meta[name="twitter:title"]', title);
+				}
+				window.__portfolioApplyMeta = applyMeta;
+				applyMeta();
+				document.addEventListener(
+					"portfolio:locale-change",
+					applyMeta
+				);
+				document.addEventListener("astro:after-swap", applyMeta);
 			})();
 		</script>
 		<!-- Sync data-theme from persisted preference before first paint (prevents flash) -->

@@ -31,6 +31,9 @@ export const useLocaleStore = create<LocaleState>()(
         set({ locale });
         if (typeof document !== 'undefined') {
           document.getElementById('html-root')?.setAttribute('lang', locale);
+          document.dispatchEvent(
+            new CustomEvent('portfolio:locale-change', { detail: { locale } }),
+          );
         }
       },
     }),

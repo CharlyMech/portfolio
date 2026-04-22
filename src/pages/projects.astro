@@ -4,10 +4,7 @@ import PageHeaderReactive from "@/components/shared/PageHeaderReactive";
 import ProjectsGrid from "@/components/sections/ProjectsGrid";
 ---
 
-<BaseLayout
-	title="Projects — Carlos Dev"
-	description="A selection of projects spanning distributed systems, mobile apps, and editorial interfaces."
->
+<BaseLayout section="projects">
 	<PageHeaderReactive hideSubtitle section="projects" client:load />
 	<ProjectsGrid client:load />
 </BaseLayout>

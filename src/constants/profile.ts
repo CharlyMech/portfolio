@@ -5,7 +5,6 @@ export const PROFILE: Profile = {
 	title: "ENGINEER",
 	subtitle: "MOBILE // FULL STACK",
 	tagline: "",
-	bio: "Specializing in high-performance distributed systems and pixel-perfect editorial interfaces. Building digital infrastructure with mathematical precision.",
 	github: {
 		username: "CharlyMech",
 	},
@@ -47,7 +46,7 @@ export const PROFILE: Profile = {
 export const SITE_META = {
 	title: "Carlos Sánchez Recio — Mobile & Full Stack Engineer",
 	description:
-		"System architect specializing in high-performance distributed systems and pixel-perfect editorial interfaces.",
+		"Software engineer building cross-platform and native apps, from performant backends to polished user experiences.",
 	url: "https://charlymech.com",
 	ogImage: "/og-image.svg",
 	year: new Date().getFullYear(),
