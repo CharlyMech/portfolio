@@ -69,7 +69,7 @@ export const PROJECTS: Project[] = [
 		longDescription:
 			"Minimalism weather app with offline capabilities and fully customizable layouts and widgets. Built with Flutter, Isar, and BLoC architecture. Integrates OpenWeather API for accurate forecasts.",
 		tags: ["Flutter", "Dart", "Isar", "BLoC", "OpenWeather API"],
-		status: "paused",
+		status: "dev",
 		github: "https://github.com/CharlyMech/weatherlite",
 		featured: false,
 		year: "2026",
