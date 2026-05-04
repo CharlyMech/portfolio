@@ -150,10 +150,35 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          <motion.div {...scaleIn(0.3)} className="flex flex-col h-full">
+          <motion.div {...scaleIn(0.3)} className="flex flex-col items-center gap-3 h-full shrink-0">
             <Card className="w-52 rounded-full flex items-center justify-center overflow-hidden">
               <img src="/carlos.png" alt="Carlos" className="w-full h-full object-cover rounded-full" />
             </Card>
+            <div className="w-full max-w-[13rem] space-y-2">
+              <p className="label-mono text-foreground-muted text-center">{t.hero.currentStatus}</p>
+              <ul className="space-y-1.5 text-left" aria-label={t.hero.currentStatus}>
+                <li className="flex items-center gap-2 text-code-xs text-foreground-secondary">
+                  <span
+                    className={`status-dot shrink-0 ${PROFILE.status.available ? 'available' : 'busy'}`}
+                    aria-hidden
+                  />
+                  <span>
+                    {PROFILE.status.available ? t.hero.availableForHire : t.hero.notAvailableForHire}
+                  </span>
+                </li>
+                <li className="flex items-center gap-2 text-code-xs text-foreground-secondary">
+                  <span
+                    className={`status-dot shrink-0 ${PROFILE.status.availableForFreelance ? 'available' : 'busy'}`}
+                    aria-hidden
+                  />
+                  <span>
+                    {PROFILE.status.availableForFreelance
+                      ? t.hero.availableForFreelance
+                      : t.hero.notAvailableForFreelance}
+                  </span>
+                </li>
+              </ul>
+            </div>
           </motion.div>
 
         </div>
