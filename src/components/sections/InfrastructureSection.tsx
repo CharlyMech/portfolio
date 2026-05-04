@@ -33,7 +33,7 @@ export default function InfrastructureSection() {
         <div className="border-b md:border-b-0 md:border-r border-border flex flex-col">
           <div className="px-6 sm:px-8 py-5 border-b border-border flex items-center justify-between">
             <h2 className="text-heading-sm">{t.infrastructure.heading}</h2>
-            <span className="label-mono text-foreground-muted">MAIN</span>
+            <span className="label-mono text-foreground-muted">{t.infrastructure.main}</span>
           </div>
 
           <div className="flex flex-col sm:flex-row flex-1 border-b border-border">
@@ -53,7 +53,7 @@ export default function InfrastructureSection() {
 
           <div className="border-t border-border">
             <div className="px-6 sm:px-8 py-3 border-b border-border bg-elevated">
-              <span className="label-mono text-foreground-muted">MORE SKILLS</span>
+              <span className="label-mono text-foreground-muted">{t.infrastructure.moreSkills}</span>
             </div>
             {/* Mobile · Front-end · Back-end — 3 cols */}
             <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-border border-b border-border">

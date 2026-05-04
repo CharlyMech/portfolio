@@ -96,7 +96,7 @@ export default function ContactSection() {
                   type="text"
                   value={form.name}
                   onChange={(v) => setField('name', v)}
-                  placeholder="John Doe"
+                  placeholder={t.contact.namePlaceholder}
                   required
                 />
                 <FormField
@@ -105,7 +105,7 @@ export default function ContactSection() {
                   type="email"
                   value={form.email}
                   onChange={(v) => setField('email', v)}
-                  placeholder="john@company.com"
+                  placeholder={t.contact.emailPlaceholder}
                   required
                 />
               </div>

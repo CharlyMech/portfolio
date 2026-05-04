@@ -56,7 +56,7 @@ export default function BottomNav({ currentPath: initialPath }: BottomNavProps) 
       className="md:hidden fixed bottom-0 left-0 right-0 z-50
                  border-t border-border glass"
       style={{ height: 'var(--bottom-nav-height)' }}
-      aria-label="Mobile navigation"
+      aria-label={t.nav.mobileNavigation}
     >
       <div ref={containerRef as React.RefObject<HTMLDivElement>} className="relative flex h-full items-center">
         {pill}

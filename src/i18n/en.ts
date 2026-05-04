@@ -7,6 +7,9 @@ export const en: Translations = {
 		projects: "Projects",
 		services: "Services",
 		contact: "Contact",
+		mainNavigation: "Main navigation",
+		mobileNavigation: "Mobile navigation",
+		verticalSidebar: "Vertical sidebar",
 	},
 
 	// Site meta
@@ -40,6 +43,8 @@ export const en: Translations = {
 		systemReport: "System Report",
 		logHistory: "LOG: HISTORY",
 		viewAll: "Full history →",
+		main: "MAIN",
+		moreSkills: "MORE SKILLS",
 	},
 
 	// Skill tiers
@@ -85,6 +90,13 @@ export const en: Translations = {
 		viewProject: "View Project",
 		viewCode: "View Code",
 		featured: "Featured",
+		filterAll: "All",
+		sortShuffle: "Shuffle",
+		sortYearNewest: "Year — Newest",
+		sortYearOldest: "Year — Oldest",
+		sortTitleAsc: "Title — A → Z",
+		sortTitleDesc: "Title — Z → A",
+		shuffleProjectsTitle: "Shuffle projects",
 		items: {
 			"proj-1": {
 				description:
@@ -123,6 +135,13 @@ export const en: Translations = {
 				description:
 					"Full stack app and server service to track, manage and interact with local and remote AI agents.",
 			},
+			"proj-11": {
+				description:
+					"Personal app to track home income and expenses, appointments, and shopping carts.",
+			},
+			"proj-12": {
+				description: "All-in-one fitness, health, and wellness app.",
+			},
 		},
 	},
 
@@ -135,6 +154,9 @@ export const en: Translations = {
 		title: "WHAT I BUILD.",
 		subtitle:
 			"Fractional engineering leadership and hands-on development for startups and scale-ups.",
+		builtForClientsTitle: "Products Built For Clients",
+		builtForClientsSubtitle:
+			"A selection of freelance products delivered for client teams.",
 		deliverables: "Deliverables",
 		getInTouch: "Get in touch",
 		allServicesInclude: "All services include:",
@@ -178,6 +200,8 @@ export const en: Translations = {
 		formSubtitle: "All messages encrypted. I usually respond within 24h.",
 		name: "Name",
 		email: "Email",
+		namePlaceholder: "John Doe",
+		emailPlaceholder: "john@company.com",
 		subject: "Subject",
 		message: "Message",
 		subjectPlaceholder: "Architectural audit, collaboration, etc.",

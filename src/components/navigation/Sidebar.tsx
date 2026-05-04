@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Twitter } from 'iconoir-react';
 import { getYear } from '@/stores/dateStore';
 import { PROFILE } from '@/constants/profile';
+import { useTranslations } from '@/hooks/use-translations';
 
 interface SidebarProps {
   currentPath: string;
@@ -92,12 +93,14 @@ function SocialLink({ item }: { item: typeof PROFILE.social[number] }) {
 }
 
 export default function Sidebar({ currentPath }: SidebarProps) {
+  const t = useTranslations();
+
   return (
     <aside
       className="hidden md:flex fixed left-0 top-0 bottom-0 z-50
                  flex-col items-center justify-between
                  w-[48px] border-r border-border bg-background"
-      aria-label="Vertical sidebar"
+      aria-label={t.nav.verticalSidebar}
     >
       <div className="flex items-start justify-center pt-16 flex-1">
         <span

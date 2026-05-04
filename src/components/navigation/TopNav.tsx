@@ -74,7 +74,7 @@ export default function TopNav({ currentPath: initialPath }: TopNavProps) {
         <nav
           ref={containerRef as React.RefObject<HTMLElement>}
           className="hidden md:flex items-center gap-1 relative"
-          aria-label="Main navigation"
+          aria-label={t.nav.mainNavigation}
         >
           {pill}
 

@@ -1,5 +1,13 @@
 export interface Translations {
-	nav: { home: string; projects: string; services: string; contact: string };
+	nav: {
+		home: string;
+		projects: string;
+		services: string;
+		contact: string;
+		mainNavigation: string;
+		mobileNavigation: string;
+		verticalSidebar: string;
+	};
 	site: { title: string; description: string };
 	hero: {
 		name: string;
@@ -22,6 +30,8 @@ export interface Translations {
 		systemReport: string;
 		logHistory: string;
 		viewAll: string;
+		main: string;
+		moreSkills: string;
 	};
 	skillTier: { primary: string; secondary: string; familiar: string };
 	cta: { heading: string; button: string };
@@ -42,6 +52,13 @@ export interface Translations {
 		viewProject: string;
 		viewCode: string;
 		featured: string;
+		filterAll: string;
+		sortShuffle: string;
+		sortYearNewest: string;
+		sortYearOldest: string;
+		sortTitleAsc: string;
+		sortTitleDesc: string;
+		shuffleProjectsTitle: string;
 		items: Record<string, { description: string }>;
 	};
 	services: {
@@ -50,6 +67,8 @@ export interface Translations {
 		label: string;
 		title: string;
 		subtitle: string;
+		builtForClientsTitle: string;
+		builtForClientsSubtitle: string;
 		deliverables: string;
 		getInTouch: string;
 		allServicesInclude: string;
@@ -76,6 +95,8 @@ export interface Translations {
 		formSubtitle: string;
 		name: string;
 		email: string;
+		namePlaceholder: string;
+		emailPlaceholder: string;
 		subject: string;
 		message: string;
 		subjectPlaceholder: string;

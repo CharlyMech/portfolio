@@ -7,6 +7,9 @@ export const es: Translations = {
 		projects: "Proyectos",
 		services: "Servicios",
 		contact: "Contacto",
+		mainNavigation: "Navegación principal",
+		mobileNavigation: "Navegación móvil",
+		verticalSidebar: "Barra lateral vertical",
 	},
 
 	// Site meta
@@ -38,8 +41,10 @@ export const es: Translations = {
 	infrastructure: {
 		heading: "CORE INFRASTRUCTURE",
 		systemReport: "Informe del Sistema",
-		logHistory: "LOG: HISTORY",
-		viewAll: "Full history →",
+		logHistory: "LOG: HISTORIAL",
+		viewAll: "Historial completo →",
+		main: "PRINCIPAL",
+		moreSkills: "MÁS HABILIDADES",
 	},
 
 	// Skill tiers
@@ -85,6 +90,13 @@ export const es: Translations = {
 		viewProject: "Ver Proyecto",
 		viewCode: "Ver Código",
 		featured: "Destacado",
+		filterAll: "Todos",
+		sortShuffle: "Aleatorio",
+		sortYearNewest: "Año — Más reciente",
+		sortYearOldest: "Año — Más antiguo",
+		sortTitleAsc: "Título — A → Z",
+		sortTitleDesc: "Título — Z → A",
+		shuffleProjectsTitle: "Mezclar proyectos",
 		items: {
 			"proj-1": {
 				description:
@@ -123,6 +135,14 @@ export const es: Translations = {
 				description:
 					"App full stack y servicio de servidor para rastrear, gestionar e interactuar con agentes de IA locales y remotos.",
 			},
+			"proj-11": {
+				description:
+					"App personal para gestionar ingresos y gastos del hogar, citas y carros de compra.",
+			},
+			"proj-12": {
+				description:
+					"Aplicación todo-en-uno de fitness, salud y bienestar.",
+			},
 		},
 	},
 
@@ -135,6 +155,9 @@ export const es: Translations = {
 		title: "LO QUE CONSTRUYO.",
 		subtitle:
 			"Liderazgo de ingeniería fraccionado y desarrollo práctico para startups y scale-ups.",
+		builtForClientsTitle: "Productos para Clientes",
+		builtForClientsSubtitle:
+			"Una selección de productos freelance entregados para equipos cliente.",
 		deliverables: "Entregables",
 		getInTouch: "Contáctame",
 		allServicesInclude: "Todos los servicios incluyen:",
@@ -181,6 +204,8 @@ export const es: Translations = {
 			"Todos los mensajes cifrados. Suelo responder en menos de 24h.",
 		name: "Nombre",
 		email: "Correo",
+		namePlaceholder: "Juan Pérez",
+		emailPlaceholder: "juan@empresa.com",
 		subject: "Asunto",
 		message: "Mensaje",
 		subjectPlaceholder: "Auditoría de arquitectura, colaboración, etc.",

@@ -147,7 +147,7 @@ export default function ProjectsGrid() {
   };
 
   const FILTER_OPTIONS = [
-    { id: 'all', label: 'All' },
+    { id: 'all', label: t.projects.filterAll },
     { id: 'prod', label: t.projects.status.prod },
     { id: 'dev', label: t.projects.status.dev },
     { id: 'paused', label: t.projects.status.paused },
@@ -156,11 +156,11 @@ export default function ProjectsGrid() {
   ];
 
   const SORT_OPTIONS: { id: SortKey; label: string; icon: React.ReactNode; group: number }[] = [
-    { id: 'shuffle', label: 'Shuffle', icon: <Shuffle width={11} height={11} strokeWidth={1.5} />, group: 0 },
-    { id: 'year-desc', label: 'Year — Newest', icon: <SortDown width={11} height={11} strokeWidth={1.5} />, group: 1 },
-    { id: 'year-asc', label: 'Year — Oldest', icon: <SortUp width={11} height={11} strokeWidth={1.5} />, group: 1 },
-    { id: 'title-asc', label: 'Title — A → Z', icon: <SortUp width={11} height={11} strokeWidth={1.5} />, group: 2 },
-    { id: 'title-desc', label: 'Title — Z → A', icon: <SortDown width={11} height={11} strokeWidth={1.5} />, group: 2 },
+    { id: 'shuffle', label: t.projects.sortShuffle, icon: <Shuffle width={11} height={11} strokeWidth={1.5} />, group: 0 },
+    { id: 'year-desc', label: t.projects.sortYearNewest, icon: <SortDown width={11} height={11} strokeWidth={1.5} />, group: 1 },
+    { id: 'year-asc', label: t.projects.sortYearOldest, icon: <SortUp width={11} height={11} strokeWidth={1.5} />, group: 1 },
+    { id: 'title-asc', label: t.projects.sortTitleAsc, icon: <SortUp width={11} height={11} strokeWidth={1.5} />, group: 2 },
+    { id: 'title-desc', label: t.projects.sortTitleDesc, icon: <SortDown width={11} height={11} strokeWidth={1.5} />, group: 2 },
   ];
 
   const handleShuffle = useCallback(() => {
@@ -181,8 +181,8 @@ export default function ProjectsGrid() {
     PROJECTS.filter((p) => activeFilter === 'all' || p.status === activeFilter),
   );
 
-  const activeFilterLabel = FILTER_OPTIONS.find((f) => f.id === activeFilter)?.label ?? 'All';
-  const activeSortLabel = SORT_OPTIONS.find((s) => s.id === sortKey)?.label ?? 'Year — Newest';
+  const activeFilterLabel = FILTER_OPTIONS.find((f) => f.id === activeFilter)?.label ?? t.projects.filterAll;
+  const activeSortLabel = SORT_OPTIONS.find((s) => s.id === sortKey)?.label ?? t.projects.sortYearNewest;
 
   return (
     <div className="p-6 md:p-10">
@@ -237,7 +237,7 @@ export default function ProjectsGrid() {
         <button
           type="button"
           onClick={handleShuffle}
-          title="Shuffle projects"
+          title={t.projects.shuffleProjectsTitle}
           className="flex items-center gap-1.5 border border-border bg-surface px-2.5 py-1 h-7
                      text-code-xs text-foreground hover:text-foreground-secondary
                      transition-colors duration-200 outline-none"

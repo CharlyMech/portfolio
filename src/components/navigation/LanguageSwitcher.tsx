@@ -6,9 +6,11 @@ import { NavArrowDown, Translate } from 'iconoir-react';
 import { useLocaleStore } from '@/stores/localeStore';
 import { locales, localeLabels } from '@/i18n';
 import type { Locale } from '@/i18n';
+import { useTranslations } from '@/hooks/use-translations';
 
 export default function LanguageSwitcher() {
   const { locale, setLocale } = useLocaleStore();
+  const t = useTranslations();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -23,7 +25,7 @@ export default function LanguageSwitcher() {
   }, []);
 
   return (
-    <div ref={ref} className="relative" aria-label="Language switcher">
+    <div ref={ref} className="relative" aria-label={t.lang.switchTo}>
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
