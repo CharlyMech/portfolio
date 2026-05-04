@@ -15,7 +15,7 @@ export const PROFILE: Profile = {
 		coordinates: { lat: 41.6523, lon: -4.7245 },
 	},
 	status: {
-		available: false,
+		available: true,
 		availableForFreelance: false,
 		updatedAt: "2026",
 	},
