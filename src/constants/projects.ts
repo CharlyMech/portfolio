@@ -10,9 +10,9 @@ export const PROJECTS: Project[] = [
 			"Simple and intuitive time registration app for easy time tracking and PYME accessible.",
 		tags: ["Flutter", "Firebase"],
 		status: "prod",
+		isFreelance: true,
 		github: "https://github.com/CharlyMech/timely",
 		url: "https://timely.charlymech.com/",
-		featured: true,
 		year: "2025",
 	},
 	{
@@ -24,8 +24,8 @@ export const PROJECTS: Project[] = [
 			"(MVP) Fleet management with time registration and reports tracking. Built with React Native Expo, Zustand, and Supabase.",
 		tags: ["React Native Expo", "TypeScript", "Zustand", "Supabase"],
 		status: "archived",
+		isFreelance: true,
 		github: "https://github.com/CharlyMech/transia",
-		featured: true,
 		year: "2025",
 	},
 	{
@@ -37,7 +37,6 @@ export const PROJECTS: Project[] = [
 		tags: ["TypeScript", "VSCode"],
 		status: "dev",
 		github: "https://github.com/CharlyMech/code-shamer",
-		featured: true,
 		year: "2026",
 	},
 	{
@@ -48,7 +47,6 @@ export const PROJECTS: Project[] = [
 		status: "prod",
 		url: "midudev-adventjs2024.vercel.app",
 		github: "https://github.com/CharlyMech/adventjs2024",
-		featured: false,
 		year: "2024",
 	},
 	{
@@ -58,7 +56,6 @@ export const PROJECTS: Project[] = [
 		tags: ["Flutter", "Dart", "GitHub API"],
 		status: "paused",
 		github: "https://github.com/CharlyMech/adventjs2024",
-		featured: false,
 		year: "2024",
 	},
 	{
@@ -71,7 +68,6 @@ export const PROJECTS: Project[] = [
 		tags: ["Flutter", "Dart", "Isar", "BLoC", "OpenWeather API"],
 		status: "dev",
 		github: "https://github.com/CharlyMech/weatherlite",
-		featured: false,
 		year: "2026",
 	},
 	{
@@ -80,7 +76,6 @@ export const PROJECTS: Project[] = [
 		description:
 			"MacOS extrension for dropping status icons into a phantom zone and be able to see them as dropdown menu.",
 		status: "backlog",
-		featured: false,
 	},
 	{
 		id: "proj-8",
@@ -88,7 +83,6 @@ export const PROJECTS: Project[] = [
 		description:
 			"Logistics management all in one app for efficient cargo tracking and delivery.",
 		status: "backlog",
-		featured: false,
 	},
 	{
 		id: "proj-9",
@@ -102,6 +96,24 @@ export const PROJECTS: Project[] = [
 		title: "AgentOs",
 		description:
 			"Full stack app and server service to track, manage and interact with local and remote AI agents.",
+		status: "backlog",
+	},
+	{
+		id: "proj-11",
+		title: "Hestia",
+		description:
+			"Personal app to track house money sources income/outcome, personal appointments and shooping carts.",
+		longDescription:
+			"Personal app that allows my home expenses and incomes to be registered, categorized, and analyzed, personal or shared. Implemented personal and shared appointments, sync with Google calendar, and shopping carts for shared groceries.",
+		tags: ["Flutter", "Dart", "Drift", "BLoC", "Supabase"],
+		status: "dev",
+		github: "https://github.com/CharlyMech/hestia",
+		year: "2026",
+	},
+	{
+		id: "proj-12",
+		title: "Pulse",
+		description: "All in one fitness, health and wellness app.",
 		status: "backlog",
 		featured: true,
 	},

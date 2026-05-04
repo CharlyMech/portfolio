@@ -7,6 +7,7 @@ export interface Project {
 	longDescription?: string;
 	tags?: string[];
 	status: ProjectStatus;
+	isFreelance?: boolean;
 	url?: string;
 	github?: string;
 	image?: string;

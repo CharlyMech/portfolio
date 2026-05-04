@@ -4,14 +4,16 @@ import { motion } from 'framer-motion';
 import * as Iconoir from 'iconoir-react';
 import { getServices } from '@/constants/freelance';
 import { PROFILE } from '@/constants/profile';
+import { PROJECTS } from '@/constants/projects';
 import { useTranslations } from '@/hooks/use-translations';
 import { useLocaleStore } from '@/stores/localeStore';
 
 export default function ServicesSection() {
-  const isAvailable = PROFILE.status.available;
+  const isAvailable = PROFILE.status.availableForFreelance;
   const t = useTranslations();
   const locale = useLocaleStore((s) => s.locale);
   const services = getServices(locale);
+  const freelanceProjects = PROJECTS.filter((project) => project.isFreelance);
 
   return (
     <div className="p-6 md:p-10">
@@ -72,6 +74,67 @@ export default function ServicesSection() {
           );
         })}
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45 }}
+        viewport={{ once: true }}
+        className="mt-10"
+      >
+        <div className="border-b border-border pb-4 mb-6">
+          <h3 className="text-heading mb-1">{t.services.builtForClientsTitle}</h3>
+          <p className="text-body text-foreground-secondary">{t.services.builtForClientsSubtitle}</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px border border-border bg-border">
+          {freelanceProjects.map((project) => (
+            <article key={project.id} className="bg-elevated p-6">
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <h4 className="text-heading-sm">{project.title}</h4>
+                {project.year && (
+                  <span className="label-mono text-foreground-muted">{project.year}</span>
+                )}
+              </div>
+
+              <p className="text-body text-foreground-secondary mb-4">
+                {t.projects.items[project.id]?.description ?? project.description}
+              </p>
+
+              {!!project.tags?.length && (
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="tech-tag">{tag}</span>
+                  ))}
+                </div>
+              )}
+
+              <div className="flex items-center gap-3 pt-1 border-t border-border">
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-code normal-case tracking-wider text-foreground-muted hover:text-accent transition-colors flex items-center gap-1"
+                  >
+                    <span>⌥</span> {t.projects.viewCode}
+                  </a>
+                )}
+                {project.url && (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-code normal-case tracking-wider text-foreground-muted hover:text-accent transition-colors flex items-center gap-1 ml-auto"
+                  >
+                    {t.projects.viewProject} <span>→</span>
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </motion.div>
 
       <motion.div
         initial={{ opacity: 0 }}
