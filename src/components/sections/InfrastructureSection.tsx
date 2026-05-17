@@ -16,6 +16,30 @@ import { CategoryCell } from '@/components/shared/CategoryCell';
 import { useGitHubActivityStore } from '@/stores/githubActivityStore';
 import { useLocaleStore } from '@/stores/localeStore';
 
+function Bone({ className }: { className?: string }) {
+  return <div className={`rounded bg-surface animate-pulse ${className ?? ''}`} />;
+}
+
+function LanguagePieSkeleton() {
+  return (
+    <div className="w-full flex items-center gap-4" style={{ height: '260px' }}>
+      <div className="flex-shrink-0 flex items-center justify-center" style={{ width: '45%' }}>
+        <div className="rounded-full animate-pulse bg-surface flex items-center justify-center" style={{ width: '120px', height: '120px' }}>
+          <div className="rounded-full bg-background" style={{ width: '64px', height: '64px' }} />
+        </div>
+      </div>
+      <div className="flex flex-col gap-3 flex-1">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div key={i} className="flex items-center gap-2">
+            <Bone className="h-2 w-2 rounded-full flex-shrink-0" />
+            <Bone className={`h-2.5 ${i % 3 === 0 ? 'w-20' : i % 3 === 1 ? 'w-16' : 'w-12'}`} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function InfrastructureSection() {
   const t = useTranslations();
   const { data: ghData, loading: ghLoading } = useGitHubActivityStore();
@@ -39,7 +63,7 @@ export default function InfrastructureSection() {
           <div className="flex flex-col sm:flex-row flex-1 border-b border-border">
             {(showPie || ghLoading) && (
               <div className="sm:w-64 lg:w-[350px] flex-shrink-0 border-b sm:border-b-0 sm:border-r border-border p-4 flex items-center justify-center">
-                <Skeleton name="language-pie" loading={ghLoading} className="w-full">
+                <Skeleton name="language-pie" loading={ghLoading} fallback={<LanguagePieSkeleton />} className="w-full">
                   {showPie && <LanguagePie languages={topLanguages} />}
                 </Skeleton>
               </div>
