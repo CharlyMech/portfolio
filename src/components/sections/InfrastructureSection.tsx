@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   getCertificateEntries,
@@ -42,11 +42,15 @@ function LanguagePieSkeleton() {
 
 export default function InfrastructureSection() {
   const t = useTranslations();
-  const { data: ghData, loading: ghLoading } = useGitHubActivityStore();
+  const { data: ghData, loading: ghLoading, fetched: ghFetched } = useGitHubActivityStore();
   const topLanguages = ghData?.topLanguages;
   const mainCategories = Object.entries(skillsByGroup('main'));
   const otherByCategory = skillsByGroup('other');
   const showPie = topLanguages && topLanguages.length > 0;
+
+  useLayoutEffect(() => {
+    void useGitHubActivityStore.getState().fetch();
+  }, []);
 
   const topRow = ['Mobile', 'Front-end', 'Back-end'].map((cat) => [cat, otherByCategory[cat] ?? []] as const);
   const fullRows = ['Databases', 'Data & AI', 'Cloud & Ops'].map((cat) => [cat, otherByCategory[cat] ?? []] as const);
@@ -61,7 +65,7 @@ export default function InfrastructureSection() {
           </div>
 
           <div className="flex flex-col sm:flex-row flex-1 border-b border-border">
-            {(showPie || ghLoading) && (
+            {(showPie || ghLoading || !ghFetched) && (
               <div className="sm:w-64 lg:w-[350px] flex-shrink-0 border-b sm:border-b-0 sm:border-r border-border p-4 flex items-center justify-center">
                 <Skeleton name="language-pie" loading={ghLoading} fallback={<LanguagePieSkeleton />} className="w-full">
                   {showPie && <LanguagePie languages={topLanguages} />}

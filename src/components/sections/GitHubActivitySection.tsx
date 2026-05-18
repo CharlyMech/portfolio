@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Skeleton } from 'boneyard-js/react';
 import { Star, Group, CodeBrackets, FireFlame, GithubCircle, Activity, NavArrowDown } from 'iconoir-react';
@@ -167,10 +167,10 @@ function GitHubDataContent() {
 }
 
 export default function GitHubActivitySection() {
-  const { data, fetch } = useGitHubActivityStore();
+  const data = useGitHubActivityStore((s) => s.data);
 
-  useEffect(() => {
-    fetch();
+  useLayoutEffect(() => {
+    void useGitHubActivityStore.getState().fetch();
   }, []);
 
   return (
