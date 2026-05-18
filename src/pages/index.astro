@@ -13,8 +13,8 @@ import CTASection from "@/components/sections/CTASection";
 	<!-- Core infrastructure + experience log + language pie -->
 	<InfrastructureSection client:visible />
 
-	<!-- GitHub activity dashboard (async, client-side fetch) -->
-	<GitHubActivitySection client:visible />
+	<!-- GitHub activity dashboard: client:load so fetch runs on first paint, not only when scrolled into view -->
+	<GitHubActivitySection client:load />
 
 	<!-- CTA / contact teaser -->
 	<CTASection client:visible />
