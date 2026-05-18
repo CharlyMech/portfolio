@@ -16,7 +16,7 @@ import {
   type ReactNode,
 } from "react";
 import { createPortal } from "react-dom";
-import { X, Minus, Plus, Locate, Maximize, Loader2 } from "lucide-react";
+import { Xmark, Plus, Minus, Compass, Maximize, Refresh } from "iconoir-react";
 
 import { cn } from "@/lib/tailwindClassUtil";
 
@@ -596,7 +596,7 @@ function MarkerPopup({
           className="ring-offset-background focus:ring-ring absolute top-1 right-1 z-10 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-none"
           aria-label="Close popup"
         >
-          <X className="h-4 w-4" />
+          <Xmark width={16} height={16} strokeWidth={2} className="text-current" />
           <span className="sr-only">Close</span>
         </button>
       )}
@@ -843,10 +843,10 @@ function MapControls({
       {showZoom && (
         <ControlGroup>
           <ControlButton onClick={handleZoomIn} label="Zoom in">
-            <Plus className="size-4" />
+            <Plus width={16} height={16} strokeWidth={2} className="size-4" />
           </ControlButton>
           <ControlButton onClick={handleZoomOut} label="Zoom out">
-            <Minus className="size-4" />
+            <Minus width={16} height={16} strokeWidth={2} className="size-4" />
           </ControlButton>
         </ControlGroup>
       )}
@@ -863,9 +863,9 @@ function MapControls({
             disabled={waitingForLocation}
           >
             {waitingForLocation ? (
-              <Loader2 className="size-4 animate-spin" />
+              <Refresh width={16} height={16} strokeWidth={2} className="size-4 animate-spin" />
             ) : (
-              <Locate className="size-4" />
+              <Compass width={16} height={16} strokeWidth={2} className="size-4" />
             )}
           </ControlButton>
         </ControlGroup>
@@ -873,7 +873,7 @@ function MapControls({
       {showFullscreen && (
         <ControlGroup>
           <ControlButton onClick={handleFullscreen} label="Toggle fullscreen">
-            <Maximize className="size-4" />
+            <Maximize width={16} height={16} strokeWidth={2} className="size-4" />
           </ControlButton>
         </ControlGroup>
       )}
@@ -1022,7 +1022,7 @@ function MapPopup({
           className="ring-offset-background focus:ring-ring absolute top-1 right-1 z-10 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-none"
           aria-label="Close popup"
         >
-          <X className="h-4 w-4" />
+          <Xmark width={16} height={16} strokeWidth={2} className="text-current" />
           <span className="sr-only">Close</span>
         </button>
       )}
