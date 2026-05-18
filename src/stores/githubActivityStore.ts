@@ -4,7 +4,9 @@ import type { GitHubActivityData } from '@/core/models/github';
 
 interface GitHubActivityState {
   data: GitHubActivityData | null;
+  /** True while the initial (or in-flight) GraphQL request is running */
   loading: boolean;
+  /** True after the first fetch attempt has finished (success or failure) */
   fetched: boolean;
   fetch: () => Promise<void>;
 }
