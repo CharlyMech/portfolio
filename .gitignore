@@ -7,6 +7,8 @@ node_modules/
 dist/
 .output/
 .astro/
+# Vercel
+.vercel/
 
 # Environment variables
 .env
