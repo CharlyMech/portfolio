@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Filter, Sort, SortDown, SortUp, Shuffle, NavArrowDown, Check } from 'iconoir-react';
+import { Filter, Sort, SortDown, SortUp, Shuffle, NavArrowDown, Check, User, Group } from 'iconoir-react';
 import { PROJECTS } from '@/constants/projects';
 import { DEVICON_MAP } from '@/constants/devicon-map';
 import type { Project, ProjectStatus } from '@/core/models/project';
@@ -87,9 +87,9 @@ function DropdownItem({
       className={`w-full px-2.5 py-1.5 text-left text-code-xs
                   flex items-center gap-2 transition-colors duration-150
                   ${active
-                    ? 'text-accent bg-accent/5'
-                    : 'text-foreground-muted hover:text-foreground-secondary hover:bg-accent/5'
-                  }`}
+          ? 'text-accent bg-accent/5'
+          : 'text-foreground-muted hover:text-foreground-secondary hover:bg-accent/5'
+        }`}
     >
       <span className="flex-shrink-0 w-3.5 flex items-center justify-center">
         {active ? <Check width={11} height={11} strokeWidth={2} /> : icon}
@@ -261,6 +261,65 @@ export default function ProjectsGrid() {
   );
 }
 
+function CollaboratorsPopover({ collaborators }: { collaborators: string[] }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      className="relative flex items-center border border-border bg-surface p-1 cursor-pointer"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <button
+        type="button"
+        className="flex items-center justify-center w-5 h-5 text-foreground-muted hover:text-accent transition-colors"
+        aria-label="Collaborators"
+      >
+        <Group width={22} height={22} strokeWidth={1.5} />
+      </button>
+
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            role="tooltip"
+            initial={{ opacity: 0, y: 6, scale: 0.92 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 4, scale: 0.95 }}
+            transition={{ duration: 0.18, ease: [0.34, 1.56, 0.64, 1] }}
+            className="absolute bottom-full mb-2 left-0 z-50
+                       px-2.5 py-1.5 bg-surface border border-border
+                       flex flex-col gap-1 min-w-max"
+          >
+            {collaborators.slice(0, 2).map((url) => {
+              const username = url.replace(/\/$/, '').split('/').pop() ?? url;
+              return (
+                <a
+                  key={url}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="label-mono text-foreground hover:text-accent text-[0.65rem] flex items-center gap-1.5 transition-colors"
+                >
+                  <User width={14} height={14} strokeWidth={1.5} />
+                  {username}
+                </a>
+              );
+            })}
+            <span
+              className="absolute top-full left-3 -translate-x-1/2
+                         border-4 border-transparent border-t-border"
+            />
+            <span
+              className="absolute top-full left-3 -translate-x-1/2 -translate-y-px
+                         border-4 border-transparent border-t-surface"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 function ProjectCard({ project, index, statusLabels, t }: {
   project: Project;
   index: number;
@@ -290,9 +349,15 @@ function ProjectCard({ project, index, statusLabels, t }: {
       <div className="flex items-start justify-between gap-3">
         <div>
           <span className="label-mono text-foreground-muted">{project.year}</span>
-          <h3 className="text-heading-xs mt-1">
-            {project.title}
-          </h3>
+          <div className="flex flex-row items-center justify-start gap-4">
+            <h3 className="text-heading-xs mt-1">
+              {project.title}
+            </h3>
+            {project.collaborators && project.collaborators.length > 0 && (
+              <CollaboratorsPopover collaborators={project.collaborators} />
+            )}
+
+          </div>
         </div>
         <span
           className={`flex-shrink-0 text-code-xs
