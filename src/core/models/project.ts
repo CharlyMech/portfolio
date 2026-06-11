@@ -11,6 +11,6 @@ export interface Project {
 	url?: string;
 	github?: string;
 	image?: string;
-	featured?: boolean;
+	collaborators?: string[];
 	year?: string;
 }

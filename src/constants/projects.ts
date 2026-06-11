@@ -84,13 +84,13 @@ export const PROJECTS: Project[] = [
 			"Logistics management all in one app for efficient cargo tracking and delivery.",
 		status: "backlog",
 	},
-	{
-		id: "proj-9",
-		title: "Gusto",
-		description: "Social media app for travelers and food enthusiasts.",
-		status: "backlog",
-		featured: true,
-	},
+	// {
+	// 	id: "proj-9",
+	// 	title: "Gusto",
+	// 	description: "Social media app for travelers and food enthusiasts.",
+	// 	status: "backlog",
+	// 	collaborators: ["https://github.com/IsaacLolade],
+	// },
 	{
 		id: "proj-10",
 		title: "AgentOs",
@@ -115,6 +115,9 @@ export const PROJECTS: Project[] = [
 		title: "Pulse",
 		description: "All in one fitness, health and wellness app.",
 		status: "backlog",
-		featured: true,
+		collaborators: [
+			"https://github.com/IsaacLolade",
+			"https://github.com/MarcASO1560",
+		],
 	},
 ];
