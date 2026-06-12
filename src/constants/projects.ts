@@ -92,13 +92,6 @@ export const PROJECTS: Project[] = [
 	// 	collaborators: ["https://github.com/IsaacLolade],
 	// },
 	{
-		id: "proj-10",
-		title: "AgentOs",
-		description:
-			"Full stack app and server service to track, manage and interact with local and remote AI agents.",
-		status: "backlog",
-	},
-	{
 		id: "proj-11",
 		title: "Hestia",
 		description:
