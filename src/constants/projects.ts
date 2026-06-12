@@ -66,7 +66,7 @@ export const PROJECTS: Project[] = [
 		longDescription:
 			"Minimalism weather app with offline capabilities and fully customizable layouts and widgets. Built with Flutter, Isar, and BLoC architecture. Integrates OpenWeather API for accurate forecasts.",
 		tags: ["Flutter", "Dart", "Isar", "BLoC", "OpenWeather API"],
-		status: "dev",
+		status: "paused",
 		github: "https://github.com/CharlyMech/weatherlite",
 		year: "2026",
 	},
@@ -119,5 +119,17 @@ export const PROJECTS: Project[] = [
 			"https://github.com/IsaacLolade",
 			"https://github.com/MarcASO1560",
 		],
+	},
+	{
+		id: "proj-13",
+		title: "Notx",
+		description: "MacOS notch extension for developers.",
+		status: "backlog",
+	},
+	{
+		id: "proj-14",
+		title: "Gitpilot",
+		description: "Automate your git commit flow with your rules.",
+		status: "backlog",
 	},
 ];
