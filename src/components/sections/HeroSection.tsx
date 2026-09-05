@@ -10,6 +10,7 @@ import { useWeatherStore } from '@/stores/weatherStore';
 import { useDateStore } from '@/stores/dateStore';
 import type { WeatherCondition } from '@/core/models/weather';
 import { Card } from '../ui/card';
+import CurrentStatus from '../shared/CurrentStatus';
 
 // ---- Animation variants ----
 // ease arrays avoid the string literal type mismatch with Framer Motion's Easing type
@@ -154,31 +155,7 @@ export default function HeroSection() {
             <Card className="w-52 rounded-full flex items-center justify-center overflow-hidden">
               <img src="/carlos.png" alt="Carlos" className="w-full h-full object-cover rounded-full" />
             </Card>
-            <div className="w-full max-w-[13rem] space-y-2">
-              <p className="label-mono text-foreground-muted text-center">{t.hero.currentStatus}</p>
-              <ul className="space-y-1.5 text-left" aria-label={t.hero.currentStatus}>
-                <li className="flex items-center gap-2 text-code-xs text-foreground-secondary">
-                  <span
-                    className={`status-dot shrink-0 ${PROFILE.status.available ? 'available' : 'busy'}`}
-                    aria-hidden
-                  />
-                  <span>
-                    {PROFILE.status.available ? t.hero.availableForHire : t.hero.notAvailableForHire}
-                  </span>
-                </li>
-                <li className="flex items-center gap-2 text-code-xs text-foreground-secondary">
-                  <span
-                    className={`status-dot shrink-0 ${PROFILE.status.availableForFreelance ? 'available' : 'busy'}`}
-                    aria-hidden
-                  />
-                  <span>
-                    {PROFILE.status.availableForFreelance
-                      ? t.hero.availableForFreelance
-                      : t.hero.notAvailableForFreelance}
-                  </span>
-                </li>
-              </ul>
-            </div>
+            <CurrentStatus className="w-full max-w-[13rem] text-center" />
           </motion.div>
 
         </div>
