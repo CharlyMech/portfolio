@@ -40,7 +40,9 @@ export function usePill<K extends string>(
   function measure() {
     const el = itemRefs.current.get(activeKey);
     const container = containerRef.current;
-    if (!el || !container) return;
+    // No active item (path outside the nav) — hide the pill instead of keeping
+    // the stale position from the previous page (nav is transition:persist).
+    if (!el || !container) return setStyle(null);
     const cr = container.getBoundingClientRect();
     const ir = el.getBoundingClientRect();
     setStyle({
