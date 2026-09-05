@@ -44,7 +44,7 @@ export const es: Translations = {
 		logHistory: "LOG: HISTORIAL",
 		viewAll: "Historial completo →",
 		main: "PRINCIPAL",
-		moreSkills: "MÁS HABILIDADES",
+		moreSkills: "OTRAS HABILIDADES",
 	},
 
 	// Skill tiers
