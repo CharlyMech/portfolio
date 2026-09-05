@@ -197,7 +197,6 @@ export const SKILLS: Skill[] = [
 		name: "Neo4j",
 		icon: "devicon-neo4j-plain",
 	},
-	{ group: "other", category: "Databases", name: "Isar" },
 	{
 		group: "other",
 		category: "Cloud & Ops",

@@ -35,7 +35,7 @@ export const PROJECTS: Project[] = [
 		longDescription:
 			"VSCode extension that shames and blames you for your code. Made with rules for JavaScript, TypeScript, Python, Java, C, C++, Dart, PHP, HTML.",
 		tags: ["TypeScript", "VSCode"],
-		status: "dev",
+		status: "paused",
 		github: "https://github.com/CharlyMech/code-shamer",
 		year: "2026",
 	},
@@ -58,32 +58,32 @@ export const PROJECTS: Project[] = [
 		github: "https://github.com/CharlyMech/adventjs2024",
 		year: "2024",
 	},
-	{
-		id: "proj-6",
-		title: "Weatherlite",
-		description:
-			"Weather app with offline capabilities and minimalism design.",
-		longDescription:
-			"Minimalism weather app with offline capabilities and fully customizable layouts and widgets. Built with Flutter, Isar, and BLoC architecture. Integrates OpenWeather API for accurate forecasts.",
-		tags: ["Flutter", "Dart", "Isar", "BLoC", "OpenWeather API"],
-		status: "paused",
-		github: "https://github.com/CharlyMech/weatherlite",
-		year: "2026",
-	},
-	{
-		id: "proj-7",
-		title: "Wisp",
-		description:
-			"MacOS extrension for dropping status icons into a phantom zone and be able to see them as dropdown menu.",
-		status: "backlog",
-	},
-	{
-		id: "proj-8",
-		title: "LogiKargo",
-		description:
-			"Logistics management all in one app for efficient cargo tracking and delivery.",
-		status: "backlog",
-	},
+	// {
+	// 	id: "proj-6",
+	// 	title: "Weatherlite",
+	// 	description:
+	// 		"Weather app with offline capabilities and minimalism design.",
+	// 	longDescription:
+	// 		"Minimalism weather app with offline capabilities and fully customizable layouts and widgets. Built with Flutter, Isar, and BLoC architecture. Integrates OpenWeather API for accurate forecasts.",
+	// 	tags: ["Flutter", "Dart", "Isar", "BLoC", "OpenWeather API"],
+	// 	status: "paused",
+	// 	github: "https://github.com/CharlyMech/weatherlite",
+	// 	year: "2026",
+	// },
+	// {
+	// 	id: "proj-7",
+	// 	title: "Wisp",
+	// 	description:
+	// 		"MacOS extrension for dropping status icons into a phantom zone and be able to see them as dropdown menu.",
+	// 	status: "backlog",
+	// },
+	// {
+	// 	id: "proj-8",
+	// 	title: "LogiKargo",
+	// 	description:
+	// 		"Logistics management all in one app for efficient cargo tracking and delivery.",
+	// 	status: "backlog",
+	// },
 	// {
 	// 	id: "proj-9",
 	// 	title: "Gusto",
@@ -98,31 +98,38 @@ export const PROJECTS: Project[] = [
 			"Personal app to track house money sources income/outcome, personal appointments and shooping carts.",
 		longDescription:
 			"Personal app that allows my home expenses and incomes to be registered, categorized, and analyzed, personal or shared. Implemented personal and shared appointments, sync with Google calendar, and shopping carts for shared groceries.",
-		tags: ["Flutter", "Dart", "Drift", "BLoC", "Supabase"],
-		status: "dev",
-		github: "https://github.com/CharlyMech/hestia",
-		year: "2026",
-	},
-	{
-		id: "proj-12",
-		title: "Pulse",
-		description: "All in one fitness, health and wellness app.",
-		status: "backlog",
-		collaborators: [
-			"https://github.com/IsaacLolade",
-			"https://github.com/MarcASO1560",
-		],
-	},
-	{
-		id: "proj-13",
-		title: "Notx",
-		description: "MacOS notch extension for developers.",
+		tags: ["Swift", "Supabase"],
 		status: "backlog",
 	},
+	// {
+	// 	id: "proj-12",
+	// 	title: "Pulse",
+	// 	description: "All in one fitness, health and wellness app.",
+	// 	status: "backlog",
+	// 	collaborators: [
+	// 		"https://github.com/IsaacLolade",
+	// 		"https://github.com/MarcASO1560",
+	// 	],
+	// },
+	// {
+	// 	id: "proj-13",
+	// 	title: "Notx",
+	// 	description: "MacOS notch extension for developers.",
+	// 	status: "backlog",
+	// },
+	// {
+	// 	id: "proj-14",
+	// 	title: "Gitpilot",
+	// 	description: "Automate your git commit flow with your rules.",
+	// 	status: "backlog",
+	// },
 	{
-		id: "proj-14",
-		title: "Gitpilot",
-		description: "Automate your git commit flow with your rules.",
+		id: "46C9E593-F1F3-474D-97F0-E24AB6EB84E8",
+		title: "Kluxter",
+		description: "Proxmox cluster dashboard visualization.",
+		longDescription:
+			"Proxmox cluster dashboard visualization, with interactive infrastructure visualization, realtime data and analytics.",
+		tags: ["React", "NextJS", "TypeScript", "Tailwind CSS", "Docker"],
 		status: "backlog",
 	},
 ];
