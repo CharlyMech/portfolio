@@ -97,8 +97,8 @@ export const SKILLS: Skill[] = [
 	{
 		group: "other",
 		category: "Back-end",
-		name: "Spring Boot",
-		icon: "devicon-spring-plain",
+		name: "Go",
+		icon: "devicon-go-plain",
 	},
 	{
 		group: "other",
@@ -111,6 +111,12 @@ export const SKILLS: Skill[] = [
 		category: "Back-end",
 		name: "Node.js",
 		icon: "devicon-nodejs-plain",
+	},
+	{
+		group: "other",
+		category: "Back-end",
+		name: "Spring Boot",
+		icon: "devicon-spring-plain",
 	},
 	{
 		group: "other",
