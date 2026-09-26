@@ -2,7 +2,7 @@ import type { Project } from "@/core/models/project";
 
 export const PROJECTS: Project[] = [
 	{
-		id: "proj-1",
+		id: "3EEC1127-E09F-4C28-8873-E0031AE14462",
 		title: "Timely",
 		description:
 			"Time registration app for easy time tracking and PYME accessible.",
@@ -16,7 +16,7 @@ export const PROJECTS: Project[] = [
 		year: "2025",
 	},
 	{
-		id: "proj-2",
+		id: "F1F0BB09-52E3-43FE-ACA4-50DFF2939A40",
 		title: "Transia",
 		description:
 			"(MVP) Fleet management with time registration and reports tracking.",
@@ -29,7 +29,7 @@ export const PROJECTS: Project[] = [
 		year: "2025",
 	},
 	{
-		id: "proj-3",
+		id: "5903CC16-5690-4D08-BABE-0FB44D951178",
 		title: "CodeShamer",
 		description: "VSCode extension that shames and blames your code.",
 		longDescription:
@@ -40,7 +40,7 @@ export const PROJECTS: Project[] = [
 		year: "2026",
 	},
 	{
-		id: "proj-4",
+		id: "506D604F-6648-4B37-A4A0-B059D7D9340E",
 		title: "AdventJS 2024",
 		description: "AdventJS Challenge 2024 version from @midudev.",
 		tags: ["NextJS", "TypeScript", "Tailwind CSS", "Vercel"],
@@ -50,7 +50,7 @@ export const PROJECTS: Project[] = [
 		year: "2024",
 	},
 	{
-		id: "proj-5",
+		id: "E310668C-91A3-43BE-9A6F-888BBFE396D7",
 		title: "GitHub Profile Tile",
 		description: "Flutter widget for displaying GitHub profile information.",
 		tags: ["Flutter", "Dart", "GitHub API"],
@@ -92,7 +92,7 @@ export const PROJECTS: Project[] = [
 	// 	collaborators: ["https://github.com/IsaacLolade],
 	// },
 	{
-		id: "proj-11",
+		id: "A3C0160A-2E1B-45EF-9F0F-C9AF3E185259",
 		title: "Hestia",
 		description:
 			"Personal app to track house money sources income/outcome, personal appointments and shooping carts.",
@@ -131,5 +131,13 @@ export const PROJECTS: Project[] = [
 			"Proxmox cluster dashboard visualization, with interactive infrastructure visualization, realtime data and analytics.",
 		tags: ["React", "NextJS", "TypeScript", "Tailwind CSS", "Docker"],
 		status: "backlog",
+	},
+	{
+		id: "3FDFB6B6-5CE7-4265-B6F3-06990F4212F7",
+		title: "Nivelo",
+		description: "Bubble level app.",
+		longDescription: "Easy and always in the pocket bubble level app.",
+		tags: ["Dart", "Flutter"],
+		status: "dev",
 	},
 ];
