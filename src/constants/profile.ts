@@ -16,7 +16,7 @@ export const PROFILE: Profile = {
 	},
 	status: {
 		available: true,
-		availableForFreelance: false,
+		availableForFreelance: true,
 		updatedAt: "2026",
 	},
 	social: [
